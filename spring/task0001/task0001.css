@@ -1,0 +1,126 @@
+#demo1 {
+	width: 960px;
+	margin: 0 auto;
+	background-color: red;
+	height: 20px;
+}
+#demo2 {
+	width: 960px;
+	position: absolute;
+	left: 50%;
+	margin-left: -480px;
+	background-color: red;
+	height: 20px;
+}
+#y {
+	border-left: 1px solid;
+	border-right: 1px solid;
+	height: 60px;
+	margin: 0 100px;
+}
+#y1 {
+	height: 1px;
+	background-color: black;
+	margin: 0 104px;
+}
+#y2 {
+	border-left: 1px solid;
+	border-right: 1px solid;
+	margin:  0 103px;
+	height: 1px;
+}
+#y3 {
+	border-left: 1px solid;
+	border-right: 1px solid;
+	margin: 0 102px;
+	height: 1px;
+}
+#y4 {
+	border-left: 1px solid;
+	border-right: 1px solid;
+	margin: 0 101px;
+	height: 1px;
+}
+#divA1 {
+	height: 50px;
+	width: 200px;
+	margin-left: 100px;
+	float: left;
+	background-color: red;
+}
+#divB1 {
+	height: 50px;
+	background-color: blue;
+	margin-left: 300px;
+	margin-right: 100px;
+}
+#2 {
+	position: relative;
+}
+#divA2 {
+	position: absolute;
+	height: 50px;
+	width: 200px;
+	margin-left: 100px;
+	background-color: red;
+}
+#divB2 {
+	height: 50px;
+	background-color: blue;
+	margin-left: 300px;
+	margin-right: 100px;
+}
+#left1 {
+	height: 50px;
+	width: 100px;
+	margin-left: 100px;
+	float: left;
+	background-color: red;
+}
+#middle1 {
+	height: 50px;
+	margin: 0 200px;
+	background-color: yellow;
+}
+#right1 {
+	height: 50px;
+	margin-right: 100px;
+	width: 100px;
+	float: right;
+	background-color: blue;
+}
+#t2 {
+	position: relative;
+}
+#left2 {
+	position: absolute;
+	height: 50px;
+	width: 100px;
+	margin-left: 100px;
+	background-color: red;
+}
+#middle2 {
+	height: 50px;
+	margin: 0 200px;
+	background-color: yellow;
+}
+#right2 {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 50px;
+	margin-right: 100px;
+	width: 100px;
+	background-color: blue;
+}
+#red {
+	margin: 0 100px;
+	background-color: red;
+}
+.blue {
+	margin: 20px;
+	width: 300px;
+	height: 200px;
+	background-color: blue;
+	display: inline-block;
+}
