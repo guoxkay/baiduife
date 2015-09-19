@@ -143,24 +143,59 @@ function getPosition(element) {
     
 }
 // 实现一个简单的Query
+//很多bug好累
 function $(selector) {
+	var ret;
+	var sel;
 	if (selector.search(/^#/) === 0){
 		return document.getElementById(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
 	}
-	else if (selector.search(/^\./) === 0){
-		return document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))[0]
+	if (selector.search(/^\./) === 0){
+		if (selector.match(/\S+/g).length === 1){
+			return document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))[0]
+		}
+		else {
+			ret = document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
+		}	
 	}
-	else if (selector.search(/^\[\S+\]/) === 0){
+	if (selector.search(/^\[\S+\]/) === 0){
 		var ele = document.all;
-		var att = selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length-1)
-		for (var i = 0;i < ele.length;i++){
-			if (ele[i].att){
-				return ele[i]
+		if (selector.match(/\S+/g).length === 1){
+			if (selector.search(/^\[\S+\](?!\=)/) === 0){
+			var att = selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length-1);
+				for (var i = 0;i < ele.length;i++){
+					if (ele[i][att] != undefined){
+						return ele[i]
+					}
+				}
+			}
+			if (selector.search(/^\[\S+\](?=\=)/) === 0){
+			var att2 = selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].slice(1,selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].length-1);
+				for (var i = 0;i < ele.length;i++){
+					if (ele[i][att2] != undefined && ele[i][att2] === selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].slice(1,selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].length)){
+						return ele[i]
+					}
+				}
+			}
+		}
+		else {
+			ret = ele
+		}
+	}
+	if (selector.search(/^[^\.\[\s#]/) === 0) {
+		if (selector.match(/\S+/g).length === 1){
+			return document.getElementsByTagName(selector.match(/\S+/g)[0].slice(0,selector.match(/\S+/g)[0].length))[0]
+		}
+		else {
+			ret = document.getElementsByTagName(selector.match(/\S+/g)[0].slice(0,selector.match(/\S+/g)[0].length))
+		}
+	}
+	if (selector.match(/\S+/g).length >= 1){
+		sel = $(selector.slice(selector.search(/\s\S+/)+1,selector.lenth));
+		for (var i = 0;i < ret.length;i++){
+			if (ret[i] === sel){
+				return ret
 			}
 		}
 	}
-	else {
-		return document.getElementsByTagName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))[0]
-	}
-
 }
