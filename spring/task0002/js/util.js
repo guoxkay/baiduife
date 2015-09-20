@@ -123,15 +123,15 @@ function isMobilePhone(phone) {
 //
 // 为element增加一个样式名为newClassName的新样式
 function addClass(element, newClassName) {
-    document.getElementById(element).classList.add(newClassName)
+    element.classList.add(newClassName)
 }
 // 移除element中的样式oldClassName
 function removeClass(element, oldClassName) {
-    document.getElementById(element).classList.remove(oldClassName)
+    element.classList.remove(oldClassName)
 }
 // 判断siblingNode和element是否为同一个父元素下的同一级的元素，返回bool值
 function isSiblingNode(element, siblingNode) {
-    if (document.getElementById(element).parentElement === document.getElementById(siblingNode).parentElement){
+    if (element.parentElement === siblingNode.parentElement){
     	return true
     }
     else {
@@ -143,16 +143,13 @@ function getPosition(element) {
     
 }
 // 实现一个简单的Query
-//做错了......
+//原题要求第二个选择项是第一个选择项子节点的属性,但我不小心做成匹配同时满足两个选择项的对象了......
 function $(selector) {
 	var ret;
 	var sel;
 	function $$(selector){
 		if (selector.search(/^#/) === 0){
-			var hehe = [];
-			var ii = document.getElementById(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length));
-			hehe.push(ii);
-			return hehe
+			return document.getElementById(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
 		}
 		if (selector.search(/^\./) === 0){
 			if (selector.match(/\S+/g).length === 1){
@@ -164,25 +161,25 @@ function $(selector) {
 		}
 		if (selector.search(/^\[\S+\]/) === 0){
 			var ele = document.all;
-			var ee = [];
+			var elem = [];
 			if (selector.match(/\S+/g).length === 1){
 				if (selector.search(/^\[\S+\](?!\=)/) === 0){
-					var att = selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length-1);
+				var att = selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length-1);
 					for (var i = 0;i < ele.length;i++){
 						if (ele[i][att] != undefined){
-							ee.push(ele[i])
+							elem.push(ele[i]);
 						}
 					}
-					return ee
+				return elem
 				}
 				if (selector.search(/^\[\S+\](?=\=)/) === 0){
-					var att2 = selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].slice(1,selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].length-1);
+				var att2 = selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].slice(1,selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].length-1);
 					for (var i = 0;i < ele.length;i++){
 						if (ele[i][att2] != undefined && ele[i][att2] === selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].slice(1,selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].length)){
-							ee.push(ele[i])
+							elem.push(ele[i]);
 						}
 					}
-					return ee
+				return elem
 				}
 			}
 			else {
@@ -198,19 +195,43 @@ function $(selector) {
 			}
 		}
 		if (selector.match(/\S+/g).length >= 1){
-			var ss = [];
+			var kk = [];
 			sel = $$(selector.slice(selector.search(/\s\S+/)+1,selector.lenth));
 			for (var i = 0;i < ret.length;i++){
-				for (var k = 0;i < sel.length;i++){
+				for (var k = 0;k < sel.length;k++){
 					if (ret[i] === sel[k]){
-						ss.push(ret[i])
+						kk.push(ret[i])
 					}
 				}
 			}
-			return ss
+			return kk;
 		}
 	}
-	var aa;
-	aa = $$(selector);
-	return aa[0];
+	var ss = $$(selector);
+	if (ss.length === undefined){
+		return ss
+	}	
+	else {
+		return ss[0]
+	}
+}
+//6. Ajax
+function ajax(url, options) {
+    var xmlhttp;
+	if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+ 		xmlhttp=new XMLHttpRequest();
+  	}
+	else {// code for IE6, IE5
+ 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  	}
+  	xmlhttp.onreadystatechange=function(){
+  		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+    		options.onsuccess()
+    	}
+    	if (xmlhttp.readyState==4 && xmlhttp.status==404){
+    		options.onfail()
+    	}
+  	}
+	xmlhttp.open(options.type || "GET",options.data,true);
+	xmlhttp.send();
 }
