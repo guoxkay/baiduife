@@ -60,8 +60,8 @@ function uniqArray(arr){
 	}
 	return arr
 }
-{//简单的方法去掉字符串头部和尾部的空白字符
-function simpleTrim(str) 
+//简单的方法去掉字符串头部和尾部的空白字符
+function simpleTrim(str){
 	if (typeof str !== "string"){
 		alret (str + "isn't a string")
 	}
@@ -143,59 +143,74 @@ function getPosition(element) {
     
 }
 // 实现一个简单的Query
-//很多bug好累
+//做错了......
 function $(selector) {
 	var ret;
 	var sel;
-	if (selector.search(/^#/) === 0){
-		return document.getElementById(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
-	}
-	if (selector.search(/^\./) === 0){
-		if (selector.match(/\S+/g).length === 1){
-			return document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))[0]
+	function $$(selector){
+		if (selector.search(/^#/) === 0){
+			var hehe = [];
+			var ii = document.getElementById(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length));
+			hehe.push(ii);
+			return hehe
 		}
-		else {
-			ret = document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
-		}	
-	}
-	if (selector.search(/^\[\S+\]/) === 0){
-		var ele = document.all;
-		if (selector.match(/\S+/g).length === 1){
-			if (selector.search(/^\[\S+\](?!\=)/) === 0){
-			var att = selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length-1);
-				for (var i = 0;i < ele.length;i++){
-					if (ele[i][att] != undefined){
-						return ele[i]
+		if (selector.search(/^\./) === 0){
+			if (selector.match(/\S+/g).length === 1){
+				return document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
+			}
+			else {
+				ret = document.getElementsByClassName(selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length))
+			}	
+		}
+		if (selector.search(/^\[\S+\]/) === 0){
+			var ele = document.all;
+			var ee = [];
+			if (selector.match(/\S+/g).length === 1){
+				if (selector.search(/^\[\S+\](?!\=)/) === 0){
+					var att = selector.match(/\S+/g)[0].slice(1,selector.match(/\S+/g)[0].length-1);
+					for (var i = 0;i < ele.length;i++){
+						if (ele[i][att] != undefined){
+							ee.push(ele[i])
+						}
+					}
+					return ee
+				}
+				if (selector.search(/^\[\S+\](?=\=)/) === 0){
+					var att2 = selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].slice(1,selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].length-1);
+					for (var i = 0;i < ele.length;i++){
+						if (ele[i][att2] != undefined && ele[i][att2] === selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].slice(1,selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].length)){
+							ee.push(ele[i])
+						}
+					}
+					return ee
+				}
+			}
+			else {
+				ret = ele
+			}
+		}
+		if (selector.search(/^[^\.\[\s#]/) === 0) {
+			if (selector.match(/\S+/g).length === 1){
+				return document.getElementsByTagName(selector.match(/\S+/g)[0].slice(0,selector.match(/\S+/g)[0].length))
+			}
+			else {
+				ret = document.getElementsByTagName(selector.match(/\S+/g)[0].slice(0,selector.match(/\S+/g)[0].length))
+			}
+		}
+		if (selector.match(/\S+/g).length >= 1){
+			var ss = [];
+			sel = $$(selector.slice(selector.search(/\s\S+/)+1,selector.lenth));
+			for (var i = 0;i < ret.length;i++){
+				for (var k = 0;i < sel.length;i++){
+					if (ret[i] === sel[k]){
+						ss.push(ret[i])
 					}
 				}
 			}
-			if (selector.search(/^\[\S+\](?=\=)/) === 0){
-			var att2 = selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].slice(1,selector.match(/\S+/g)[0].match(/\S+(?=\=)/g)[0].length-1);
-				for (var i = 0;i < ele.length;i++){
-					if (ele[i][att2] != undefined && ele[i][att2] === selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].slice(1,selector.match(/\S+/g)[0].match(/(?=\=)\S+/)[0].length)){
-						return ele[i]
-					}
-				}
-			}
-		}
-		else {
-			ret = ele
+			return ss
 		}
 	}
-	if (selector.search(/^[^\.\[\s#]/) === 0) {
-		if (selector.match(/\S+/g).length === 1){
-			return document.getElementsByTagName(selector.match(/\S+/g)[0].slice(0,selector.match(/\S+/g)[0].length))[0]
-		}
-		else {
-			ret = document.getElementsByTagName(selector.match(/\S+/g)[0].slice(0,selector.match(/\S+/g)[0].length))
-		}
-	}
-	if (selector.match(/\S+/g).length >= 1){
-		sel = $(selector.slice(selector.search(/\s\S+/)+1,selector.lenth));
-		for (var i = 0;i < ret.length;i++){
-			if (ret[i] === sel){
-				return ret
-			}
-		}
-	}
+	var aa;
+	aa = $$(selector);
+	return aa[0];
 }
