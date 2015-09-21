@@ -58,6 +58,13 @@ function uniqArray(arr){
 			}
 		}
 	}
+	for (var i = 0;i < arr.length;i++){
+		for (var k = 0;k < arr.length;k++){
+			if (i !== k && arr[i] === arr[k]){
+				arr.splice(k,1)
+			}
+		}
+	}
 	return arr
 }
 //简单的方法去掉字符串头部和尾部的空白字符
