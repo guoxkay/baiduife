@@ -1,0 +1,36 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	min-width: 500px;
+	min-height: 300px;
+}
+header{
+	height: 15%;
+	border-bottom: 1px solid #ccc;
+	background-color: #ddd;
+}
+#main{
+	height: 85%;
+}
+#class{
+	display: inline-block;
+	height: 100%;
+	width: 20%;
+	border-right: 1px solid #ccc;
+}
+#todo{
+	display: inline-block;
+	height: 100%;
+	width: 20%;
+	border-right: 1px solid #ccc;
+}
+#content{
+	display: inline-block;
+	height: 100%;
+	width: 60%;
+}
