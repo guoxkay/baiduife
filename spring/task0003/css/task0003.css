@@ -6,8 +6,6 @@ html,body{
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
-	min-width: 500px;
-	min-height: 300px;
 }
 header{
 	height: 15%;
@@ -18,19 +16,26 @@ header{
 	height: 85%;
 }
 #class{
-	display: inline-block;
+	float: left;
 	height: 100%;
 	width: 20%;
 	border-right: 1px solid #ccc;
+	background-color: #f2f2f2;
 }
 #todo{
-	display: inline-block;
+	float: left;
 	height: 100%;
 	width: 20%;
 	border-right: 1px solid #ccc;
 }
 #content{
-	display: inline-block;
 	height: 100%;
 	width: 60%;
+}
+.add{
+	width: 20%;
+	height: 8%;
+	position: absolute;
+	top: 92%;
+	border-top: 1px solid #ccc;
 }
