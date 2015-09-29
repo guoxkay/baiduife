@@ -29,8 +29,10 @@ header{
 	border-right: 1px solid #ccc;
 }
 #content{
+	position: relative;
 	height: 100%;
 	width: 60%;
+	margin-left: 40%;
 }
 .add{
 	width: 20%;
@@ -48,14 +50,28 @@ header{
 }
 .cont{
 	width: 100%;
+	border-left: 1px solid #ccc;
 }
 #title{
+	position: absolute;
+	top: 0;
+	left: 1px;
 	height: 10%;
 	border-bottom: 1px solid #ccc;
 	background-color: #f2f2f2;
 }
 #time{
+	position: absolute;
+	top: 10%;
+	left: 1px;
 	height: 10%;
+	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	background-color: #fafaee;
+}
+#contents{
+	position: absolute;
+	top: 20%;
+	left: 1px;
+	height: 80%;
 }
