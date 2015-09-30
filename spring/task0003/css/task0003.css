@@ -8,9 +8,13 @@ html,body{
 	overflow: hidden;
 }
 header{
+	box-sizing: border-box;
 	height: 15%;
 	border-bottom: 1px solid #ccc;
 	background-color: #ddd;
+}
+div{
+	box-sizing: border-box;
 }
 #main{
 	height: 85%;
@@ -41,6 +45,7 @@ header{
 	top: 92%;
 	border-top: 1px solid #ccc;
 	background-color: #eee;
+	border-right: 1px solid #ccc;
 }
 #did{
 	width: 100%;
@@ -50,12 +55,11 @@ header{
 }
 .cont{
 	width: 100%;
-	border-left: 1px solid #ccc;
 }
 #title{
 	position: absolute;
 	top: 0;
-	left: 1px;
+	left: 0;
 	height: 10%;
 	border-bottom: 1px solid #ccc;
 	background-color: #f2f2f2;
@@ -63,15 +67,14 @@ header{
 #time{
 	position: absolute;
 	top: 10%;
-	left: 1px;
+	left: 0;
 	height: 10%;
-	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	background-color: #fafaee;
 }
 #contents{
 	position: absolute;
 	top: 20%;
-	left: 1px;
+	left: 0;
 	height: 80%;
 }
