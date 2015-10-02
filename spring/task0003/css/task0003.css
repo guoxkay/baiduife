@@ -31,11 +31,13 @@ div{
 }
 .one{
 	margin: 5% 0 5% 10%;
-	list-style: none;
+	list-style-image: url(../image/bag.gif);
+	list-style-position: inside;
 }
 .misson{
 	margin: 5% 0 5% 15%;
-	list-style: none;
+	list-style-image: url(../image/doc.gif);
+	list-style-position: inside;
 }
 #todo{
 	float: left;
@@ -68,10 +70,21 @@ div{
 	border-bottom: 1px solid #ccc;
 	background-color: #eee;
 	text-align: center;
+	font-size: 14px;
 }
 #did span{
 	display: inline-block;
-	margin: 4.5%;
+	margin: 5%;
+}
+#task li{
+	list-style: none;
+}
+.createTime{
+	background-color: #fafaee;
+	padding: 2% 0 2% 8%;
+}
+.littleTask{
+	padding: 2% 0 2% 12%;
 }
 .cont{
 	width: 100%;
@@ -83,6 +96,17 @@ div{
 	height: 10%;
 	border-bottom: 1px solid #ccc;
 	background-color: #f2f2f2;
+	font-family: "黑体";
+	font-size: 20px;
+	font-weight: bold;
+}
+#title p{
+	margin: 2% 0 0 3%;
+	display: inline-block;
+}
+#title img{
+	float: right;
+	margin: 10px;
 }
 #time{
 	position: absolute;
@@ -92,9 +116,16 @@ div{
 	border-bottom: 1px solid #ccc;
 	background-color: #fafaee;
 }
+#time p{
+	margin: 2% 0 0 3%;
+}
 #contents{
 	position: absolute;
 	top: 20%;
 	left: 0;
 	height: 80%;
+	overflow: auto;
+}
+#contents p{
+	margin: 3%;
 }
