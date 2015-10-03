@@ -29,7 +29,7 @@ div{
 .cla{
 	margin: 5%;
 }
-.one{
+#cc li{
 	margin: 5% 0 5% 10%;
 	list-style-image: url(../image/bag.gif);
 	list-style-position: inside;
@@ -79,11 +79,7 @@ div{
 #task li{
 	list-style: none;
 }
-.createTime{
-	background-color: #fafaee;
-	padding: 2% 0 2% 8%;
-}
-.littleTask{
+#taskList li{
 	padding: 2% 0 2% 12%;
 }
 .cont{
@@ -117,7 +113,7 @@ div{
 	background-color: #fafaee;
 }
 #time p{
-	margin: 2% 0 0 3%;
+	margin: 2.5% 0 0 3%;
 }
 #contents{
 	position: absolute;

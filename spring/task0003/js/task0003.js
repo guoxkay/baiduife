@@ -40,20 +40,56 @@ misson = (function(){
 	//读取任务
 	var missons = Array(tasks.length)
 	for (var i = 0;i < tasks.length;i++){
-		missons[i] = l.getItem(tasks[i])
+		missons[i] = JSON.parse(l.getItem(tasks[i]))
 	}
 	return {
 		//显示任务列表函数
-		printClasses : function{
+		printClasses : function(){
 			var classList = document.getElementById("cc");
 			for (var i = 0;i < classes.length;i++){
 				var newNode = document.createElement("li");
 				var newTextNode = document.createTextNode(classes[i]);
 				classList.appendChild(newNode);
-				classList.lastChild.appendChild(newTextNode)
+				classList.lastChild.class = classes[i];
+				classList.lastChild.appendChild(newTextNode);
+				var counter = 0;
+				for(k = 0;k < missons.length;k++){
+					if (missons[k].class === classes[i]){
+						counter++
+					}
+				}
+				classList.lastChild.appendChild("(" + counter + ")")
 			}
+		},
+		//显示某分类任务列表
+		printTaskList : function(class){
+			var taskList = document.getElementById("taskList")
+			for (var i = 0;i < missons.length;i++){
+				if (missons[i].class === class){
+					var newNode = document.createElement("li");
+					var newTextNode = document.createTextNode(missons[i].name);
+					taskList.appendChild(newNode);
+					taskList.lastChild.class = "tasks";
+					taskList.lastChild.appendChild(newTextNode);
+				}
+			}
+		},
+		//给任务列表上色
+		colorTask : function(){
+			var taskLists = document.getElementsByClassName("tasks")
+			for (var i = 0;i < taskLists.length;i++){
+				if (i % 2 === 1){
+					taskLists[i].style.backgroundColor = "#fafaee"
+				}
+			}
+		},
+		//显示任务详细信息
+		printTask : function(task){
+			document.getElementById("taskName").childNodes[0] = task.name;
+			document.getElementById("createTime").childNodes[0] = task.createTime;
+			document.getElementById("conts")..childNodes[0] = task.content;
 		}
 	}
 
-//+++++++++++++++++++++++++++
+
 }())
