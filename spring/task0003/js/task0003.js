@@ -59,6 +59,9 @@ misson = (function(){
 					}
 				}
 				classList.lastChild.appendChild("(" + counter + ")")
+				var cha = document.createElement("img");
+				classList.lastChild.appendChild(cha);
+				classList.lastChild.lastChild.src = "image/delete.png"
 			}
 		},
 		//显示某分类任务列表
@@ -71,6 +74,9 @@ misson = (function(){
 					taskList.appendChild(newNode);
 					taskList.lastChild.class = "tasks";
 					taskList.lastChild.appendChild(newTextNode);
+					var cha = document.createElement("img");
+					taskList.lastChild.appendChild(cha);
+					taskList.lastChild.lastChild.src = "image/delete.png"
 				}
 			}
 		},
@@ -88,6 +94,10 @@ misson = (function(){
 			document.getElementById("taskName").childNodes[0] = task.name;
 			document.getElementById("createTime").childNodes[0] = task.createTime;
 			document.getElementById("conts")..childNodes[0] = task.content;
+		},
+		//显示删除按钮
+		printDeleteCha : function(){
+			this.lastChild.style.display = "inline-block"
 		}
 	}
 
