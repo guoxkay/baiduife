@@ -1,11 +1,11 @@
 misson = (function(){
 //创建任务对象的类
-	var Task = function(name,class,content){
+	var Task = function(name,category,content){
 		//定义任务名称，任务创建时间，任务完成状态，任务类别和任务内容
 		this.name = name;
 		this.createTime = Date.now();
 		this.finish = false;
-		this.class = class;
+		this.category = category;
 		this.content = content;
 	}
 	Task.prototype = {
@@ -29,14 +29,14 @@ misson = (function(){
 			this.name = newName
 		},
 		//修改任务类别
-		editClass : function(newClass){
-			this.class = newClass
+		editClass : function(newCategory){
+			this.category = newCategory
 		}
 	}
 	var l = localStorage;
 	//读取分类列表和任务列表
-	var classes = l.getItem("cla") || [];
-	var tasks = l.getItem("tas") || [];
+	var classes = JSON.parse(l.getItem("cla")) || ["默认分类"];
+	var tasks = JSON.parse(l.getItem("tas")) || [];
 	//读取任务
 	var missons = Array(tasks.length)
 	for (var i = 0;i < tasks.length;i++){
@@ -54,7 +54,7 @@ misson = (function(){
 				classList.lastChild.appendChild(newTextNode);
 				var counter = 0;
 				for(k = 0;k < missons.length;k++){
-					if (missons[k].class === classes[i]){
+					if (missons[k].Category === classes[i]){
 						counter++
 					}
 				}
@@ -68,7 +68,7 @@ misson = (function(){
 		printTaskList : function(class){
 			var taskList = document.getElementById("taskList")
 			for (var i = 0;i < missons.length;i++){
-				if (missons[i].class === class){
+				if (missons[i].Category === class){
 					var newNode = document.createElement("li");
 					var newTextNode = document.createTextNode(missons[i].name);
 					taskList.appendChild(newNode);
@@ -98,7 +98,42 @@ misson = (function(){
 		//显示删除按钮
 		printDeleteCha : function(){
 			this.lastChild.style.display = "inline-block"
+		},
+		//创建新分类
+		createClass : function(newClass){
+			if (newClass === ""){
+				return false
+			}
+			if (newClass.length > 10){
+				alert("请输入少于十个字符的分类名");
+				return false
+			}
+			for (i = 0;i < classes.length;i++){
+				if (newClass === classes[i]){
+					alert("该分类已存在");
+					return false
+				}
+			}
+			classes.push(newClass);
+			l.setItem("cla",JSON.stringify(classes))
 		}
+		//创建新任务
+		createTask : function(){
+			var name = document.getElementById("inputName").value;
+			var Category = document.getElementById("taskClass").value;
+			var content = document.getElementById("taskCOntent").value;
+			for (i = 0;i < tasks.length;i++){
+				if (name === tasks[i]){
+					alert("该任务已存在");
+					return false
+				}
+			}
+			var task = new Task(name,Category,content);
+			tasks.push(task.name);
+			l.setItem("tas",JSON.stringify(tasks));
+			l.setItem(task.name,JSON.stringify(task))
+		}
+		//修改任务名称
 	}
 
 

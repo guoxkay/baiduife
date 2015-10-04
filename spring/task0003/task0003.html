@@ -29,9 +29,9 @@
 <div class="add"><p>新增任务</p></div>
 </div>
 <div id="content">
-<div id="title" class="cont"><p id="taskName">one</p><img src="image/edit.gif"/><img src="image/finish.gif"/></div>
+<div id="title" class="cont"><p id="taskName" contenteditable="false">one</p><select><option value="默认分类">默认分类</option></select><img src="image/edit.gif"/><img src="image/finish.gif"/></div>
 <div id="time" class="cont"><p id="createTime">任务日期：2015-06-07</p></div>
-<div id="contents" class="cont"><p id="conts">功德圆满</p></div>
+<div id="contents" class="cont"><p contenteditable="false" id="conts">功德圆满</p></div>
 </div>
 </div>
 <div id="delClass" class="del"><div><button>确认</button><button>取消</button></div></div>
@@ -40,8 +40,8 @@
 <div>
 	<form>
 		<p>任务名称：</p><input id="inputName" type="text"/>
-		<p>任务类别：</p><select><option value="默认分类">默认分类</option></select>
-		<p>任务内容：</p><textarea></textarea>
+		<p>任务类别：</p><select id="taskClass"><option value="默认分类">默认分类</option></select>
+		<p>任务内容：</p><textarea id="taskContent"></textarea>
 		<input id="reset" type="reset"/>
 		<button>提交</button>
 	</form>
