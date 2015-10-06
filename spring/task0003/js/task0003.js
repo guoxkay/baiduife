@@ -1,38 +1,38 @@
-misson = (function(){
 //创建任务对象的类
-	var Task = function(name,category,content){
-		//定义任务名称，任务创建时间，任务完成状态，任务类别和任务内容
-		this.name = name;
-		this.createTime = Date.now();
-		this.finish = false;
-		this.category = category;
-		this.content = content;
+var Task = function(name,category,content){
+	//定义任务名称，任务创建时间，任务完成状态，任务类别和任务内容
+	this.name = name;
+	this.createTime = Date.now();
+	this.finish = false;
+	this.category = category;
+	this.content = content;
 	}
-	Task.prototype = {
-		//定义任务对象的方法
-		constructor : Task,
-		//修改任务内容
-		editContent : function(newContent){
-			this.content = content
-		},
-		//改变任务完成状态
-		doFinish : function(){
-			if (this.finish === false){
-				this.finish = true
-			}
-			if (this.finish === true){
-				this.finish = false
-			}
-		},
-		//修改任务名称
-		editName : function(newName){
-			this.name = newName
-		},
-		//修改任务类别
-		editClass : function(newCategory){
-			this.category = newCategory
+Task.prototype = {
+	//定义任务对象的方法
+	constructor : Task,
+	//修改任务内容
+	editContent : function(newContent){
+		this.content = content
+	},
+	//改变任务完成状态
+	doFinish : function(){
+		if (this.finish === false){
+			this.finish = true
 		}
+		if (this.finish === true){
+			this.finish = false
+		}
+	},
+	//修改任务名称
+	editName : function(newName){
+		this.name = newName
+	},
+	//修改任务类别
+	editClass : function(newCategory){
+		this.category = newCategory
 	}
+}
+misson = (function(){
 	var l = localStorage;
 	//读取分类列表和任务列表
 	var classes = JSON.parse(l.getItem("cla")) || ["默认分类"];
@@ -43,7 +43,7 @@ misson = (function(){
 		missons[i] = JSON.parse(l.getItem(tasks[i]))
 	}
 	return {
-		//显示任务列表函数
+		//显示分类列表函数
 		printClasses : function(){
 			var classList = document.getElementById("cc");
 			for (var i = 0;i < classes.length;i++){
@@ -61,7 +61,8 @@ misson = (function(){
 				classList.lastChild.appendChild("(" + counter + ")")
 				var cha = document.createElement("img");
 				classList.lastChild.appendChild(cha);
-				classList.lastChild.lastChild.src = "image/delete.png"
+				classList.lastChild.lastChild.src = "image/delete.png";
+				classList.lastChild.lastChild.value = newTextNode
 			}
 		},
 		//显示某分类任务列表
@@ -76,7 +77,8 @@ misson = (function(){
 					taskList.lastChild.appendChild(newTextNode);
 					var cha = document.createElement("img");
 					taskList.lastChild.appendChild(cha);
-					taskList.lastChild.lastChild.src = "image/delete.png"
+					taskList.lastChild.lastChild.src = "image/delete.png";
+					taskList.lastChild.lastChild.value = newTextNode
 				}
 			}
 		},
@@ -91,9 +93,10 @@ misson = (function(){
 		},
 		//显示任务详细信息
 		printTask : function(task){
-			document.getElementById("taskName").childNodes[0] = task.name;
-			document.getElementById("createTime").childNodes[0] = task.createTime;
-			document.getElementById("conts")..childNodes[0] = task.content;
+			document.getElementById("taskName").setAttribute("tt",task.name);
+			document.getElementById("taskName").textContent = task.name;
+			document.getElementById("createTime").textContent = task.createTime;
+			document.getElementById("conts").textContent = task.content;
 		},
 		//显示删除按钮
 		printDeleteCha : function(){
@@ -116,7 +119,19 @@ misson = (function(){
 			}
 			classes.push(newClass);
 			l.setItem("cla",JSON.stringify(classes))
-		}
+		},
+		//打开创建任务面板
+		openCreate : function(){
+			document.getElementById("addTask").style.display = "block";
+			var taskClass = document.getElementById("taskClass");
+			for (var i = 0;i < classes.length;i++){
+				var newNode = document.createElement("option");
+				var newTextNode = document.createTextNode(classes(i));
+				taskClass.appendChild(newNode);
+				taskClass.lastChild.value = classes(i);
+				taskClass.lastChild.appendChild(newTextNode)
+			}
+		},
 		//创建新任务
 		createTask : function(){
 			var name = document.getElementById("inputName").value;
@@ -132,9 +147,58 @@ misson = (function(){
 			tasks.push(task.name);
 			l.setItem("tas",JSON.stringify(tasks));
 			l.setItem(task.name,JSON.stringify(task))
+		},
+		//修改任务
+		editTask :  function(){
+			document.getElementById("taskName").contenteditable = true;
+			document.getElementById("conts").contenteditable= true;
+			document.getElementById("edit").hidden = true;
+			document.getElementById("done").hidden = false;
+		},
+		//修改任务完成
+		editTaskDone : function(){
+			var name = document.getElementById("taskName").getAttribute("tt");
+			l.removeItem(name);
+			for (var i = 0;i < tasks.length;i++){
+				if (tasks[i] === name) {
+					tasks.splice(i,1)
+				};
+			}
+			for (i = 0;i < missons.length;i++){
+				if (missons[i].name === name){
+					missons[i].name = document.getElementById("taskName").textContent;
+					missons[i].content = document.getElementById("conts").textContent;
+					l.setItem(missons.name,JSON.stringify(task));
+					tasks.push(missons.name);
+					l.setItem("tas",JSON.stringify(tasks));
+					document.getElementById("taskName").getAttribute("tt") = missons[i].name;
+				}
+			}
+		},
+		//删除任务
+		deleteTask : function(taskName){
+			l.removeItem(taskName);
+			for (i = 0;i < tasks.length;i++){
+				if (tasks[i] === taskName){
+					tasks.splice(i,1)
+				}
+			}
+			l.setItem("tas",JSON.stringify(tasks))
+		},
+		//删除分类及该分类下任务
+		deleteClass : function(className){
+			for (i = 0;i < classes.length;i++){
+				if (classes[i] === className){
+					classes.splice(i,1)
+				}
+			}
+			l.setItem("cla",JSON.stringify(classes));
+			for (i = 0;i < missons.length;i++){
+				if (missons.category === className) {
+					misson.deleteTask(missons.name)
+				};
+			}
 		}
-		//修改任务名称
 	}
-
-
 }())
+addEventListener("click",misson.)
