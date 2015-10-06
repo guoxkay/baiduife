@@ -58,7 +58,7 @@ misson = (function(){
 						counter++
 					}
 				}
-				classList.lastChild.appendChild("(" + counter + ")")
+				classList.lastChild.appendChild("(" + counter + ")");
 				var cha = document.createElement("img");
 				classList.lastChild.appendChild(cha);
 				classList.lastChild.lastChild.src = "image/delete.png";
@@ -67,7 +67,7 @@ misson = (function(){
 		},
 		//显示某分类任务列表
 		printTaskList : function(class){
-			var taskList = document.getElementById("taskList")
+			var taskList = document.getElementById("taskList");
 			for (var i = 0;i < missons.length;i++){
 				if (missons[i].Category === class){
 					var newNode = document.createElement("li");
@@ -82,9 +82,16 @@ misson = (function(){
 				}
 			}
 		},
+		/*显示已完成列表
+		printFinishTask : function(){;
+			var taskList = document.getElementById("taskList");
+			for (var i = 0;i < missons.length;i++){
+				if 暂时先不弄
+			}
+		}*/
 		//给任务列表上色
 		colorTask : function(){
-			var taskLists = document.getElementsByClassName("tasks")
+			var taskLists = document.getElementsByClassName("tasks");
 			for (var i = 0;i < taskLists.length;i++){
 				if (i % 2 === 1){
 					taskLists[i].style.backgroundColor = "#fafaee"
@@ -102,6 +109,11 @@ misson = (function(){
 		printDeleteCha : function(){
 			this.lastChild.style.display = "inline-block"
 		},
+		//打开新增分类面板
+		openAddClass : function(){
+			document.getElementById("addCla2").hidden = false;
+			event.preventDefault()
+		}
 		//创建新分类
 		createClass : function(newClass){
 			if (newClass === ""){
@@ -131,13 +143,14 @@ misson = (function(){
 				taskClass.lastChild.value = classes(i);
 				taskClass.lastChild.appendChild(newTextNode)
 			}
+			event.preventDefault()
 		},
 		//创建新任务
 		createTask : function(){
 			var name = document.getElementById("inputName").value;
 			var Category = document.getElementById("taskClass").value;
 			var content = document.getElementById("taskCOntent").value;
-			for (i = 0;i < tasks.length;i++){
+			for (var i = 0;i < tasks.length;i++){
 				if (name === tasks[i]){
 					alert("该任务已存在");
 					return false
@@ -154,6 +167,7 @@ misson = (function(){
 			document.getElementById("conts").contenteditable= true;
 			document.getElementById("edit").hidden = true;
 			document.getElementById("done").hidden = false;
+			event.preventDefault()
 		},
 		//修改任务完成
 		editTaskDone : function(){
@@ -164,7 +178,7 @@ misson = (function(){
 					tasks.splice(i,1)
 				};
 			}
-			for (i = 0;i < missons.length;i++){
+			for (var i = 0;i < missons.length;i++){
 				if (missons[i].name === name){
 					missons[i].name = document.getElementById("taskName").textContent;
 					missons[i].content = document.getElementById("conts").textContent;
@@ -178,7 +192,7 @@ misson = (function(){
 		//删除任务
 		deleteTask : function(taskName){
 			l.removeItem(taskName);
-			for (i = 0;i < tasks.length;i++){
+			for (var i = 0;i < tasks.length;i++){
 				if (tasks[i] === taskName){
 					tasks.splice(i,1)
 				}
@@ -187,18 +201,33 @@ misson = (function(){
 		},
 		//删除分类及该分类下任务
 		deleteClass : function(className){
-			for (i = 0;i < classes.length;i++){
+			for (var i = 0;i < classes.length;i++){
 				if (classes[i] === className){
 					classes.splice(i,1)
 				}
 			}
 			l.setItem("cla",JSON.stringify(classes));
-			for (i = 0;i < missons.length;i++){
+			for (var i = 0;i < missons.length;i++){
 				if (missons.category === className) {
 					misson.deleteTask(missons.name)
 				};
 			}
+		},
+		//修改任务完成状态
+		finished : function(){
+			var name = document.getElementById("taskName").textContent;
+			for (var i = 0;i < missons.length;i++){
+				if (missons[i] === name){
+					if (missons[i].finish){
+						missons[i].finish = false
+					}
+					else {
+						missons[i].finish = true
+					}
+				}
+			}
 		}
 	}
 }())
-addEventListener("click",misson.)
+document.getElementById("addCla").addEventListener("click",misson.openAddClass,false);
+document.getElementById("addTas").addEventListener("click",misson.openCreate,false);
