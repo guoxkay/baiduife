@@ -43,6 +43,15 @@ misson = (function(){
 		missons[i] = JSON.parse(l.getItem(tasks[i]))
 	}
 	return {
+		getClasses : function(){
+			return classes
+		},
+		getTasks : function(){
+			return tasks
+		},
+		getMissons : function(){
+			return missons
+		},
 		//显示分类列表函数
 		printClasses : function(){
 			var classList = document.getElementById("cc");
@@ -51,6 +60,9 @@ misson = (function(){
 				var newTextNode = document.createTextNode(classes[i]);
 				classList.appendChild(newNode);
 				classList.lastChild.class = classes[i];
+				classList.lastChild.addEventListener("click",function(){misson.printTaskList(this.class)},false);
+				classList.lastChild.addEventListener("mouseover",misson.printDeleteCha(),false);
+				classList.lastChild.addEventListener("mouseout",misson.hiddenDeleteCha(),false);
 				classList.lastChild.appendChild(newTextNode);
 				var counter = 0;
 				for(k = 0;k < missons.length;k++){
@@ -62,7 +74,8 @@ misson = (function(){
 				var cha = document.createElement("img");
 				classList.lastChild.appendChild(cha);
 				classList.lastChild.lastChild.src = "image/delete.png";
-				classList.lastChild.lastChild.value = newTextNode
+				classList.lastChild.lastChild.value = newTextNode;
+				classList.lastChild.lastChild.addEventListener("click",function(){misson.deleteClass(this.value)},false)
 			}
 		},
 		//显示某分类任务列表
@@ -75,10 +88,14 @@ misson = (function(){
 					taskList.appendChild(newNode);
 					taskList.lastChild.class = "tasks";
 					taskList.lastChild.appendChild(newTextNode);
+					taskList.lastChild.addEventListener("click",function(){misson.printTask(this.textContent)},false);
+					taskList.lastChild.addEventListener("mouseover",misson.printDeleteCha(),false);
+					taskList.lastChild.addEventListener("mouseout",misson.hiddenDeleteCha(),false);
 					var cha = document.createElement("img");
 					taskList.lastChild.appendChild(cha);
 					taskList.lastChild.lastChild.src = "image/delete.png";
-					taskList.lastChild.lastChild.value = newTextNode
+					taskList.lastChild.lastChild.value = newTextNode;
+					taskList.lastChild.lastChild.addEventListener("click",function(){misson.deleteTask(this.value)})
 				}
 			}
 		},
@@ -99,21 +116,29 @@ misson = (function(){
 			}
 		},
 		//显示任务详细信息
-		printTask : function(task){
-			document.getElementById("taskName").setAttribute("tt",task.name);
-			document.getElementById("taskName").textContent = task.name;
-			document.getElementById("createTime").textContent = task.createTime;
-			document.getElementById("conts").textContent = task.content;
+		printTask : function(taskName){
+			for (i = 0;i < missons.length;i++){
+				if (missons.name === taskName) {
+					document.getElementById("taskName").setAttribute("tt",missons[i].name);
+					document.getElementById("taskName").textContent = missons[i].name;
+					document.getElementById("createTime").textContent = missons[i].createTime;
+					document.getElementById("conts").textContent = missons[i].content;
+				}
+			}
 		},
 		//显示删除按钮
 		printDeleteCha : function(){
 			this.lastChild.style.display = "inline-block"
 		},
+		//隐藏删除按钮
+		hiddenDeleteCha : function(){
+			this.lastChild.style.display = "none"
+		},
 		//打开新增分类面板
 		openAddClass : function(){
 			document.getElementById("addCla2").hidden = false;
 			event.preventDefault()
-		}
+		},
 		//创建新分类
 		createClass : function(newClass){
 			if (newClass === ""){
@@ -224,10 +249,21 @@ misson = (function(){
 					else {
 						missons[i].finish = true
 					}
+				l.setItem(missons[i].name,JSON.stringify(missons[i]))
 				}
 			}
+			event.preventDefault()
 		}
 	}
 }())
 document.getElementById("addCla").addEventListener("click",misson.openAddClass,false);
 document.getElementById("addTas").addEventListener("click",misson.openCreate,false);
+document.getElementById("taskGo").addEventListener("click",misson.createTask,false);
+document.getElementById("fin").addEventListener("click",misson.finished,false);
+document.getElementById("edit").addEventListener("click",misson.editTask,false);
+document.getElementById("done").addEventListener("click",misson.editTaskDone,false);
+misson.printClasses();
+misson.printTaskList(misson.getClasses()[0]);
+misson.colorTask();
+misson.printTask(misson.getTasks()[0]);
+
