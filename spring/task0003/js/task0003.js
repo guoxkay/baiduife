@@ -52,53 +52,6 @@ misson = (function(){
 		getMissons : function(){
 			return missons
 		},
-		//显示分类列表函数
-		printClasses : function(){
-			var classList = document.getElementById("cc");
-			for (var i = 0;i < classes.length;i++){
-				var newNode = document.createElement("li");
-				var newTextNode = document.createTextNode(classes[i]);
-				classList.appendChild(newNode);
-				classList.lastChild.class = classes[i];
-				classList.lastChild.addEventListener("click",function(){misson.printTaskList(this.class)},false);
-				classList.lastChild.addEventListener("mouseover",misson.printDeleteCha(),false);
-				classList.lastChild.addEventListener("mouseout",misson.hiddenDeleteCha(),false);
-				classList.lastChild.appendChild(newTextNode);
-				var counter = 0;
-				for(k = 0;k < missons.length;k++){
-					if (missons[k].Category === classes[i]){
-						counter++
-					}
-				}
-				classList.lastChild.appendChild("(" + counter + ")");
-				var cha = document.createElement("img");
-				classList.lastChild.appendChild(cha);
-				classList.lastChild.lastChild.src = "image/delete.png";
-				classList.lastChild.lastChild.value = newTextNode;
-				classList.lastChild.lastChild.addEventListener("click",function(){misson.deleteClass(this.value)},false)
-			}
-		},
-		//显示某分类任务列表
-		printTaskList : function(class){
-			var taskList = document.getElementById("taskList");
-			for (var i = 0;i < missons.length;i++){
-				if (missons[i].Category === class){
-					var newNode = document.createElement("li");
-					var newTextNode = document.createTextNode(missons[i].name);
-					taskList.appendChild(newNode);
-					taskList.lastChild.class = "tasks";
-					taskList.lastChild.appendChild(newTextNode);
-					taskList.lastChild.addEventListener("click",function(){misson.printTask(this.textContent)},false);
-					taskList.lastChild.addEventListener("mouseover",misson.printDeleteCha(),false);
-					taskList.lastChild.addEventListener("mouseout",misson.hiddenDeleteCha(),false);
-					var cha = document.createElement("img");
-					taskList.lastChild.appendChild(cha);
-					taskList.lastChild.lastChild.src = "image/delete.png";
-					taskList.lastChild.lastChild.value = newTextNode;
-					taskList.lastChild.lastChild.addEventListener("click",function(){misson.deleteTask(this.value)})
-				}
-			}
-		},
 		/*显示已完成列表
 		printFinishTask : function(){;
 			var taskList = document.getElementById("taskList");
@@ -118,21 +71,26 @@ misson = (function(){
 		//显示任务详细信息
 		printTask : function(taskName){
 			for (i = 0;i < missons.length;i++){
-				if (missons.name === taskName) {
+				if (missons[i].name === taskName) {
 					document.getElementById("taskName").setAttribute("tt",missons[i].name);
 					document.getElementById("taskName").textContent = missons[i].name;
-					document.getElementById("createTime").textContent = missons[i].createTime;
+					document.getElementById("createTime").textContent = misson.transTime(missons[i].createTime);
 					document.getElementById("conts").textContent = missons[i].content;
 				}
 			}
 		},
+		//转换时间
+		transTime : function(time){
+			var ti = new Date(time);
+			return ti.getFullYear() + "-" + (ti.getMonth() + 1) + "-" + ti.getDate()
+		},
 		//显示删除按钮
-		printDeleteCha : function(){
-			this.lastChild.style.display = "inline-block"
+		printDeleteCha : function(li){
+			li.lastChild.style.display = "inline-block"
 		},
 		//隐藏删除按钮
-		hiddenDeleteCha : function(){
-			this.lastChild.style.display = "none"
+		hiddenDeleteCha : function(li){
+			li.lastChild.style.display = "none"
 		},
 		//打开新增分类面板
 		openAddClass : function(){
@@ -155,7 +113,8 @@ misson = (function(){
 				}
 			}
 			classes.push(newClass);
-			l.setItem("cla",JSON.stringify(classes))
+			l.setItem("cla",JSON.stringify(classes));
+			location.reload()
 		},
 		//打开创建任务面板
 		openCreate : function(){
@@ -163,9 +122,9 @@ misson = (function(){
 			var taskClass = document.getElementById("taskClass");
 			for (var i = 0;i < classes.length;i++){
 				var newNode = document.createElement("option");
-				var newTextNode = document.createTextNode(classes(i));
+				var newTextNode = document.createTextNode(classes[i]);
 				taskClass.appendChild(newNode);
-				taskClass.lastChild.value = classes(i);
+				taskClass.lastChild.value = classes[i];
 				taskClass.lastChild.appendChild(newTextNode)
 			}
 			event.preventDefault()
@@ -173,23 +132,31 @@ misson = (function(){
 		//创建新任务
 		createTask : function(){
 			var name = document.getElementById("inputName").value;
-			var Category = document.getElementById("taskClass").value;
-			var content = document.getElementById("taskCOntent").value;
+			var category = document.getElementById("taskClass").value;
+			var content = document.getElementById("taskContent").value;
+			if (name === ""){
+				alert("请输入任务名");
+				return false
+			}
+			if (content === ""){
+				alert("请输入内容");
+				return false
+			}
 			for (var i = 0;i < tasks.length;i++){
 				if (name === tasks[i]){
 					alert("该任务已存在");
 					return false
 				}
 			}
-			var task = new Task(name,Category,content);
+			var task = new Task(name,category,content);
 			tasks.push(task.name);
 			l.setItem("tas",JSON.stringify(tasks));
 			l.setItem(task.name,JSON.stringify(task))
 		},
 		//修改任务
 		editTask :  function(){
-			document.getElementById("taskName").contenteditable = true;
-			document.getElementById("conts").contenteditable= true;
+			document.getElementById("taskName").setAttribute("contenteditable",true);
+			document.getElementById("conts").setAttribute("contenteditable",true);
 			document.getElementById("edit").hidden = true;
 			document.getElementById("done").hidden = false;
 			event.preventDefault()
@@ -207,12 +174,13 @@ misson = (function(){
 				if (missons[i].name === name){
 					missons[i].name = document.getElementById("taskName").textContent;
 					missons[i].content = document.getElementById("conts").textContent;
-					l.setItem(missons.name,JSON.stringify(task));
-					tasks.push(missons.name);
+					l.setItem(missons[i].name,JSON.stringify(missons[i]));
+					tasks.push(missons[i].name);
 					l.setItem("tas",JSON.stringify(tasks));
-					document.getElementById("taskName").getAttribute("tt") = missons[i].name;
+					document.getElementById("taskName").setAttribute("tt",missons[i].name)
 				}
 			}
+			location.reload()
 		},
 		//删除任务
 		deleteTask : function(taskName){
@@ -222,10 +190,16 @@ misson = (function(){
 					tasks.splice(i,1)
 				}
 			}
-			l.setItem("tas",JSON.stringify(tasks))
+			l.setItem("tas",JSON.stringify(tasks));
+			event.stopPropagation();
+			location.reload()
 		},
 		//删除分类及该分类下任务
 		deleteClass : function(className){
+			if (className === "默认分类"){
+				alert("不能删除此分类");
+				return false
+			}
 			for (var i = 0;i < classes.length;i++){
 				if (classes[i] === className){
 					classes.splice(i,1)
@@ -235,8 +209,10 @@ misson = (function(){
 			for (var i = 0;i < missons.length;i++){
 				if (missons.category === className) {
 					misson.deleteTask(missons.name)
-				};
+				}
 			}
+			event.stopPropagation();
+			location.reload()
 		},
 		//修改任务完成状态
 		finished : function(){
@@ -253,11 +229,63 @@ misson = (function(){
 				}
 			}
 			event.preventDefault()
+		},
+		//显示分类列表函数
+		printClasses : function(){
+			var classList = document.getElementById("cc");
+			for (var i = 0;i < classes.length;i++){
+				var newNode = document.createElement("li");
+				var newTextNode = document.createTextNode(classes[i]);
+				classList.appendChild(newNode);
+				classList.lastChild.classList.add(classes[i]);
+				classList.lastChild.addEventListener("click",function(){misson.printTaskList(this.className)},false);
+				classList.lastChild.appendChild(newTextNode);
+				var counter = 0;
+				for(k = 0;k < missons.length;k++){
+					if (missons[k].category === classes[i]){
+						counter++
+					}
+				}
+				var counterNode = document.createTextNode("(" + counter + ")");
+				classList.lastChild.appendChild(counterNode);
+				var cha = document.createElement("img");
+				classList.lastChild.appendChild(cha);
+				classList.lastChild.lastChild.src = "image/delete.png";
+				classList.lastChild.lastChild.setAttribute("vv",classList.lastChild.textContent.match(/\S+(?=\()/g)[0]);
+				classList.lastChild.addEventListener("mouseover",function(){misson.printDeleteCha(this)},false);
+				classList.lastChild.addEventListener("mouseout",function(){misson.hiddenDeleteCha(this)},false);
+				classList.lastChild.lastChild.addEventListener("click",function(){misson.deleteClass(this.getAttribute("vv"))},false)
+			}
+		},
+		//显示某分类任务列表
+		printTaskList : function(category){
+			var taskList = document.getElementById("taskList");
+			for (var i = 0;i < taskList.children.length;i++){
+				taskList.removeChild(taskList.lastChild)
+			}
+			for (var i = 0;i < missons.length;i++){
+				if (missons[i].category === category){
+					var newNode = document.createElement("li");
+					var newTextNode = document.createTextNode(missons[i].name);
+					taskList.appendChild(newNode);
+					taskList.lastChild.classList.add("tasks");
+					taskList.lastChild.appendChild(newTextNode);
+					taskList.lastChild.addEventListener("click",function(){misson.printTask(this.textContent)},false);
+					var cha = document.createElement("img");
+					taskList.lastChild.appendChild(cha);
+					taskList.lastChild.lastChild.src = "image/delete.png";
+					taskList.lastChild.lastChild.setAttribute("vv",taskList.lastChild.textContent);
+					taskList.lastChild.addEventListener("mouseover",function(){misson.printDeleteCha(this)},false);
+					taskList.lastChild.addEventListener("mouseout",function(){misson.hiddenDeleteCha(this)},false);
+					taskList.lastChild.lastChild.addEventListener("click",function(){misson.deleteTask(this.getAttribute("vv"))})
+				}
+			}
 		}
 	}
 }())
 document.getElementById("addCla").addEventListener("click",misson.openAddClass,false);
 document.getElementById("addTas").addEventListener("click",misson.openCreate,false);
+document.getElementById("addclacla").addEventListener("click",function(){misson.createClass(document.getElementById("addClass").value)},false);
 document.getElementById("taskGo").addEventListener("click",misson.createTask,false);
 document.getElementById("fin").addEventListener("click",misson.finished,false);
 document.getElementById("edit").addEventListener("click",misson.editTask,false);
