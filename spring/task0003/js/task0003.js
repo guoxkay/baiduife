@@ -184,15 +184,20 @@ misson = (function(){
 		},
 		//删除任务
 		deleteTask : function(taskName){
-			l.removeItem(taskName);
-			for (var i = 0;i < tasks.length;i++){
-				if (tasks[i] === taskName){
-					tasks.splice(i,1)
+			if (window.confirm("您真的要删除该任务吗？")){
+				l.removeItem(taskName);
+				for (var i = 0;i < tasks.length;i++){
+					if (tasks[i] === taskName){
+						tasks.splice(i,1)
+					}
 				}
+				l.setItem("tas",JSON.stringify(tasks));
+				event.stopPropagation();
+				location.reload()
 			}
-			l.setItem("tas",JSON.stringify(tasks));
-			event.stopPropagation();
-			location.reload()
+			else {
+				return false
+			}
 		},
 		//删除分类及该分类下任务
 		deleteClass : function(className){
@@ -200,19 +205,24 @@ misson = (function(){
 				alert("不能删除此分类");
 				return false
 			}
-			for (var i = 0;i < classes.length;i++){
-				if (classes[i] === className){
-					classes.splice(i,1)
+			if (window.confirm("您真的要删除该分类及该分类下任务吗？")){
+				for (var i = 0;i < classes.length;i++){
+					if (classes[i] === className){
+						classes.splice(i,1)
+					}
 				}
-			}
-			l.setItem("cla",JSON.stringify(classes));
-			for (var i = 0;i < missons.length;i++){
-				if (missons.category === className) {
-					misson.deleteTask(missons.name)
+				l.setItem("cla",JSON.stringify(classes));
+				for (var i = 0;i < missons.length;i++){
+					if (missons.category === className) {
+						misson.deleteTask(missons.name)
+					}
 				}
+				event.stopPropagation();
+				location.reload()
 			}
-			event.stopPropagation();
-			location.reload()
+			else {
+				return false
+			}
 		},
 		//修改任务完成状态
 		finished : function(){
