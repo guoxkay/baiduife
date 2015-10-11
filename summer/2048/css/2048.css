@@ -21,6 +21,14 @@ html,body{
 	font-size: 50px;
 	font-family: "Arial Black";
 }
+.cell[style="background-color:grey"]{
+	font-family: "Arial";
+	font-size: 35px; 
+}
+.cell[style="background-color:blue"]{
+	font-family: "Arial";
+	font-size: 45px;
+}
 #cell_0_0,#cell_0_1,#cell_0_2,#cell_0_3{
 	margin-top: 20px;
 }
