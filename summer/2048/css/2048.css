@@ -7,7 +7,7 @@ html,body{
 	height: 440px;
 	margin: 100px auto 0 auto;
 	border-radius: 20px;
-	background-color: #ccc;
+	background-image: url(../image/background.jpg);
 }
 .cell{
 	width: 85px;
@@ -19,13 +19,20 @@ html,body{
 	line-height: 85px;
 	overflow: hidden;
 	font-size: 50px;
-	font-family: "Arial Black";
+	font-family: "Arial";
+	color: #f9f7ec;
+	box-shadow: 5px 5px 2px black inset;
+	border: 1px solid #883405;
+	box-sizing: border-box;
 }
-.cell[style="background-color:grey"]{
+.cell[style]{
+	box-shadow: none;
+}
+.cell[style="background-color:#4040c6"],.cell[style="background-color:#ff0000"]{
 	font-family: "Arial";
 	font-size: 35px; 
 }
-.cell[style="background-color:blue"]{
+.cell[style="background-color:#e7a21e"],.cell[style="background-color:#8a30d0"],.cell[style="background-color:#d72536"]{
 	font-family: "Arial";
 	font-size: 45px;
 }
