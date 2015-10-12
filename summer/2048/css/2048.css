@@ -25,48 +25,48 @@ html,body{
 	box-sizing: border-box;
 	position: absolute;
 }
-.two{
+.n2{
 	background-color:#8b8b8b;
 }
-.four{
+.n4{
 	background-color:#e97432;
 }
-.eight{
+.n8{
 	background-color:#d32884;
 }
-.sixteen{
+.n16{
 	background-color:#4ebab9;
 }
-.threeTwo{
+.n32{
 	background-color:#4eba58;
 }
-.sixFour{
+.n64{
 	background-color:#dbe71e;
 }
-.oneTwoEight{
+.n128{
 	background-color:#e7a21e;
 }
-.twoFiveSix{
+.n256{
 	background-color:#8a30d0;
 }
-.fiveOneTwo{
+.n512{
 	background-color:#d72536;
 }
-.oneZeroTwoFour{
+.n1024{
 	background-color:#4040c6;
 }
-.twoZeroFourEight{
+.n2048{
 	background-color:#ff0000;
 }
-.two,.four,.eight,.sixteen,.threeTwo,.sixFour{
+.n2,.n4,.n8,.n16,.n32,.n64{
 	box-shadow: none;
 }
-.oneZeroTwoFour,.twoZeroFourEight{
+.n1024,.n2048{
 	font-family: "Arial";
 	font-size: 35px;
 	box-shadow: none;
 }
-.oneTwoEight,.twoFiveSix,.fiveOneTwo{
+.n128,.n256,.n512{
 	font-family: "Arial";
 	font-size: 45px;
 	box-shadow: none;
@@ -134,4 +134,22 @@ html,body{
 #cell_3_3{
 	left: 335px;
 	top: 335px;
+}
+.win{
+	position: absolute;
+	left: 0;
+	top: 220px;
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	line-height: 150px;
+	background-color: rgba(21,240,222,0.8);
+	font-family: "微软雅黑";
+	font-size: 72px;
+	color: #3d3d3d;
+	z-index: 2;
+	display: none;
+}
+.win p{
+	margin: 0;
 }
