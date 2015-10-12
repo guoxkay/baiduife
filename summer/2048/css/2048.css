@@ -8,13 +8,12 @@ html,body{
 	margin: 100px auto 0 auto;
 	border-radius: 20px;
 	background-image: url(../image/background.jpg);
+	position: relative;
 }
 .cell{
 	width: 85px;
 	height: 85px;
 	border-radius: 10px;
-	float: left;
-	margin: 10px;
 	text-align: center;
 	line-height: 85px;
 	overflow: hidden;
@@ -24,27 +23,115 @@ html,body{
 	box-shadow: 5px 5px 2px black inset;
 	border: 1px solid #883405;
 	box-sizing: border-box;
+	position: absolute;
 }
-.cell[style]{
+.two{
+	background-color:#8b8b8b;
+}
+.four{
+	background-color:#e97432;
+}
+.eight{
+	background-color:#d32884;
+}
+.sixteen{
+	background-color:#4ebab9;
+}
+.threeTwo{
+	background-color:#4eba58;
+}
+.sixFour{
+	background-color:#dbe71e;
+}
+.oneTwoEight{
+	background-color:#e7a21e;
+}
+.twoFiveSix{
+	background-color:#8a30d0;
+}
+.fiveOneTwo{
+	background-color:#d72536;
+}
+.oneZeroTwoFour{
+	background-color:#4040c6;
+}
+.twoZeroFourEight{
+	background-color:#ff0000;
+}
+.two,.four,.eight,.sixteen,.threeTwo,.sixFour{
 	box-shadow: none;
 }
-.cell[style="background-color:#4040c6"],.cell[style="background-color:#ff0000"]{
+.oneZeroTwoFour,.twoZeroFourEight{
 	font-family: "Arial";
-	font-size: 35px; 
+	font-size: 35px;
+	box-shadow: none;
 }
-.cell[style="background-color:#e7a21e"],.cell[style="background-color:#8a30d0"],.cell[style="background-color:#d72536"]{
+.oneTwoEight,.twoFiveSix,.fiveOneTwo{
 	font-family: "Arial";
 	font-size: 45px;
+	box-shadow: none;
 }
-#cell_0_0,#cell_0_1,#cell_0_2,#cell_0_3{
-	margin-top: 20px;
+#cell_0_0{
+	left: 20px;
+	top: 20px;
 }
-#cell_0_0,#cell_1_0,#cell_2_0,#cell_3_0{
-	margin-left: 20px;
+#cell_0_1{
+	left: 125px;
+	top: 20px;
 }
-#cell_0_3,#cell_1_3,#cell_2_3,#cell_3_3{
-	margin-right: 20px;
+#cell_0_2{
+	left: 230px;
+	top: 20px;
 }
-#cell_3_0,#cell_3_1,#cell_3_2,#cell_3_3{
-	margin-bottom: 20px;
+#cell_0_3{
+	left: 335px;
+	top: 20px;
+}
+#cell_1_0{
+	left: 20px;
+	top: 125px;
+}
+#cell_1_1{
+	left: 125px;
+	top: 125px;
+}
+#cell_1_2{
+	left: 230px;
+	top: 125px;
+}
+#cell_1_3{
+	left: 335px;
+	top: 125px;
+}
+#cell_2_0{
+	left: 20px;
+	top: 230px;
+}
+#cell_2_1{
+	left: 125px;
+	top: 230px;
+}
+#cell_2_2{
+	left: 230px;
+	top: 230px;
+}
+#cell_2_3{
+	left: 335px;
+	top: 230px;
+}
+#cell_3_0{
+	left: 20px;
+	top: 335px;
+}
+#cell_3_1{
+	left: 125px;
+	top: 335px;
+}
+#cell_3_2{
+	left: 230px;
+	top: 335px;
+}
+#cell_3_3{
+	left: 335px;
+	top: 335px;
 }

@@ -32,7 +32,7 @@ Task.prototype = {
 		this.category = newCategory
 	}
 }
-misson = (function(){
+var misson = (function(){
 	var l = localStorage;
 	//读取分类列表和任务列表
 	var classes = JSON.parse(l.getItem("cla")) || ["默认分类"];
