@@ -93,50 +93,50 @@ var game = (function(){
 		//左
 		leftDown : function(){
 			for (var i = 0;i < 4;i++){
-				if ($("#cell_" + i + "_" + "0").className.length === 1){
-					if ($("#cell_" + i + "_" + "1").className.length === 1){
-						if($("cell_" + i + "_" + "2").className.length === 1){
-							if ($("cell_" + i + "_" + "3").className.length ===1) {
+				if ($("#cell_" + i + "_0").className.length === 1){
+					if ($("#cell_" + i + "_1").className.length === 1){
+						if($("cell_" + i + "_2").className.length === 1){
+							if ($("cell_" + i + "_3").className.length ===1) {
 								continue;
 							}
 							else{
-								$("cell_" + i + "_" + "3").animate({left:'20px'},300,function(){
-									var number3 = $("cell_" + i + "_" + "3").text();
-									$("cell_" + i + "_" + "3").css("left","335px").removeClass("n" + number3).text("");
-									$("cell_" + i + "_" + "0").addClass("n" + number3).text(number3);
+								$("cell_" + i + "_3").animate({left:'20px'},300,function(){
+									var number3 = +($("cell_" + i + "_3").text());
+									$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+									$("cell_" + i + "_0").addClass("n" + number3).text(number3);
 								});
 								continue;
 							}
 						}
 						else{
-							if ($("cell_" + i + "_" + "3").className.length === 1){
-								$("cell_" + i + "_" + "2").animate({left:'20px'},200,function(){
-									var number2 = $("cell_" + i + "_" + "2").text();
-									$("cell_" + i + "_" + "2").css("left","230px").removeClass("n" + number2).text("");
-									$("cell_" + i + "_" + "0").addClass("n" + number2).text(number2);
+							if ($("cell_" + i + "_3").className.length === 1){
+								$("cell_" + i + "_2").animate({left:'20px'},200,function(){
+									var number2 = +($("cell_" + i + "_2").text());
+									$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+									$("cell_" + i + "_0").addClass("n" + number2).text(number2);
 								});
 								continue;
 							}
 							else{
-								var number2 = $("cell_" + i + "_" + "2").text();
-								var number3 = $("cell_" + i + "_" + "3").text();
+								var number2 = +($("cell_" + i + "_2").text());
+								var number3 = +($("cell_" + i + "_3").text());
 								if (number2 === number3){
-									$("cell_" + i + "_" + "2").animate({left:'20px'},200);
-									$("cell_" + i + "_" + "3").animate({left:'20px'},300,function(){
+									$("cell_" + i + "_2").animate({left:'20px'},200);
+									$("cell_" + i + "_3").animate({left:'20px'},300,function(){
 										var number0 = number2 + number3;
-										$("cell_" + i + "_" + "2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_" + "3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_" + "0").addClass("n" + number0).text(number0);
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_" + "2").animate({left:'20px'},200);
-									$("cell_" + i + "_" + "3").animate({left:'125px'},200,function(){
-										$("cell_" + i + "_" + "2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_" + "3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_" + "0").addClass("n" + number2).text(number2);
-										$("cell_" + i + "_" + "1").addClass("n" + number3).text(number3);
+									$("cell_" + i + "_2").animate({left:'20px'},200);
+									$("cell_" + i + "_3").animate({left:'125px'},200,function(){
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number2).text(number2);
+										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
@@ -144,14 +144,361 @@ var game = (function(){
 						}
 					}
 					else{
-
+						if ($("cell_" + i + "_2").className.length === 1){
+							if ($("cell_" + i + "_3").className.length === 1){
+								$("cell_" + i + "_1").animate({left:'20px'},100,function(){
+									var number1 = +($("cell_" + i + "_1").text());
+									$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+									$("cell_" + i + "_0").addClass("n" + number1).text(number1);
+								});
+								continue;
+							}
+							else{
+								var number1 = +($("cell_" + i + "_1").text());
+								var number3 = +($("cell_" + i + "_3").text());
+								if (number1 === number3){
+									$("cell_" + i + "_1").animate({left:'20px'},100);
+									$("cell_" + i + "_3").animate({left:'20px'},300,function(){
+										var number0 = number1 + number3;
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+								else{
+									$("cell_" + i + "_1").animate({left:'20px'},100);
+									$("cell_" + i + "_3").animate({left:'125px'},200,function(){
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number1).text(number1);
+										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+							}
+						}
+						else{
+							if ($("cell_" + i + "_3").className.length === 1){
+								var number1 = +($("cell_" + i + "_1").text());
+								var number2 = +($("cell_" + i + "_2").text());
+								if (number1 === number2){
+									$("cell_" + i + "_1").animate({left:'20px'},100);
+									$("cell_" + i + "_2").animate({left:'20px'},200,function(){
+										var number0 = number1 + number2;
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+								else{
+									$("cell_" + i + "_1").animate({left:'20px'},100);
+									$("cell_" + i + "_2").animate({left:'125px'},100,function(){
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_0").addClass("n" + number1).text(number1);
+										$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+									});
+									continue;
+								}
+							}
+							else{
+								var number1 = +($("cell_" + i + "_1").text());
+								var number2 = +($("cell_" + i + "_2").text());
+								var number3 = +($("cell_" + i + "_3").text());
+								if (number1 === number2){
+									$("cell_" + i + "_1").animate({left:"20px"},100);
+									$("cell_" + i + "_2").animate({left:"20px"},200);
+									$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+										var number0 = number1 + number2;
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
+										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+								else{
+									if (number2 === number3){
+										$("cell_" + i + "_1").animate({left:"20px"},100);
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+											var number4 = number2 + number3;
+											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_0").addClass("n" + number1).text(number1);
+											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										$("cell_" + i + "_1").animate({left:"20px"},100);
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_0").addClass("n" + number1).text(number1);
+											$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										});
+										continue;
+									}
+								}
+							}
+						}
 					}
 				}
 				else{
-
+					if ($("#cell_" + i + "_1").className.length === 1){
+						if ($("#cell_" + i + "_2").className.length === 1){
+							if ($("#cell_" + i + "_3").className.length === 1){
+								continue;
+							}
+							else{
+								var number0 = +($("cell_" + i + "_0").text());
+								var number3 = +($("cell_" + i + "_3").text());
+								if (number0 === number3){
+									$("cell_" + i + "_3").animate({left:'20px'},300,function(){
+										var number4 = number0 + number3;
+										$("cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+									});
+									continue;
+								}
+								else{
+									$("cell_" + i + "_3").animate({left:'125px'},200,function(){
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+							}
+						}
+						else{
+							if ($("#cell_" + i + "_3").className.length === 1){
+								var number0 = +($("cell_" + i + "_0").text());
+								var number2 = +($("cell_" + i + "_3").text());
+								if (number0 === number2){
+									$("cell_" + i + "_2").animate({left:'20px'},200,function(){
+										var number4 = number0 + number2;
+										$("cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+									});
+									continue;
+								}
+								else{
+									$("cell_" + i + "_2").animate({left:'125px'},200,function(){
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+									});
+									continue;
+								}
+							}
+							else{
+								var number0 = +($("cell_" + i + "_0").text());
+								var number2 = +($("cell_" + i + "_2").text());
+								var number3 = +($("cell_" + i + "_3").text());
+								if (number0 === number2){
+									$("cell_" + i + "_2").animate({left:"20px"},200);
+									$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+										var number4 = number0 + number2;
+										$("cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+								else{
+									if (number2 === number3){
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+											var number4 = number2 + number3;
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										});
+										continue;
+									}
+								}
+							}
+						}
+					}
+					else{
+						if ($("#cell_" + i + "_2").className.length === 1){
+							if ($("#cell_" + i + "_3").className.length === 1){
+								var number0 = +($("cell_" + i + "_0").text());
+								var number1 = +($("cell_" + i + "_1").text());
+								if (number0 === number1){
+									$("cell_" + i + "_1").animate({left:'20px'},300,function(){
+										var number4 = number0 + number1;
+										$("cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+									});
+									continue;
+								}
+								else{
+									continue;
+								}
+							}
+							else{
+								var number0 = +($("cell_" + i + "_0").text());
+								var number1 = +($("cell_" + i + "_1").text());
+								var number3 = +($("cell_" + i + "_3").text());
+								if (number0 === number1){
+									$("cell_" + i + "_1").animate({left:"20px"},100);
+									$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+										var number4 = number0 + number1;
+										$("cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+								else{
+									if (number1 === number3){
+										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+											var number4 = number1 + number3;
+											$("cell_" + i + "_1").removeClass("n" + number1);
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										});
+										continue;
+									}
+								}
+							}
+						}
+						else{
+							if ($("#cell_" + i + "_3").className.length === 1){
+								var number0 = +($("cell_" + i + "_0").text());
+								var number1 = +($("cell_" + i + "_1").text());
+								var number2 = +($("cell_" + i + "_2").text());
+								if (number0 === number1){
+									$("cell_" + i + "_1").animate({left:"20px"},100);
+									$("cell_" + i + "_2").animate({left:"125px"},100,function(){
+										var number4 = number0 + number1;
+										$("cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+									});
+									continue;
+								}
+								else{
+									if (number1 === number2){
+										$("cell_" + i + "_2").animate({left:"125px"},100,function(){
+											var number4 = number1 + number2;
+											$("cell_" + i + "_1").removeClass("n" + number1);
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										continue;
+									}
+								}
+							}
+							else{
+								var number0 = +($("cell_" + i + "_0").text());
+								var number1 = +($("cell_" + i + "_1").text());
+								var number2 = +($("cell_" + i + "_2").text());
+								var number3 = +($("cell_" + i + "_3").text());
+								if (number0 === number1){
+									if (number2 === number3){
+										var number4 = number0 + number1;
+										var number5 = number2 + number3;
+										$("cell_" + i + "_1").animate({left:"20px"},100);
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+											$("cell_" + i + "_0").removeClass("n" + number0).text("");
+											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+											$("cell_" + i + "_1").addClass("n" + number5).text(number5);
+										});
+										continue;
+									}
+									else{
+										$("cell_" + i + "_1").animate({left:"20px"},100);
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+											var number4 = number0 + number1;
+											$("cell_" + i + "_0").removeClass("n" + number0).text("");
+											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+											$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										});
+										continue;
+									}
+								}
+								else{
+									if (number1 === number2){
+										$("cell_" + i + "_2").animate({left:"125px"},100);
+										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+											var number4 = number1 + number2;
+											$("cell_" + i + "_1").removeClass("n" + number1).text("");
+											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										});
+										continue;
+									}
+									else{
+										if (number2 === number3){
+											$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+												var number4 = number2 + number3;
+												$("cell_" + i + "_2").removeClass("n" + number2).text("");
+												$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+												$("cell_" + i + "_2").addClass("n" + number4).text(number4);
+											});
+											continue;
+										}
+										else{
+											continue;
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
-		}
+		},
+		//右
 	}
 
 
