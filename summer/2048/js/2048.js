@@ -92,7 +92,65 @@ var game = (function(){
 		},
 		//左
 		leftDown : function(){
-			
+			for (var i = 0;i < 4;i++){
+				if ($("#cell_" + i + "_" + "0").className.length === 1){
+					if ($("#cell_" + i + "_" + "1").className.length === 1){
+						if($("cell_" + i + "_" + "2").className.length === 1){
+							if ($("cell_" + i + "_" + "3").className.length ===1) {
+								continue;
+							}
+							else{
+								$("cell_" + i + "_" + "3").animate({left:'20px'},300,function(){
+									var number3 = $("cell_" + i + "_" + "3").text();
+									$("cell_" + i + "_" + "3").css("left","335px").removeClass("n" + number3).text("");
+									$("cell_" + i + "_" + "0").addClass("n" + number3).text(number3);
+								});
+								continue;
+							}
+						}
+						else{
+							if ($("cell_" + i + "_" + "3").className.length === 1){
+								$("cell_" + i + "_" + "2").animate({left:'20px'},200,function(){
+									var number2 = $("cell_" + i + "_" + "2").text();
+									$("cell_" + i + "_" + "2").css("left","230px").removeClass("n" + number2).text("");
+									$("cell_" + i + "_" + "0").addClass("n" + number2).text(number2);
+								});
+								continue;
+							}
+							else{
+								var number2 = $("cell_" + i + "_" + "2").text();
+								var number3 = $("cell_" + i + "_" + "3").text();
+								if (number2 === number3){
+									$("cell_" + i + "_" + "2").animate({left:'20px'},200);
+									$("cell_" + i + "_" + "3").animate({left:'20px'},300,function(){
+										var number0 = number2 + number3;
+										$("cell_" + i + "_" + "2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_" + "3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_" + "0").addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+								else{
+									$("cell_" + i + "_" + "2").animate({left:'20px'},200);
+									$("cell_" + i + "_" + "3").animate({left:'125px'},200,function(){
+										$("cell_" + i + "_" + "2").css("left","230px").removeClass("n" + number2).text("");
+										$("cell_" + i + "_" + "3").css("left","335px").removeClass("n" + number3).text("");
+										$("cell_" + i + "_" + "0").addClass("n" + number2).text(number2);
+										$("cell_" + i + "_" + "1").addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+							}
+						}
+					}
+					else{
+
+					}
+				}
+				else{
+
+				}
+			}
 		}
 	}
 
