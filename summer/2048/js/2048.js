@@ -1,6 +1,6 @@
 var game = (function(){
 	var l = localStorage;
-	var highScore = l.get("score") || 0;//读取最高分
+	var highScore = l.getItem("score") || 0;//读取最高分
 	var score = 0;//分数
 	return {
 		//开始游戏
@@ -21,12 +21,12 @@ var game = (function(){
 			var empty = [];
 			for (var i = 0;i < 4;i++){
 				for (var k = 0;k < 4;k++){
-					if ($("#cell_" + i + "_" + k).className.length = 1){
+					if ($("#cell_" + i + "_" + k).attr("class") === "cell"){
 						empty.push($("#cell_" + i + "_" + k))
 					}
 				}
 			}
-			if (empty.length = 0){
+			if (empty.length === 0){
 				return
 			}
 			else{
@@ -43,9 +43,9 @@ var game = (function(){
 		isWin : function(){
 			var allCell = $(".cell");
 			for (var i = 0;i < allCell.length;i++){
-				if (allCell[i].text() === "2048"){
+				if (allCell[i].textContent === "2048"){
 					$("document").unbind("keydown");
-					$(".win p").text("您成功了");
+					$(".win p").textContent = "您成功了";
 					$(".win").fadeIn(500);
 					if(score > highScore){
 						l.set("score",score)
@@ -85,7 +85,7 @@ var game = (function(){
 			$(".win p").text("游戏结束");
 			$(".win").fadeIn(500);
 			if(score > highScore){
-				l.set("score",score)
+				l.setItem("score",score)
 			}
 			$("document").click(function(){location.reload()});
 			return true
@@ -93,50 +93,50 @@ var game = (function(){
 		//左
 		leftDown : function(){
 			for (var i = 0;i < 4;i++){
-				if ($("#cell_" + i + "_0").className.length === 1){
-					if ($("#cell_" + i + "_1").className.length === 1){
-						if($("cell_" + i + "_2").className.length === 1){
-							if ($("cell_" + i + "_3").className.length ===1) {
+				if ($("#cell_" + i + "_0").attr("class") === "cell"){
+					if ($("#cell_" + i + "_1").attr("class") === "cell"){
+						if($("#cell_" + i + "_2").attr("class") === "cell"){
+							if ($("#cell_" + i + "_3").attr("class") === "cell") {
 								continue;
 							}
 							else{
-								$("cell_" + i + "_3").animate({left:'20px'},300,function(){
-									var number3 = +($("cell_" + i + "_3").text());
-									$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-									$("cell_" + i + "_0").addClass("n" + number3).text(number3);
+								$("#cell_" + i + "_3").animate({left:'20px'},300,function(){
+									var number3 = +($("#cell_" + i + "_3").text());
+									$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+									$("#cell_" + i + "_0").addClass("n" + number3).text(number3);
 								});
 								continue;
 							}
 						}
 						else{
-							if ($("cell_" + i + "_3").className.length === 1){
-								$("cell_" + i + "_2").animate({left:'20px'},200,function(){
-									var number2 = +($("cell_" + i + "_2").text());
-									$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-									$("cell_" + i + "_0").addClass("n" + number2).text(number2);
+							if ($("#cell_" + i + "_3").attr("class") === "cell"){
+								$("#cell_" + i + "_2").animate({left:'20px'},200,function(){
+									var number2 = +($("#cell_" + i + "_2").text());
+									$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+									$("#cell_" + i + "_0").addClass("n" + number2).text(number2);
 								});
 								continue;
 							}
 							else{
-								var number2 = +($("cell_" + i + "_2").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number2 === number3){
-									$("cell_" + i + "_2").animate({left:'20px'},200);
-									$("cell_" + i + "_3").animate({left:'20px'},300,function(){
+									$("#cell_" + i + "_2").animate({left:'20px'},200);
+									$("#cell_" + i + "_3").animate({left:'20px'},300,function(){
 										var number0 = number2 + number3;
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_2").animate({left:'20px'},200);
-									$("cell_" + i + "_3").animate({left:'125px'},200,function(){
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number2).text(number2);
-										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									$("#cell_" + i + "_2").animate({left:'20px'},200);
+									$("#cell_" + i + "_3").animate({left:'125px'},200,function(){
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number2).text(number2);
+										$("#cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
@@ -144,106 +144,106 @@ var game = (function(){
 						}
 					}
 					else{
-						if ($("cell_" + i + "_2").className.length === 1){
-							if ($("cell_" + i + "_3").className.length === 1){
-								$("cell_" + i + "_1").animate({left:'20px'},100,function(){
-									var number1 = +($("cell_" + i + "_1").text());
-									$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-									$("cell_" + i + "_0").addClass("n" + number1).text(number1);
+						if ($("#cell_" + i + "_2").attr("class") === "cell"){
+							if ($("#cell_" + i + "_3").attr("class") === "cell"){
+								$("#cell_" + i + "_1").animate({left:'20px'},100,function(){
+									var number1 = +($("#cell_" + i + "_1").text());
+									$("#cell_" + i + "_1").attr("style","none").removeClass("n" + number1).text("");
+									$("#cell_" + i + "_0").addClass("n" + number1).text(number1);
 								});
 								continue;
 							}
 							else{
-								var number1 = +($("cell_" + i + "_1").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number1 === number3){
-									$("cell_" + i + "_1").animate({left:'20px'},100);
-									$("cell_" + i + "_3").animate({left:'20px'},300,function(){
+									$("#cell_" + i + "_1").animate({left:'20px'},100);
+									$("#cell_" + i + "_3").animate({left:'20px'},300,function(){
 										var number0 = number1 + number3;
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_1").animate({left:'20px'},100);
-									$("cell_" + i + "_3").animate({left:'125px'},200,function(){
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number1).text(number1);
-										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									$("#cell_" + i + "_1").animate({left:'20px'},100);
+									$("#cell_" + i + "_3").animate({left:'125px'},200,function(){
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number1).text(number1);
+										$("#cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 							}
 						}
 						else{
-							if ($("cell_" + i + "_3").className.length === 1){
-								var number1 = +($("cell_" + i + "_1").text());
-								var number2 = +($("cell_" + i + "_2").text());
+							if ($("#cell_" + i + "_3").attr("class") === "cell"){
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number2 = +($("#cell_" + i + "_2").text());
 								if (number1 === number2){
-									$("cell_" + i + "_1").animate({left:'20px'},100);
-									$("cell_" + i + "_2").animate({left:'20px'},200,function(){
+									$("#cell_" + i + "_1").animate({left:'20px'},100);
+									$("#cell_" + i + "_2").animate({left:'20px'},200,function(){
 										var number0 = number1 + number2;
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_1").animate({left:'20px'},100);
-									$("cell_" + i + "_2").animate({left:'125px'},100,function(){
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").addClass("n" + number1).text(number1);
-										$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+									$("#cell_" + i + "_1").animate({left:'20px'},100);
+									$("#cell_" + i + "_2").animate({left:'125px'},100,function(){
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").addClass("n" + number1).text(number1);
+										$("#cell_" + i + "_1").addClass("n" + number2).text(number2);
 									});
 									continue;
 								}
 							}
 							else{
-								var number1 = +($("cell_" + i + "_1").text());
-								var number2 = +($("cell_" + i + "_2").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number1 === number2){
-									$("cell_" + i + "_1").animate({left:"20px"},100);
-									$("cell_" + i + "_2").animate({left:"20px"},200);
-									$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+									$("#cell_" + i + "_1").animate({left:"20px"},100);
+									$("#cell_" + i + "_2").animate({left:"20px"},200);
+									$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
 										var number0 = number1 + number2;
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number0).text(number0);
-										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
 									if (number2 === number3){
-										$("cell_" + i + "_1").animate({left:"20px"},100);
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+										$("#cell_" + i + "_1").animate({left:"20px"},100);
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
 											var number4 = number2 + number3;
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_0").addClass("n" + number1).text(number1);
-											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_0").addClass("n" + number1).text(number1);
+											$("#cell_" + i + "_1").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_1").animate({left:"20px"},100);
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_0").addClass("n" + number1).text(number1);
-											$("cell_" + i + "_1").addClass("n" + number2).text(number2);
-											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_1").animate({left:"20px"},100);
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_0").addClass("n" + number1).text(number1);
+											$("#cell_" + i + "_1").addClass("n" + number2).text(number2);
+											$("#cell_" + i + "_2").addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
@@ -253,87 +253,87 @@ var game = (function(){
 					}
 				}
 				else{
-					if ($("#cell_" + i + "_1").className.length === 1){
-						if ($("#cell_" + i + "_2").className.length === 1){
-							if ($("#cell_" + i + "_3").className.length === 1){
+					if ($("##cell_" + i + "_1").attr("class") === "cell"){
+						if ($("##cell_" + i + "_2").attr("class") === "cell"){
+							if ($("##cell_" + i + "_3").attr("class") === "cell"){
 								continue;
 							}
 							else{
-								var number0 = +($("cell_" + i + "_0").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number0 === number3){
-									$("cell_" + i + "_3").animate({left:'20px'},300,function(){
+									$("#cell_" + i + "_3").animate({left:'20px'},300,function(){
 										var number4 = number0 + number3;
-										$("cell_" + i + "_0").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_3").animate({left:'125px'},200,function(){
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+									$("#cell_" + i + "_3").animate({left:'125px'},200,function(){
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 							}
 						}
 						else{
-							if ($("#cell_" + i + "_3").className.length === 1){
-								var number0 = +($("cell_" + i + "_0").text());
-								var number2 = +($("cell_" + i + "_2").text());
+							if ($("##cell_" + i + "_3").attr("class") === "cell"){
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number2 = +($("#cell_" + i + "_2").text());
 								if (number0 === number2){
-									$("cell_" + i + "_2").animate({left:'20px'},200,function(){
+									$("#cell_" + i + "_2").animate({left:'20px'},200,function(){
 										var number4 = number0 + number2;
-										$("cell_" + i + "_0").removeClass("n" + number0).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_2").animate({left:'125px'},200,function(){
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+									$("#cell_" + i + "_2").animate({left:'125px'},200,function(){
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_1").addClass("n" + number2).text(number2);
 									});
 									continue;
 								}
 							}
 							else{
-								var number0 = +($("cell_" + i + "_0").text());
-								var number2 = +($("cell_" + i + "_2").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number0 === number2){
-									$("cell_" + i + "_2").animate({left:"20px"},200);
-									$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+									$("#cell_" + i + "_2").animate({left:"20px"},200);
+									$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
 										var number4 = number0 + number2;
-										$("cell_" + i + "_0").removeClass("n" + number0).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
-										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
 									if (number2 === number3){
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
 											var number4 = number2 + number3;
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_1").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_1").addClass("n" + number2).text(number2);
-											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_1").addClass("n" + number2).text(number2);
+											$("#cell_" + i + "_2").addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
@@ -342,16 +342,16 @@ var game = (function(){
 						}
 					}
 					else{
-						if ($("#cell_" + i + "_2").className.length === 1){
-							if ($("#cell_" + i + "_3").className.length === 1){
-								var number0 = +($("cell_" + i + "_0").text());
-								var number1 = +($("cell_" + i + "_1").text());
+						if ($("##cell_" + i + "_2").attr("class") === "cell"){
+							if ($("##cell_" + i + "_3").attr("class") === "cell"){
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number1 = +($("#cell_" + i + "_1").text());
 								if (number0 === number1){
-									$("cell_" + i + "_1").animate({left:'20px'},300,function(){
+									$("#cell_" + i + "_1").animate({left:'20px'},300,function(){
 										var number4 = number0 + number1;
-										$("cell_" + i + "_0").removeClass("n" + number0).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
@@ -360,35 +360,35 @@ var game = (function(){
 								}
 							}
 							else{
-								var number0 = +($("cell_" + i + "_0").text());
-								var number1 = +($("cell_" + i + "_1").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number0 === number1){
-									$("cell_" + i + "_1").animate({left:"20px"},100);
-									$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+									$("#cell_" + i + "_1").animate({left:"20px"},100);
+									$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
 										var number4 = number0 + number1;
-										$("cell_" + i + "_0").removeClass("n" + number0).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
-										$("cell_" + i + "_1").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_1").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
 									if (number1 === number3){
-										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
+										$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
 											var number4 = number1 + number3;
-											$("cell_" + i + "_1").removeClass("n" + number1);
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").removeClass("n" + number1);
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_1").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_2").addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
@@ -396,29 +396,29 @@ var game = (function(){
 							}
 						}
 						else{
-							if ($("#cell_" + i + "_3").className.length === 1){
-								var number0 = +($("cell_" + i + "_0").text());
-								var number1 = +($("cell_" + i + "_1").text());
-								var number2 = +($("cell_" + i + "_2").text());
+							if ($("#cell_" + i + "_3").attr("class") === "cell"){
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number2 = +($("#cell_" + i + "_2").text());
 								if (number0 === number1){
-									$("cell_" + i + "_1").animate({left:"20px"},100);
-									$("cell_" + i + "_2").animate({left:"125px"},100,function(){
+									$("#cell_" + i + "_1").animate({left:"20px"},100);
+									$("#cell_" + i + "_2").animate({left:"125px"},100,function(){
 										var number4 = number0 + number1;
-										$("cell_" + i + "_0").removeClass("n" + number0).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").addClass("n" + number4).text(number4);
-										$("cell_" + i + "_1").addClass("n" + number2).text(number2);
+										$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_1").addClass("n" + number2).text(number2);
 									});
 									continue;
 								}
 								else{
 									if (number1 === number2){
-										$("cell_" + i + "_2").animate({left:"125px"},100,function(){
+										$("#cell_" + i + "_2").animate({left:"125px"},100,function(){
 											var number4 = number1 + number2;
-											$("cell_" + i + "_1").removeClass("n" + number1);
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").removeClass("n" + number1);
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_1").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
@@ -428,62 +428,62 @@ var game = (function(){
 								}
 							}
 							else{
-								var number0 = +($("cell_" + i + "_0").text());
-								var number1 = +($("cell_" + i + "_1").text());
-								var number2 = +($("cell_" + i + "_2").text());
-								var number3 = +($("cell_" + i + "_3").text());
+								var number0 = +($("#cell_" + i + "_0").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number3 = +($("#cell_" + i + "_3").text());
 								if (number0 === number1){
 									if (number2 === number3){
 										var number4 = number0 + number1;
 										var number5 = number2 + number3;
-										$("cell_" + i + "_1").animate({left:"20px"},100);
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"125px"},200,function(){
-											$("cell_" + i + "_0").removeClass("n" + number0).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_0").addClass("n" + number4).text(number4);
-											$("cell_" + i + "_1").addClass("n" + number5).text(number5);
+										$("#cell_" + i + "_1").animate({left:"20px"},100);
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"125px"},200,function(){
+											$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").addClass("n" + number5).text(number5);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_1").animate({left:"20px"},100);
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+										$("#cell_" + i + "_1").animate({left:"20px"},100);
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"230px"},100,function(){
 											var number4 = number0 + number1;
-											$("cell_" + i + "_0").removeClass("n" + number0).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_0").addClass("n" + number4).text(number4);
-											$("cell_" + i + "_1").addClass("n" + number2).text(number2);
-											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+											$("#cell_" + i + "_0").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_0").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").addClass("n" + number2).text(number2);
+											$("#cell_" + i + "_2").addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
 								}
 								else{
 									if (number1 === number2){
-										$("cell_" + i + "_2").animate({left:"125px"},100);
-										$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+										$("#cell_" + i + "_2").animate({left:"125px"},100);
+										$("#cell_" + i + "_3").animate({left:"230px"},100,function(){
 											var number4 = number1 + number2;
-											$("cell_" + i + "_1").removeClass("n" + number1).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-											$("cell_" + i + "_1").addClass("n" + number4).text(number4);
-											$("cell_" + i + "_2").addClass("n" + number3).text(number3);
+											$("#cell_" + i + "_1").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_1").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
 									else{
 										if (number2 === number3){
-											$("cell_" + i + "_3").animate({left:"230px"},100,function(){
+											$("#cell_" + i + "_3").animate({left:"230px"},100,function(){
 												var number4 = number2 + number3;
-												$("cell_" + i + "_2").removeClass("n" + number2).text("");
-												$("cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
-												$("cell_" + i + "_2").addClass("n" + number4).text(number4);
+												$("#cell_" + i + "_2").removeClass("n" + number2).text("");
+												$("#cell_" + i + "_3").css("left","335px").removeClass("n" + number3).text("");
+												$("#cell_" + i + "_2").addClass("n" + number4).text(number4);
 											});
 											continue;
 										}
@@ -497,59 +497,61 @@ var game = (function(){
 					}
 				}
 			}
-			if (game.isWin()){
-				return
-			}
-			game.randomEmerge();
-			game.isFail();
+			setTimeout(function(){
+				if (game.isWin()){
+					return
+				}
+				game.randomEmerge();
+				game.isFail();
+			},300)	
 		},
 		//右
 		rightDown : function(){
 			for (var i = 0;i < 4;i++){
-				if ($("#cell_" + i + "_3").className.length === 1){
-					if ($("#cell_" + i + "_2").className.length === 1){
-						if($("cell_" + i + "_1").className.length === 1){
-							if ($("cell_" + i + "_0").className.length ===1) {
+				if ($("#cell_" + i + "_3").attr("class") === "cell"){
+					if ($("#cell_" + i + "_2").attr("class") === "cell"){
+						if($("#cell_" + i + "_1").attr("class") === "cell"){
+							if ($("#cell_" + i + "_0").attr("class") === "cell") {
 								continue;
 							}
 							else{
-								$("cell_" + i + "_0").animate({left:'335px'},300,function(){
-									var number0 = +($("cell_" + i + "_0").text());
-									$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-									$("cell_" + i + "_3").addClass("n" + number0).text(number0);
+								$("#cell_" + i + "_0").animate({left:'335px'},300,function(){
+									var number0 = +($("#cell_" + i + "_0").text());
+									$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+									$("#cell_" + i + "_3").addClass("n" + number0).text(number0);
 								});
 								continue;
 							}
 						}
 						else{
-							if ($("cell_" + i + "_0").className.length === 1){
-								$("cell_" + i + "_1").animate({left:'335px'},200,function(){
-									var number1 = +($("cell_" + i + "_1").text());
-									$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-									$("cell_" + i + "_3").addClass("n" + number1).text(number1);
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
+								$("#cell_" + i + "_1").animate({left:'335px'},200,function(){
+									var number1 = +($("#cell_" + i + "_1").text());
+									$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+									$("#cell_" + i + "_3").addClass("n" + number1).text(number1);
 								});
 								continue;
 							}
 							else{
-								var number1 = +($("cell_" + i + "_1").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number1 === number0){
-									$("cell_" + i + "_1").animate({left:'335px'},200);
-									$("cell_" + i + "_0").animate({left:'335px'},300,function(){
+									$("#cell_" + i + "_1").animate({left:'335px'},200);
+									$("#cell_" + i + "_0").animate({left:'335px'},300,function(){
 										var number3 = number1 + number0;
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_1").animate({left:'335px'},200);
-									$("cell_" + i + "_0").animate({left:'230px'},200,function(){
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number1).text(number1);
-										$("cell_" + i + "_2").addClass("n" + number0).text(number0);
+									$("#cell_" + i + "_1").animate({left:'335px'},200);
+									$("#cell_" + i + "_0").animate({left:'230px'},200,function(){
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number1).text(number1);
+										$("#cell_" + i + "_2").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
@@ -557,106 +559,106 @@ var game = (function(){
 						}
 					}
 					else{
-						if ($("cell_" + i + "_1").className.length === 1){
-							if ($("cell_" + i + "_0").className.length === 1){
-								$("cell_" + i + "_2").animate({left:'335px'},100,function(){
-									var number1 = +($("cell_" + i + "_2").text());
-									$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-									$("cell_" + i + "_3").addClass("n" + number2).text(number2);
+						if ($("#cell_" + i + "_1").attr("class") === "cell"){
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
+								$("#cell_" + i + "_2").animate({left:'335px'},100,function(){
+									var number1 = +($("#cell_" + i + "_2").text());
+									$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+									$("#cell_" + i + "_3").addClass("n" + number2).text(number2);
 								});
 								continue;
 							}
 							else{
-								var number2 = +($("cell_" + i + "_2").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number2 === number0){
-									$("cell_" + i + "_2").animate({left:'335px'},100);
-									$("cell_" + i + "_0").animate({left:'335px'},300,function(){
+									$("#cell_" + i + "_2").animate({left:'335px'},100);
+									$("#cell_" + i + "_0").animate({left:'335px'},300,function(){
 										var number3 = number2 + number0;
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_2").animate({left:'335px'},100);
-									$("cell_" + i + "_0").animate({left:'230px'},200,function(){
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number3).text(number3);
-										$("cell_" + i + "_2").addClass("n" + number0).text(number0);
+									$("#cell_" + i + "_2").animate({left:'335px'},100);
+									$("#cell_" + i + "_0").animate({left:'230px'},200,function(){
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_2").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 							}
 						}
 						else{
-							if ($("cell_" + i + "_0").className.length === 1){
-								var number2 = +($("cell_" + i + "_2").text());
-								var number1 = +($("cell_" + i + "_1").text());
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number1 = +($("#cell_" + i + "_1").text());
 								if (number2 === number1){
-									$("cell_" + i + "_2").animate({left:'335px'},100);
-									$("cell_" + i + "_1").animate({left:'335px'},200,function(){
+									$("#cell_" + i + "_2").animate({left:'335px'},100);
+									$("#cell_" + i + "_1").animate({left:'335px'},200,function(){
 										var number3 = number2 + number1;
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_2").animate({left:'335px'},100);
-									$("cell_" + i + "_1").animate({left:'230px'},100,function(){
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").addClass("n" + number2).text(number2);
-										$("cell_" + i + "_2").addClass("n" + number1).text(number1);
+									$("#cell_" + i + "_2").animate({left:'335px'},100);
+									$("#cell_" + i + "_1").animate({left:'230px'},100,function(){
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").addClass("n" + number2).text(number2);
+										$("#cell_" + i + "_2").addClass("n" + number1).text(number1);
 									});
 									continue;
 								}
 							}
 							else{
-								var number2 = +($("cell_" + i + "_2").text());
-								var number1 = +($("cell_" + i + "_1").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number2 === number1){
-									$("cell_" + i + "_2").animate({left:"335px"},100);
-									$("cell_" + i + "_1").animate({left:"335px"},200);
-									$("cell_" + i + "_0").animate({left:"230px"},200,function(){
+									$("#cell_" + i + "_2").animate({left:"335px"},100);
+									$("#cell_" + i + "_1").animate({left:"335px"},200);
+									$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
 										var number3 = number2 + number1;
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number3).text(number3);
-										$("cell_" + i + "_2").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number3).text(number3);
+										$("#cell_" + i + "_2").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
 									if (number1 === number0){
-										$("cell_" + i + "_2").animate({left:"335px"},100);
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"230px"},200,function(){
+										$("#cell_" + i + "_2").animate({left:"335px"},100);
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
 											var number4 = number1 + number0;
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_3").addClass("n" + number2).text(number2);
-											$("cell_" + i + "_2").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_3").addClass("n" + number2).text(number2);
+											$("#cell_" + i + "_2").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_2").animate({left:"335px"},100);
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"125px"},100,function(){
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_3").addClass("n" + number2).text(number2);
-											$("cell_" + i + "_2").addClass("n" + number1).text(number1);
-											$("cell_" + i + "_1").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_2").animate({left:"335px"},100);
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"125px"},100,function(){
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_3").addClass("n" + number2).text(number2);
+											$("#cell_" + i + "_2").addClass("n" + number1).text(number1);
+											$("#cell_" + i + "_1").addClass("n" + number0).text(number0);
 										});
 										continue;
 									}
@@ -666,87 +668,87 @@ var game = (function(){
 					}
 				}
 				else{
-					if ($("#cell_" + i + "_2").className.length === 1){
-						if ($("#cell_" + i + "_1").className.length === 1){
-							if ($("#cell_" + i + "_0").className.length === 1){
+					if ($("#cell_" + i + "_2").attr("class") === "cell"){
+						if ($("#cell_" + i + "_1").attr("class") === "cell"){
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
 								continue;
 							}
 							else{
-								var number3 = +($("cell_" + i + "_3").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number3 === number0){
-									$("cell_" + i + "_0").animate({left:'335px'},300,function(){
+									$("#cell_" + i + "_0").animate({left:'335px'},300,function(){
 										var number4 = number3 + number0;
-										$("cell_" + i + "_3").removeClass("n" + number3).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_0").animate({left:'230px'},200,function(){
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_2").addClass("n" + number0).text(number0);
+									$("#cell_" + i + "_0").animate({left:'230px'},200,function(){
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_2").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 							}
 						}
 						else{
-							if ($("#cell_" + i + "_0").className.length === 1){
-								var number3 = +($("cell_" + i + "_3").text());
-								var number1 = +($("cell_" + i + "_1").text());
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number1 = +($("#cell_" + i + "_1").text());
 								if (number3 === number1){
-									$("cell_" + i + "_1").animate({left:'335px'},200,function(){
+									$("#cell_" + i + "_1").animate({left:'335px'},200,function(){
 										var number4 = number3 + number1;
-										$("cell_" + i + "_3").removeClass("n" + number3).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
 								else{
-									$("cell_" + i + "_1").animate({left:'230px'},200,function(){
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_2").addClass("n" + number1).text(number1);
+									$("#cell_" + i + "_1").animate({left:'230px'},200,function(){
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_2").addClass("n" + number1).text(number1);
 									});
 									continue;
 								}
 							}
 							else{
-								var number3 = +($("cell_" + i + "_3").text());
-								var number1 = +($("cell_" + i + "_1").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number3 === number1){
-									$("cell_" + i + "_1").animate({left:"335px"},200);
-									$("cell_" + i + "_0").animate({left:"230px"},200,function(){
+									$("#cell_" + i + "_1").animate({left:"335px"},200);
+									$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
 										var number4 = number3 + number1;
-										$("cell_" + i + "_3").removeClass("n" + number3).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number4).text(number4);
-										$("cell_" + i + "_2").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_2").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
 									if (number1 === number0){
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"230px"},200,function(){
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
 											var number4 = number1 + number0;
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_2").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_2").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"125px"},100,function(){
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_2").addClass("n" + number1).text(number1);
-											$("cell_" + i + "_1").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"125px"},100,function(){
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_2").addClass("n" + number1).text(number1);
+											$("#cell_" + i + "_1").addClass("n" + number0).text(number0);
 										});
 										continue;
 									}
@@ -755,16 +757,16 @@ var game = (function(){
 						}
 					}
 					else{
-						if ($("#cell_" + i + "_1").className.length === 1){
-							if ($("#cell_" + i + "_0").className.length === 1){
-								var number3 = +($("cell_" + i + "_3").text());
-								var number2 = +($("cell_" + i + "_2").text());
+						if ($("#cell_" + i + "_1").attr("class") === "cell"){
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number2 = +($("#cell_" + i + "_2").text());
 								if (number3 === number2){
-									$("cell_" + i + "_2").animate({left:'335px'},300,function(){
+									$("#cell_" + i + "_2").animate({left:'335px'},300,function(){
 										var number4 = number3 + number2;
-										$("cell_" + i + "_3").removeClass("n" + number3).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_3").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
@@ -773,35 +775,35 @@ var game = (function(){
 								}
 							}
 							else{
-								var number3 = +($("cell_" + i + "_3").text());
-								var number2 = +($("cell_" + i + "_2").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number3 === number2){
-									$("cell_" + i + "_2").animate({left:"335px"},100);
-									$("cell_" + i + "_0").animate({left:"230px"},200,function(){
+									$("#cell_" + i + "_2").animate({left:"335px"},100);
+									$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
 										var number4 = number3 + number2;
-										$("cell_" + i + "_3").removeClass("n" + number3).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-										$("cell_" + i + "_3").addClass("n" + number4).text(number4);
-										$("cell_" + i + "_2").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+										$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_2").addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
 									if (number2 === number0){
-										$("cell_" + i + "_0").animate({left:"230px"},200,function(){
+										$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
 											var number4 = number2 + number0;
-											$("cell_" + i + "_2").removeClass("n" + number2);
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_2").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").removeClass("n" + number2);
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_2").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_0").animate({left:"125px"},100,function(){
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_1").addClass("n" + number0).text(number0);
+										$("#cell_" + i + "_0").animate({left:"125px"},100,function(){
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_1").addClass("n" + number0).text(number0);
 										});
 										continue;
 									}
@@ -809,29 +811,29 @@ var game = (function(){
 							}
 						}
 						else{
-							if ($("#cell_" + i + "_0").className.length === 1){
-								var number3 = +($("cell_" + i + "_3").text());
-								var number2 = +($("cell_" + i + "_2").text());
-								var number1 = +($("cell_" + i + "_1").text());
+							if ($("#cell_" + i + "_0").attr("class") === "cell"){
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number1 = +($("#cell_" + i + "_1").text());
 								if (number3 === number2){
-									$("cell_" + i + "_2").animate({left:"335px"},100);
-									$("cell_" + i + "_1").animate({left:"230px"},100,function(){
+									$("#cell_" + i + "_2").animate({left:"335px"},100);
+									$("#cell_" + i + "_1").animate({left:"230px"},100,function(){
 										var number4 = number3 + number2;
-										$("cell_" + i + "_3").removeClass("n" + number3).text("");
-										$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-										$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-										$("cell_" + i + "_3").addClass("n" + number4).text(number4);
-										$("cell_" + i + "_2").addClass("n" + number1).text(number1);
+										$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+										$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+										$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+										$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
+										$("#cell_" + i + "_2").addClass("n" + number1).text(number1);
 									});
 									continue;
 								}
 								else{
 									if (number2 === number1){
-										$("cell_" + i + "_1").animate({left:"230px"},100,function(){
+										$("#cell_" + i + "_1").animate({left:"230px"},100,function(){
 											var number4 = number2 + number1;
-											$("cell_" + i + "_2").removeClass("n" + number2);
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_2").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").removeClass("n" + number2);
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_2").addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
@@ -841,62 +843,62 @@ var game = (function(){
 								}
 							}
 							else{
-								var number3 = +($("cell_" + i + "_3").text());
-								var number2 = +($("cell_" + i + "_2").text());
-								var number1 = +($("cell_" + i + "_1").text());
-								var number0 = +($("cell_" + i + "_0").text());
+								var number3 = +($("#cell_" + i + "_3").text());
+								var number2 = +($("#cell_" + i + "_2").text());
+								var number1 = +($("#cell_" + i + "_1").text());
+								var number0 = +($("#cell_" + i + "_0").text());
 								if (number3 === number2){
 									if (number1 === number0){
 										var number4 = number3 + number2;
 										var number5 = number1 + number0;
-										$("cell_" + i + "_2").animate({left:"335px"},100);
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"230px"},200,function(){
-											$("cell_" + i + "_3").removeClass("n" + number3).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_3").addClass("n" + number4).text(number4);
-											$("cell_" + i + "_2").addClass("n" + number5).text(number5);
+										$("#cell_" + i + "_2").animate({left:"335px"},100);
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"230px"},200,function(){
+											$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").addClass("n" + number5).text(number5);
 										});
 										continue;
 									}
 									else{
-										$("cell_" + i + "_2").animate({left:"335px"},100);
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"125px"},100,function(){
+										$("#cell_" + i + "_2").animate({left:"335px"},100);
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"125px"},100,function(){
 											var number4 = number3 + number2;
-											$("cell_" + i + "_3").removeClass("n" + number3).text("");
-											$("cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_3").addClass("n" + number4).text(number4);
-											$("cell_" + i + "_2").addClass("n" + number1).text(number1);
-											$("cell_" + i + "_1").addClass("n" + number0).text(number0);
+											$("#cell_" + i + "_3").removeClass("n" + number3).text("");
+											$("#cell_" + i + "_2").css("left","230px").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_3").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_2").addClass("n" + number1).text(number1);
+											$("#cell_" + i + "_1").addClass("n" + number0).text(number0);
 										});
 										continue;
 									}
 								}
 								else{
 									if (number2 === number1){
-										$("cell_" + i + "_1").animate({left:"230px"},100);
-										$("cell_" + i + "_0").animate({left:"125px"},100,function(){
+										$("#cell_" + i + "_1").animate({left:"230px"},100);
+										$("#cell_" + i + "_0").animate({left:"125px"},100,function(){
 											var number4 = number2 + number1;
-											$("cell_" + i + "_2").removeClass("n" + number2).text("");
-											$("cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
-											$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-											$("cell_" + i + "_2").addClass("n" + number4).text(number4);
-											$("cell_" + i + "_1").addClass("n" + number0).text(number0);
+											$("#cell_" + i + "_2").removeClass("n" + number2).text("");
+											$("#cell_" + i + "_1").css("left","125px").removeClass("n" + number1).text("");
+											$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+											$("#cell_" + i + "_2").addClass("n" + number4).text(number4);
+											$("#cell_" + i + "_1").addClass("n" + number0).text(number0);
 										});
 										continue;
 									}
 									else{
 										if (number1 === number0){
-											$("cell_" + i + "_0").animate({left:"125px"},100,function(){
+											$("#cell_" + i + "_0").animate({left:"125px"},100,function(){
 												var number4 = number1 + number0;
-												$("cell_" + i + "_1").removeClass("n" + number1).text("");
-												$("cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
-												$("cell_" + i + "_1").addClass("n" + number4).text(number4);
+												$("#cell_" + i + "_1").removeClass("n" + number1).text("");
+												$("#cell_" + i + "_0").css("left","20px").removeClass("n" + number0).text("");
+												$("#cell_" + i + "_1").addClass("n" + number4).text(number4);
 											});
 											continue;
 										}
@@ -919,50 +921,50 @@ var game = (function(){
 		//上
 		upDown : function(){
 			for (var i = 0;i < 4;i++){
-				if ($("#cell_0_" + i).className.length === 1){
-					if ($("#cell_1_" + i).className.length === 1){
-						if($("cell_2_" + i).className.length === 1){
-							if ($("cell_3_" + i).className.length ===1) {
+				if ($("#cell_0_" + i).attr("class") === "cell"){
+					if ($("#cell_1_" + i).attr("class") === "cell"){
+						if($("#cell_2_" + i).attr("class") === "cell"){
+							if ($("#cell_3_" + i).attr("class") === "cell") {
 								continue;
 							}
 							else{
-								$("cell_3_" + i).animate({top:'20px'},300,function(){
-									var number3 = +($("cell_3_" + i).text());
-									$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-									$("cell_0_" + i).addClass("n" + number3).text(number3);
+								$("#cell_3_" + i).animate({top:'20px'},300,function(){
+									var number3 = +($("#cell_3_" + i).text());
+									$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+									$("#cell_0_" + i).addClass("n" + number3).text(number3);
 								});
 								continue;
 							}
 						}
 						else{
-							if ($("cell_3_" + i).className.length === 1){
-								$("cell_2_" + i).animate({top:'20px'},200,function(){
-									var number2 = +($("cell_2_" + i).text());
-									$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-									$("cell_0_" + i).addClass("n" + number2).text(number2);
+							if ($("#cell_3_" + i).attr("class") === "cell"){
+								$("#cell_2_" + i).animate({top:'20px'},200,function(){
+									var number2 = +($("#cell_2_" + i).text());
+									$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+									$("#cell_0_" + i).addClass("n" + number2).text(number2);
 								});
 								continue;
 							}
 							else{
-								var number2 = +($("cell_2_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number2 === number3){
-									$("cell_2_" + i).animate({top:'20px'},200);
-									$("cell_3_" + i).animate({top:'20px'},300,function(){
+									$("#cell_2_" + i).animate({top:'20px'},200);
+									$("#cell_3_" + i).animate({top:'20px'},300,function(){
 										var number0 = number2 + number3;
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number0).text(number0);
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_2_" + i).animate({top:'20px'},200);
-									$("cell_3_" + i).animate({top:'125px'},200,function(){
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number2).text(number2);
-										$("cell_1_" + i).addClass("n" + number3).text(number3);
+									$("#cell_2_" + i).animate({top:'20px'},200);
+									$("#cell_3_" + i).animate({top:'125px'},200,function(){
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number2).text(number2);
+										$("#cell_1_" + i).addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
@@ -970,106 +972,106 @@ var game = (function(){
 						}
 					}
 					else{
-						if ($("cell_2_" + i).className.length === 1){
-							if ($("cell_3_" + i).className.length === 1){
-								$("cell_1_" + i).animate({top:'20px'},100,function(){
-									var number1 = +($("cell_1_" + i).text());
-									$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-									$("cell_0_" + i).addClass("n" + number1).text(number1);
+						if ($("#cell_2_" + i).attr("class") === "cell"){
+							if ($("#cell_3_" + i).attr("class") === "cell"){
+								$("#cell_1_" + i).animate({top:'20px'},100,function(){
+									var number1 = +($("#cell_1_" + i).text());
+									$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+									$("#cell_0_" + i).addClass("n" + number1).text(number1);
 								});
 								continue;
 							}
 							else{
-								var number1 = +($("cell_1_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number1 === number3){
-									$("cell_1_" + i).animate({top:'20px'},100);
-									$("cell_3_" + i).animate({top:'20px'},300,function(){
+									$("#cell_1_" + i).animate({top:'20px'},100);
+									$("#cell_3_" + i).animate({top:'20px'},300,function(){
 										var number0 = number1 + number3;
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number0).text(number0);
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_1_" + i).animate({top:'20px'},100);
-									$("cell_3_" + i).animate({top:'125px'},200,function(){
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number1).text(number1);
-										$("cell_1_" + i).addClass("n" + number3).text(number3);
+									$("#cell_1_" + i).animate({top:'20px'},100);
+									$("#cell_3_" + i).animate({top:'125px'},200,function(){
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number1).text(number1);
+										$("#cell_1_" + i).addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 							}
 						}
 						else{
-							if ($("cell_3_" + i).className.length === 1){
-								var number1 = +($("cell_1_" + i).text());
-								var number2 = +($("cell_2_" + i).text());
+							if ($("#cell_3_" + i).attr("class") === "cell"){
+								var number1 = +($("#cell_1_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
 								if (number1 === number2){
-									$("cell_1_" + i).animate({top:'20px'},100);
-									$("cell_2_" + i).animate({top:'20px'},200,function(){
+									$("#cell_1_" + i).animate({top:'20px'},100);
+									$("#cell_2_" + i).animate({top:'20px'},200,function(){
 										var number0 = number1 + number2;
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_0_" + i).addClass("n" + number0).text(number0);
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).addClass("n" + number0).text(number0);
 									});
 									continue;
 								}
 								else{
-									$("cell_1_" + i).animate({top:'20px'},100);
-									$("cell_2_" + i).animate({top:'125px'},100,function(){
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_0_" + i).addClass("n" + number1).text(number1);
-										$("cell_1_" + i).addClass("n" + number2).text(number2);
+									$("#cell_1_" + i).animate({top:'20px'},100);
+									$("#cell_2_" + i).animate({top:'125px'},100,function(){
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).addClass("n" + number1).text(number1);
+										$("#cell_1_" + i).addClass("n" + number2).text(number2);
 									});
 									continue;
 								}
 							}
 							else{
-								var number1 = +($("cell_1_" + i).text());
-								var number2 = +($("cell_2_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number1 === number2){
-									$("cell_1_" + i).animate({top:"20px"},100);
-									$("cell_2_" + i).animate({top:"20px"},200);
-									$("cell_3_" + i).animate({top:"125px"},200,function(){
+									$("#cell_1_" + i).animate({top:"20px"},100);
+									$("#cell_2_" + i).animate({top:"20px"},200);
+									$("#cell_3_" + i).animate({top:"125px"},200,function(){
 										var number0 = number1 + number2;
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number0).text(number0);
-										$("cell_1_" + i).addClass("n" + number3).text(number3);
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number0).text(number0);
+										$("#cell_1_" + i).addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
 									if (number2 === number3){
-										$("cell_1_" + i).animate({top:"20px"},100);
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"125px"},200,function(){
+										$("#cell_1_" + i).animate({top:"20px"},100);
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"125px"},200,function(){
 											var number4 = number2 + number3;
-											$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_0_" + i).addClass("n" + number1).text(number1);
-											$("cell_1_" + i).addClass("n" + number4).text(number4);
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_0_" + i).addClass("n" + number1).text(number1);
+											$("#cell_1_" + i).addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_1_" + i).animate({top:"20px"},100);
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"230px"},100,function(){
-											$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_0_" + i).addClass("n" + number1).text(number1);
-											$("cell_1_" + i).addClass("n" + number2).text(number2);
-											$("cell_2_" + i).addClass("n" + number3).text(number3);
+										$("#cell_1_" + i).animate({top:"20px"},100);
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"230px"},100,function(){
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_0_" + i).addClass("n" + number1).text(number1);
+											$("#cell_1_" + i).addClass("n" + number2).text(number2);
+											$("#cell_2_" + i).addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
@@ -1079,87 +1081,87 @@ var game = (function(){
 					}
 				}
 				else{
-					if ($("#cell_1_" + i).className.length === 1){
-						if ($("#cell_2_" + i).className.length === 1){
-							if ($("#cell_3_" + i).className.length === 1){
+					if ($("#cell_1_" + i).attr("class") === "cell"){
+						if ($("#cell_2_" + i).attr("class") === "cell"){
+							if ($("#cell_3_" + i).attr("class") === "cell"){
 								continue;
 							}
 							else{
-								var number0 = +($("cell_0_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number0 === number3){
-									$("cell_3_" + i).animate({top:'20px'},300,function(){
+									$("#cell_3_" + i).animate({top:'20px'},300,function(){
 										var number4 = number0 + number3;
-										$("cell_0_" + i).removeClass("n" + number0).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number4).text(number4);
+										$("#cell_0_" + i).removeClass("n" + number0).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
 								else{
-									$("cell_3_" + i).animate({top:'125px'},200,function(){
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_1_" + i).addClass("n" + number3).text(number3);
+									$("#cell_3_" + i).animate({top:'125px'},200,function(){
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_1_" + i).addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 							}
 						}
 						else{
-							if ($("#cell_3_" + i).className.length === 1){
-								var number0 = +($("cell_0_" + i).text());
-								var number2 = +($("cell_2_" + i).text());
+							if ($("#cell_3_" + i).attr("class") === "cell"){
+								var number0 = +($("#cell_0_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
 								if (number0 === number2){
-									$("cell_2_" + i).animate({top:'20px'},200,function(){
+									$("#cell_2_" + i).animate({top:'20px'},200,function(){
 										var number4 = number0 + number2;
-										$("cell_0_" + i).removeClass("n" + number0).text("");
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_0_" + i).addClass("n" + number4).text(number4);
+										$("#cell_0_" + i).removeClass("n" + number0).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
 								else{
-									$("cell_2_" + i).animate({top:'125px'},200,function(){
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_1_" + i).addClass("n" + number2).text(number2);
+									$("#cell_2_" + i).animate({top:'125px'},200,function(){
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_1_" + i).addClass("n" + number2).text(number2);
 									});
 									continue;
 								}
 							}
 							else{
-								var number0 = +($("cell_0_" + i).text());
-								var number2 = +($("cell_2_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number0 === number2){
-									$("cell_2_" + i).animate({top:"20px"},200);
-									$("cell_3_" + i).animate({top:"125px"},200,function(){
+									$("#cell_2_" + i).animate({top:"20px"},200);
+									$("#cell_3_" + i).animate({top:"125px"},200,function(){
 										var number4 = number0 + number2;
-										$("cell_0_" + i).removeClass("n" + number0).text("");
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number4).text(number4);
-										$("cell_1_" + i).addClass("n" + number3).text(number3);
+										$("#cell_0_" + i).removeClass("n" + number0).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number4).text(number4);
+										$("#cell_1_" + i).addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
 									if (number2 === number3){
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"125px"},200,function(){
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"125px"},200,function(){
 											var number4 = number2 + number3;
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_1_" + i).addClass("n" + number4).text(number4);
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_1_" + i).addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"230px"},100,function(){
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_1_" + i).addClass("n" + number2).text(number2);
-											$("cell_2_" + i).addClass("n" + number3).text(number3);
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"230px"},100,function(){
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_1_" + i).addClass("n" + number2).text(number2);
+											$("#cell_2_" + i).addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
@@ -1168,16 +1170,16 @@ var game = (function(){
 						}
 					}
 					else{
-						if ($("#cell_2_" + i.className.length === 1){
-							if ($("#cell_3_" + i).className.length === 1){
-								var number0 = +($("cell_0_" + i).text());
-								var number1 = +($("cell_1_" + i).text());
+						if ($("#cell_2_" + i).attr("class") === "cell"){
+							if ($("#cell_3_" + i).attr("class") === "cell"){
+								var number0 = +($("#cell_0_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
 								if (number0 === number1){
-									$("cell_1_" + i).animate({top:'20px'},300,function(){
+									$("#cell_1_" + i).animate({top:'20px'},300,function(){
 										var number4 = number0 + number1;
-										$("cell_0_" + i).removeClass("n" + number0).text("");
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_0_" + i).addClass("n" + number4).text(number4);
+										$("#cell_0_" + i).removeClass("n" + number0).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_0_" + i).addClass("n" + number4).text(number4);
 									});
 									continue;
 								}
@@ -1186,35 +1188,35 @@ var game = (function(){
 								}
 							}
 							else{
-								var number0 = +($("cell_0_" + i).text());
-								var number1 = +($("cell_1_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number0 === number1){
-									$("cell_1_" + i).animate({top:"20px"},100);
-									$("cell_3_" + i).animate({top:"125px"},200,function(){
+									$("#cell_1_" + i).animate({top:"20px"},100);
+									$("#cell_3_" + i).animate({top:"125px"},200,function(){
 										var number4 = number0 + number1;
-										$("cell_0_" + i).removeClass("n" + number0).text("");
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-										$("cell_0_" + i).addClass("n" + number4).text(number4);
-										$("cell_1_" + i).addClass("n" + number3).text(number3);
+										$("#cell_0_" + i).removeClass("n" + number0).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+										$("#cell_0_" + i).addClass("n" + number4).text(number4);
+										$("#cell_1_" + i).addClass("n" + number3).text(number3);
 									});
 									continue;
 								}
 								else{
 									if (number1 === number3){
-										$("cell_3_" + i).animate({top:"125px"},200,function(){
+										$("#cell_3_" + i).animate({top:"125px"},200,function(){
 											var number4 = number1 + number3;
-											$("cell_1_" + i).removeClass("n" + number1);
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_1_" + i).addClass("n" + number4).text(number4);
+											$("#cell_1_" + i).removeClass("n" + number1);
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_1_" + i).addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
 									else{
-										$("cell_3_" + i).animate({top:"230px"},100,function(){
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_2_" + i).addClass("n" + number3).text(number3);
+										$("#cell_3_" + i).animate({top:"230px"},100,function(){
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_2_" + i).addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
@@ -1222,29 +1224,29 @@ var game = (function(){
 							}
 						}
 						else{
-							if ($("#cell_3_" + i).className.length === 1){
-								var number0 = +($("cell_0_" + i).text());
-								var number1 = +($("cell_1_" + i).text());
-								var number2 = +($("cell_2_" + i).text());
+							if ($("#cell_3_" + i).attr("class") === "cell"){
+								var number0 = +($("#cell_0_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
 								if (number0 === number1){
-									$("cell_1_" + i).animate({top:"20px"},100);
-									$("cell_2_" + i).animate({top:"125px"},100,function(){
+									$("#cell_1_" + i).animate({top:"20px"},100);
+									$("#cell_2_" + i).animate({top:"125px"},100,function(){
 										var number4 = number0 + number1;
-										$("cell_0_" + i).removeClass("n" + number0).text("");
-										$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-										$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-										$("cell_0_" + i).addClass("n" + number4).text(number4);
-										$("cell_1_" + i).addClass("n" + number2).text(number2);
+										$("#cell_0_" + i).removeClass("n" + number0).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).addClass("n" + number4).text(number4);
+										$("#cell_1_" + i).addClass("n" + number2).text(number2);
 									});
 									continue;
 								}
 								else{
 									if (number1 === number2){
-										$("cell_2_" + i).animate({top:"125px"},100,function(){
+										$("#cell_2_" + i).animate({top:"125px"},100,function(){
 											var number4 = number1 + number2;
-											$("cell_1_" + i).removeClass("n" + number1);
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_1_" + i).addClass("n" + number4).text(number4);
+											$("#cell_1_" + i).removeClass("n" + number1);
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_1_" + i).addClass("n" + number4).text(number4);
 										});
 										continue;
 									}
@@ -1254,62 +1256,62 @@ var game = (function(){
 								}
 							}
 							else{
-								var number0 = +($("cell_0_" + i).text());
-								var number1 = +($("cell_1_" + i).text());
-								var number2 = +($("cell_2_" + i).text());
-								var number3 = +($("cell_3_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number3 = +($("#cell_3_" + i).text());
 								if (number0 === number1){
 									if (number2 === number3){
 										var number4 = number0 + number1;
 										var number5 = number2 + number3;
-										$("cell_1_" + i).animate({top:"20px"},100);
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"125px"},200,function(){
-											$("cell_0_" + i).removeClass("n" + number0).text("");
-											$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-											$("cell_1_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_0_" + i).addClass("n" + number4).text(number4);
-											$("cell_1_" + i).addClass("n" + number5).text(number5);
+										$("#cell_1_" + i).animate({top:"20px"},100);
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"125px"},200,function(){
+											$("#cell_0_" + i).removeClass("n" + number0).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_0_" + i).addClass("n" + number4).text(number4);
+											$("#cell_1_" + i).addClass("n" + number5).text(number5);
 										});
 										continue;
 									}
 									else{
-										$("cell_1_" + i).animate({top:"20px"},100);
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"230px"},100,function(){
+										$("#cell_1_" + i).animate({top:"20px"},100);
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"230px"},100,function(){
 											var number4 = number0 + number1;
-											$("cell_0_" + i).removeClass("n" + number0).text("");
-											$("cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_0_" + i).addClass("n" + number4).text(number4);
-											$("cell_1_" + i).addClass("n" + number2).text(number2);
-											$("cell_2_" + i).addClass("n" + number3).text(number3);
+											$("#cell_0_" + i).removeClass("n" + number0).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_0_" + i).addClass("n" + number4).text(number4);
+											$("#cell_1_" + i).addClass("n" + number2).text(number2);
+											$("#cell_2_" + i).addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
 								}
 								else{
 									if (number1 === number2){
-										$("cell_2_" + i).animate({top:"125px"},100);
-										$("cell_3_" + i).animate({top:"230px"},100,function(){
+										$("#cell_2_" + i).animate({top:"125px"},100);
+										$("#cell_3_" + i).animate({top:"230px"},100,function(){
 											var number4 = number1 + number2;
-											$("cell_1_" + i).removeClass("n" + number1).text("");
-											$("cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
-											$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-											$("cell_1_" + i).addClass("n" + number4).text(number4);
-											$("cell_2_" + i).addClass("n" + number3).text(number3);
+											$("#cell_1_" + i).removeClass("n" + number1).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+											$("#cell_1_" + i).addClass("n" + number4).text(number4);
+											$("#cell_2_" + i).addClass("n" + number3).text(number3);
 										});
 										continue;
 									}
 									else{
 										if (number2 === number3){
-											$("cell_3_" + i).animate({top:"230px"},100,function(){
+											$("#cell_3_" + i).animate({top:"230px"},100,function(){
 												var number4 = number2 + number3;
-												$("cell_2_" + i).removeClass("n" + number2).text("");
-												$("cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
-												$("cell_2_" + i).addClass("n" + number4).text(number4);
+												$("#cell_2_" + i).removeClass("n" + number2).text("");
+												$("#cell_3_" + i).css("top","335px").removeClass("n" + number3).text("");
+												$("#cell_2_" + i).addClass("n" + number4).text(number4);
 											});
 											continue;
 										}
@@ -1329,7 +1331,433 @@ var game = (function(){
 			game.randomEmerge();
 			game.isFail();
 		},
+		//下
+		DownDown : function(){
+			for (var i = 0;i < 4;i++){
+				if ($("#cell_3_" + i).attr("class") === "cell"){
+					if ($("#cell_2_" + i).attr("class") === "cell"){
+						if($("#cell_1_" + i).attr("class") === "cell"){
+							if ($("#cell_0_" + i).attr("class") === "cell") {
+								continue;
+							}
+							else{
+								$("#cell_0_" + i).animate({top:'335px'},300,function(){
+									var number0 = +($("#cell_0_" + i).text());
+									$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+									$("#cell_3_" + i).addClass("n" + number0).text(number0);
+								});
+								continue;
+							}
+						}
+						else{
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								$("#cell_1_" + i).animate({top:'335px'},200,function(){
+									var number1 = +($("#cell_1_" + i).text());
+									$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+									$("#cell_3_" + i).addClass("n" + number1).text(number1);
+								});
+								continue;
+							}
+							else{
+								var number1 = +($("#cell_1_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number1 === number0){
+									$("#cell_1_" + i).animate({top:'335px'},200);
+									$("#cell_0_" + i).animate({top:'335px'},300,function(){
+										var number3 = number1 + number0;
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_0_" + i).css("top","230px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+								else{
+									$("#cell_1_" + i).animate({top:'335px'},200);
+									$("#cell_0_" + i).animate({top:'230px'},200,function(){
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number1).text(number1);
+										$("#cell_2_" + i).addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+							}
+						}
+					}
+					else{
+						if ($("#cell_1_" + i).attr("class") === "cell"){
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								$("#cell_2_" + i).animate({top:'335px'},100,function(){
+									var number2 = +($("#cell_2_" + i).text());
+									$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+									$("#cell_3_" + i).addClass("n" + number2).text(number2);
+								});
+								continue;
+							}
+							else{
+								var number2 = +($("#cell_2_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number2 === number0){
+									$("#cell_2_" + i).animate({top:'335px'},100);
+									$("#cell_0_" + i).animate({top:'335px'},300,function(){
+										var number3 = number2 + number0;
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+								else{
+									$("#cell_2_" + i).animate({top:'335px'},100);
+									$("#cell_0_" + i).animate({top:'230px'},200,function(){
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number2).text(number2);
+										$("#cell_2_" + i).addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+							}
+						}
+						else{
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								var number2 = +($("#cell_2_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								if (number2 === number1){
+									$("#cell_2_" + i).animate({top:'335px'},100);
+									$("#cell_1_" + i).animate({top:'335px'},200,function(){
+										var number3 = number2 + number1;
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).addClass("n" + number3).text(number3);
+									});
+									continue;
+								}
+								else{
+									$("#cell_2_" + i).animate({top:'335px'},100);
+									$("#cell_1_" + i).animate({top:'230px'},100,function(){
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).addClass("n" + number2).text(number2);
+										$("#cell_2_" + i).addClass("n" + number1).text(number1);
+									});
+									continue;
+								}
+							}
+							else{
+								var number2 = +($("#cell_2_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number2 === number1){
+									$("#cell_2_" + i).animate({top:"335px"},100);
+									$("#cell_1_" + i).animate({top:"335px"},200);
+									$("#cell_0_" + i).animate({top:"230px"},200,function(){
+										var number3 = number2 + number1;
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number3).text(number3);
+										$("#cell_2_" + i).addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+								else{
+									if (number1 === number0){
+										$("#cell_2_" + i).animate({top:"335px"},100);
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"230px"},200,function(){
+											var number4 = number1 + number0;
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_3_" + i).addClass("n" + number2).text(number2);
+											$("#cell_2_" + i).addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										$("#cell_2_" + i).animate({top:"335px"},100);
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"125px"},100,function(){
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_3_" + i).addClass("n" + number2).text(number2);
+											$("#cell_2_" + i).addClass("n" + number1).text(number1);
+											$("#cell_1_" + i).addClass("n" + number0).text(number0);
+										});
+										continue;
+									}
+								}
+							}
+						}
+					}
+				}
+				else{
+					if ($("#cell_2_" + i).attr("class") === "cell"){
+						if ($("#cell_1_" + i).attr("class") === "cell"){
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								continue;
+							}
+							else{
+								var number3 = +($("#cell_3_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number3 === number0){
+									$("#cell_0_" + i).animate({top:'335px'},300,function(){
+										var number4 = number0 + number3;
+										$("#cell_3_" + i).removeClass("n" + number3).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number4).text(number4);
+									});
+									continue;
+								}
+								else{
+									$("#cell_0_" + i).animate({top:'230px'},200,function(){
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_2_" + i).addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+							}
+						}
+						else{
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								var number3 = +($("#cell_3_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								if (number3 === number1){
+									$("#cell_1_" + i).animate({top:'335px'},200,function(){
+										var number4 = number3 + number1;
+										$("#cell_3_" + i).removeClass("n" + number3).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).addClass("n" + number4).text(number4);
+									});
+									continue;
+								}
+								else{
+									$("#cell_1_" + i).animate({top:'230px'},200,function(){
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_2_" + i).addClass("n" + number1).text(number1);
+									});
+									continue;
+								}
+							}
+							else{
+								var number3 = +($("#cell_3_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number3 === number1){
+									$("#cell_1_" + i).animate({top:"335px"},200);
+									$("#cell_0_" + i).animate({top:"230px"},200,function(){
+										var number4 = number3 + number1;
+										$("#cell_3_" + i).removeClass("n" + number3).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number4).text(number4);
+										$("#cell_2_" + i).addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+								else{
+									if (number1 === number0){
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"230px"},200,function(){
+											var number4 = number1 + number0;
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_2_" + i).addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"125px"},100,function(){
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_2_" + i).addClass("n" + number1).text(number1);
+											$("#cell_1_" + i).addClass("n" + number0).text(number0);
+										});
+										continue;
+									}
+								}
+							}
+						}
+					}
+					else{
+						if ($("#cell_1_" + i).attr("class") === "cell"){
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								var number3 = +($("#cell_3_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								if (number3 === number2){
+									$("#cell_2_" + i).animate({top:'335px'},300,function(){
+										var number4 = number3 + number2;
+										$("#cell_3_" + i).removeClass("n" + number3).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_3_" + i).addClass("n" + number4).text(number4);
+									});
+									continue;
+								}
+								else{
+									continue;
+								}
+							}
+							else{
+								var number3 = +($("#cell_3_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number3 === number2){
+									$("#cell_2_" + i).animate({top:"335px"},100);
+									$("#cell_0_" + i).animate({top:"230px"},200,function(){
+										var number4 = number0 + number1;
+										$("#cell_3_" + i).removeClass("n" + number3).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+										$("#cell_3_" + i).addClass("n" + number4).text(number4);
+										$("#cell_2_" + i).addClass("n" + number0).text(number0);
+									});
+									continue;
+								}
+								else{
+									if (number2 === number0){
+										$("#cell_0_" + i).animate({top:"230px"},200,function(){
+											var number4 = number2 + number0;
+											$("#cell_2_" + i).removeClass("n" + number2);
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_2_" + i).addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										$("#cell_0_" + i).animate({top:"125px"},100,function(){
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_1_" + i).addClass("n" + number0).text(number0);
+										});
+										continue;
+									}
+								}
+							}
+						}
+						else{
+							if ($("#cell_0_" + i).attr("class") === "cell"){
+								var number3 = +($("#cell_3_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								if (number3 === number2){
+									$("#cell_2_" + i).animate({top:"335px"},100);
+									$("#cell_1_" + i).animate({top:"230px"},100,function(){
+										var number4 = number3 + number2;
+										$("#cell_3_" + i).removeClass("n" + number3).text("");
+										$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+										$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+										$("#cell_3_" + i).addClass("n" + number4).text(number4);
+										$("#cell_2_" + i).addClass("n" + number1).text(number1);
+									});
+									continue;
+								}
+								else{
+									if (number2 === number1){
+										$("#cell_1_" + i).animate({top:"230px"},100,function(){
+											var number4 = number2 + number1;
+											$("#cell_2_" + i).removeClass("n" + number2);
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_2_" + i).addClass("n" + number4).text(number4);
+										});
+										continue;
+									}
+									else{
+										continue;
+									}
+								}
+							}
+							else{
+								var number3 = +($("#cell_3_" + i).text());
+								var number2 = +($("#cell_2_" + i).text());
+								var number1 = +($("#cell_1_" + i).text());
+								var number0 = +($("#cell_0_" + i).text());
+								if (number3 === number2){
+									if (number1 === number0){
+										var number4 = number3 + number2;
+										var number5 = number1 + number0;
+										$("#cell_2_" + i).animate({top:"335px"},100);
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"230px"},200,function(){
+											$("#cell_3_" + i).removeClass("n" + number3).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_3_" + i).addClass("n" + number4).text(number4);
+											$("#cell_2_" + i).addClass("n" + number5).text(number5);
+										});
+										continue;
+									}
+									else{
+										$("#cell_2_" + i).animate({top:"335px"},100);
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"125px"},100,function(){
+											var number4 = number3 + number2;
+											$("#cell_3_" + i).removeClass("n" + number3).text("");
+											$("#cell_2_" + i).css("top","230px").removeClass("n" + number2).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_3_" + i).addClass("n" + number4).text(number4);
+											$("#cell_2_" + i).addClass("n" + number1).text(number1);
+											$("#cell_1_" + i).addClass("n" + number0).text(number0);
+										});
+										continue;
+									}
+								}
+								else{
+									if (number2 === number1){
+										$("#cell_1_" + i).animate({top:"230px"},100);
+										$("#cell_0_" + i).animate({top:"125px"},100,function(){
+											var number4 = number2 + number1;
+											$("#cell_2_" + i).removeClass("n" + number2).text("");
+											$("#cell_1_" + i).css("top","125px").removeClass("n" + number1).text("");
+											$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+											$("#cell_2_" + i).addClass("n" + number4).text(number4);
+											$("#cell_1_" + i).addClass("n" + number0).text(number0);
+										});
+										continue;
+									}
+									else{
+										if (number1 === number0){
+											$("#cell_0_" + i).animate({top:"125px"},100,function(){
+												var number4 = number1 + number0;
+												$("#cell_1_" + i).removeClass("n" + number1).text("");
+												$("#cell_0_" + i).css("top","20px").removeClass("n" + number0).text("");
+												$("#cell_1_" + i).addClass("n" + number4).text(number4);
+											});
+											continue;
+										}
+										else{
+											continue;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			if (game.isWin()){
+				return
+			}
+			game.randomEmerge();
+			game.isFail();
+		}
 	}
-
-
 }())
+$("body").keydown(function(event){
+	if (event.which === 38){
+		game.upDown();
+	}
+	if (event.which === 40){
+		game.DownDown()
+	}
+	if (event.which === 37){
+		game.leftDown()
+	}
+	if (event.which === 39){
+		game.rightDown()
+	}
+})
+//game.beginGame()
