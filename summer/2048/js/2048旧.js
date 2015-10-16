@@ -1,3 +1,6 @@
+//我放弃这个代码了
+//重写
+//这个坑跳的
 var game = (function(){
 	var l = localStorage;
 	var highScore = l.getItem("score") || 0;//读取最高分
