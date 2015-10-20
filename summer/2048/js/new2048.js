@@ -32,7 +32,41 @@ var game = (function(){
 		},
 		//判断游戏是否结束
 		isFinish : function(){
-			
+			for (var i = 0;i < 16;i++){
+				if (number[i].text === "2048"){
+					document.unbind("keydown");
+					if (score > maxScoer){
+						l.setItem("maxScoer",score)
+					}
+					$(".win").text("您胜利了").slideDown("300");
+					return true
+				}
+			}
+			for (var i = 0;i < 16;i++){
+				if (number[i] === undefined){
+					return false
+				}
+			}
+			for (var i = 0;i < 16;i++){
+				if (number[i+1] !== undefined && number[i+1].text === number[i].text){
+					return false
+				}
+				if (number[i-1] !== undefined && number[i-1].text === number[i].text){
+					return false
+				}
+				if (number[i+4] !== undefined && number[i+4].text === number[i].text){
+					return false
+				}
+				if (number[i-4] !== undefined && number[i-4].text === number[i].text){
+					return false
+				}
+			}
+			document.unbind("keydown");
+			if (score > maxScoer){
+				l.setItem("maxScoer",score)
+			}
+			$(".win").text("失败了呢").slideDown("300");
+			return true
 		},
 	}
 
