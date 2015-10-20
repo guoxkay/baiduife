@@ -1,6 +1,8 @@
 html,body{
 	margin: 0;
 	padding: 0;
+	font-family: "微软雅黑";
+	font-size: 20px;
 }
 .container{
 	width: 440px;
@@ -23,7 +25,8 @@ html,body{
 	box-shadow: 5px 5px 2px black inset;
 	border: 1px solid #883405;
 	box-sizing: border-box;
-	position: absolute;
+	float: left;
+	margin: 10px;
 }
 .n2{
 	background-color:#8b8b8b;
@@ -71,69 +74,23 @@ html,body{
 	font-size: 45px;
 	box-shadow: none;
 }
-#cell_0_0{
-	left: 20px;
-	top: 20px;
+#cell_0,#cell_1,#cell_2,#cell_3{
+	margin-top: 20px;
 }
-#cell_0_1{
-	left: 125px;
-	top: 20px;
+#cell_0,#cell_4,#cell_8,#cell_12{
+	margin-left: 20px;
 }
-#cell_0_2{
-	left: 230px;
-	top: 20px;
+#cell_3,#cell_7,#cell_11,#cell_15{
+	margin-right: 20px;
 }
-#cell_0_3{
-	left: 335px;
-	top: 20px;
+#cell_12,#cell_13,#cell_14,#cell_15{
+	margin-bottom: 20px;
 }
-#cell_1_0{
-	left: 20px;
-	top: 125px;
-}
-#cell_1_1{
-	left: 125px;
-	top: 125px;
-}
-#cell_1_2{
-	left: 230px;
-	top: 125px;
-}
-#cell_1_3{
-	left: 335px;
-	top: 125px;
-}
-#cell_2_0{
-	left: 20px;
-	top: 230px;
-}
-#cell_2_1{
-	left: 125px;
-	top: 230px;
-}
-#cell_2_2{
-	left: 230px;
-	top: 230px;
-}
-#cell_2_3{
-	left: 335px;
-	top: 230px;
-}
-#cell_3_0{
-	left: 20px;
-	top: 335px;
-}
-#cell_3_1{
-	left: 125px;
-	top: 335px;
-}
-#cell_3_2{
-	left: 230px;
-	top: 335px;
-}
-#cell_3_3{
-	left: 335px;
-	top: 335px;
+.num{
+	width: 83px;
+	height: 83px;
+	position: absolute;
+	border-radius: 10px;
 }
 .win{
 	position: absolute;
@@ -152,4 +109,9 @@ html,body{
 }
 .win p{
 	margin: 0;
+}
+#score{
+	position: absolute;
+	left: 50px;
+	top: 50px;
 }
