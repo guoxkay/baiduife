@@ -33,7 +33,7 @@ var game = (function(){
 		//判断游戏是否结束
 		isFinish : function(){
 			for (var i = 0;i < 16;i++){
-				if (number[i].text === "2048"){
+				if (number[i] !== undefined && number[i].text === "2048"){
 					document.unbind("keydown");
 					if (score > maxScoer){
 						l.setItem("maxScoer",score)
@@ -68,6 +68,37 @@ var game = (function(){
 			$(".win").text("失败了呢").slideDown("300");
 			return true
 		},
+		//调试用
+		getNumber : function(){
+			return number
+		},
+		number0 : function(event){
+			if (number[0] === undefined){
+				return
+			}
+			switch (event.which){
+				case 37:{//left
+					if (number[0].text === number[1].text){
+						number[0].animate({})
+					}
+					else if (number[1] === undefined && number[0].text === number[2].text){
+
+					}
+					else if ((number[1] === undefined && number[2] === undefined) && number[0].text === number[3].text){
+
+					}
+					else{
+						return
+					}
+					break;
+				}
+				case 38:{//up
+
+				}
+				case 39://right
+				case 40://down
+			}
+		}
 	}
 
 

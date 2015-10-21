@@ -11,9 +11,10 @@ function isFunction(fn){
 //克隆一个对象,感觉break好像没什么用哎
 function cloneObject(src){
 	switch (typeof src){
-		case "function":
-		return alert("function");
-		break;
+		case "function":{
+			return alert("function");
+			break;
+		}
 		/*case "string"||"number"||"boolean"||"undefined":
 		return src;
 		break;*/
