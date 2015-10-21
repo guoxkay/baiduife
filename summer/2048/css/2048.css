@@ -115,3 +115,83 @@ html,body{
 	left: 50px;
 	top: 50px;
 }
+#cell_0 .num{
+	left: 21px;
+	top: 21px;
+}
+#cell_1 .num{
+	left: 126px;
+	top: 21px;
+}
+#cell_2 .num{
+	left: 231px;
+	top: 21px;
+}
+#cell_3 .num{
+	left: 336px;
+	top: 21px;
+}
+#cell_4 .num{
+	left: 21px;
+	top: 126px;
+}
+#cell_5 .num{
+	left: 126px;
+	top: 126px;
+}
+#cell_6 .num{
+	left: 231px;
+	top: 126px;
+}
+#cell_7 .num{
+	left: 336px;
+	top: 126px;
+}
+#cell_8 .num{
+	left: 21px;
+	top: 231px;
+}
+#cell_9 .num{
+	left: 126px;
+	top: 231px;
+}
+#cell_10 .num{
+	left: 231px;
+	top: 231px;
+}
+#cell_11 .num{
+	left: 336px;
+	top: 231px;
+}
+#cell_12 .num{
+	left: 21px;
+	top: 336px;
+}
+#cell_13 .num{
+	left: 126px;
+	top: 336px;
+}
+#cell_14 .num{
+	left: 231px;
+	top: 336px;
+}
+#cell_15 .num{
+	left: 336px;
+	top: 336px;
+}
+.big{
+-webkit-animation-name : big;
+-webkit-animation-duration : 200ms;
+animation-name : big;
+animation-duration : 200ms;
+}
+@-webkit-keyframes big{
+from{-webkit-transform : scale(1);}
+50%{-webkit-transform : scale(1.2);}
+to{-webkit-transform : scale(1);}
+}
+@keyframes big{
+from{transform : scale(1);}
+50%{transform : scale(1.2);}
+to{transform : scale(1);}
+}

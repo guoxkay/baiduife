@@ -110,14 +110,18 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37:{//left
-					if (number[0].text() === number[1].text()){
-						number[0].animate({})
-					}
-					else if (number[1] === undefined && number[0].text() === number[2].text()){
-
-					}
-					else if ((number[1] === undefined && number[2] === undefined) && number[0].text() === number[3].text()){
-
+					if ((number[0].text() === number[1].text()) || (number[1] === undefined && number[0].text() === number[2].text()) || ((number[1] === undefined && number[2] === undefined) && number[0].text() === number[3].text())){
+						number[0].addClass("big");
+						var n0 = +number[0].text() * 2;
+						setTimeout(function(){
+							number[0].text(+number[0].text() * 2);
+							number[0].removeClass("n" + number[0].text());
+							number[0].addClass("n" + (+number[0].text * 2))
+						},100);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+						},200)
 					}
 					else{
 						return
@@ -125,7 +129,23 @@ var game = (function(){
 					break;
 				}
 				case 38:{//up
-
+					if ((number[0].text() === number[4].text()) || (number[4] === undefined && number[0].text() === number[8].text()) || ((number[4] === undefined && number[8] === undefined) && number[0].text() === number[12].text())){
+						number[0].addClass("big");
+						var n0 = +number[0].text() * 2;
+						setTimeout(function(){
+							number[0].text(+number[0].text() * 2);
+							number[0].removeClass("n" + number[0].text());
+							number[0].addClass("n" + (+number[0].text * 2))
+						},100);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+						},200)
+					}
+					else{
+						return
+					}
+					break;
 				}
 				case 39://right
 				case 40://down
