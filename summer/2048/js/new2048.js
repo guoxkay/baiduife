@@ -208,13 +208,18 @@ var game = (function(){
 					break;
 				}
 				case 39:{//right
-					if (){
-
+					if (((number[3] !== undefined && number[2] !== undefined) && number[1] !== undefined) && (number[3].text() !== number[2].text() && number[2].text() !== number[1].text())){
+						return
+					}
+					else if ((number[3] === undefined && number[2] === undefined) && number[1] === undefined){
+						var n3 = number[0].text();
+						number[0].animate({'left':'336px'},300,function(){
+							remove(number[0]);
+							number[0] = undefined;
+							number[3] = $($("#cell_3").append("<div>").children()[0]).addClass("num n" + n3).text(n3);
+						})
 					}
 					else if (){
-
-					}
-					else if(){
 
 					}
 					else{
