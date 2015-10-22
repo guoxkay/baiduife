@@ -181,9 +181,9 @@ html,body{
 }
 .big{
 -webkit-animation-name : big;
--webkit-animation-duration : 200ms;
+-webkit-animation-duration : 100ms;
 animation-name : big;
-animation-duration : 200ms;
+animation-duration : 100ms;
 }
 @-webkit-keyframes big{
 from{-webkit-transform : scale(1);}

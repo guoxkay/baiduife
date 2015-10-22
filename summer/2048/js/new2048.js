@@ -110,44 +110,118 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37:{//left
-					if ((number[0].text() === number[1].text()) || (number[1] === undefined && number[0].text() === number[2].text()) || ((number[1] === undefined && number[2] === undefined) && number[0].text() === number[3].text())){
+					if (number[1] !== undefined && number[0].text() === number[1].text()){
 						number[0].addClass("big");
 						var n0 = +number[0].text() * 2;
 						setTimeout(function(){
 							number[0].text(+number[0].text() * 2);
 							number[0].removeClass("n" + number[0].text());
 							number[0].addClass("n" + (+number[0].text * 2))
-						},100);
+						},50);
 						setTimeout(function(){
 							number[0].remove();
 							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},200)
+					}
+					else if (number[2] !== undefined && (number[1] === undefined && number[0].text() === number[2].text())){
+						var n0 = +number[0].text() * 2;
+						setTimeout(function(){
+							number[0].addClass("big")
+						},100);
+						setTimeout(function(){
+							number[0].text(+number[0].text() * 2);
+							number[0].removeClass("n" + number[0].text());
+							number[0].addClass("n" + (+number[0].text * 2))
+						},150);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+						},200)
+					}
+					else if (((number[1] === undefined && number[2] === undefined) && number[3] !== undefined) && number[0].text() === number[3].text()){
+						var n0 = +number[0].text() * 2;
+						setTimeout(function(){
+							number[0].addClass("big");
+						},200);
+						setTimeout(function(){
+							number[0].text(+number[0].text() * 2);
+							number[0].removeClass("n" + number[0].text());
+							number[0].addClass("n" + (+number[0].text * 2))
+						},250);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+						},300)
 					}
 					else{
 						return
 					}
 					break;
 				}
-				case 38:{//up
-					if ((number[0].text() === number[4].text()) || (number[4] === undefined && number[0].text() === number[8].text()) || ((number[4] === undefined && number[8] === undefined) && number[0].text() === number[12].text())){
+			case 38:{//up
+					if (number[4] !== undefined && number[0].text() === number[4].text()){
 						number[0].addClass("big");
 						var n0 = +number[0].text() * 2;
 						setTimeout(function(){
 							number[0].text(+number[0].text() * 2);
 							number[0].removeClass("n" + number[0].text());
 							number[0].addClass("n" + (+number[0].text * 2))
-						},100);
+						},50);
 						setTimeout(function(){
 							number[0].remove();
 							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},200)
+					}
+					else if (number[8] !== undefined && (number[1] === undefined && number[0].text() === number[8].text())){
+						var n0 = +number[0].text() * 2;
+						setTimeout(function(){
+							number[0].addClass("big")
+						},100);
+						setTimeout(function(){
+							number[0].text(+number[0].text() * 2);
+							number[0].removeClass("n" + number[0].text());
+							number[0].addClass("n" + (+number[0].text * 2))
+						},150);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+						},200)
+					}
+					else if (((number[4] === undefined && number[8] === undefined) && number[12] !== undefined) && number[0].text() === number[12].text()){
+						var n0 = +number[0].text() * 2;
+						setTimeout(function(){
+							number[0].addClass("big");
+						},200);
+						setTimeout(function(){
+							number[0].text(+number[0].text() * 2);
+							number[0].removeClass("n" + number[0].text());
+							number[0].addClass("n" + (+number[0].text * 2))
+						},250);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+						},300)
 					}
 					else{
 						return
 					}
 					break;
 				}
-				case 39://right
+				case 39:{//right
+					if (){
+
+					}
+					else if (){
+
+					}
+					else if(){
+
+					}
+					else{
+
+					}
+					break;
+				}
 				case 40://down
 			}
 		}
