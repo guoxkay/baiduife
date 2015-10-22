@@ -11,8 +11,8 @@ var game = (function(){
 			while (x === y){
 				var y = Math.floor(Math.random() * 16);
 			}
-			number[x] = $($("#cell_" + x).append("<div>").children()[0]).addClass("num n2").text("2");
-			number[y] = $($("#cell_" + y).append("<div>").children()[0]).addClass("num n2").text("2");
+			number[x] = $($("#cell_" + x).prepend("<div>").children()[0]).addClass("num n2").text("2");
+			number[y] = $($("#cell_" + y).prepend("<div>").children()[0]).addClass("num n2").text("2");
 		},
 		//随机产生2或4
 		randomNum : function(){
@@ -24,10 +24,10 @@ var game = (function(){
 			}
 			var x = emptyNum[Math.floor(Math.random() * emptyNum.length)];
 			if (Math.floor(Math.random() * 2) === 0){
-				number[x] = $($("#cell_" + x).append("<div>").children()[0]).addClass("num n2").text("2")
+				number[x] = $($("#cell_" + x).prepend("<div>").children()[0]).addClass("num n2").text("2")
 			}
 			else {
-				number[x] = $($("#cell_" + x).append("<div>").children()[0]).addClass("num n4").text("4")
+				number[x] = $($("#cell_" + x).prepend("<div>").children()[0]).addClass("num n4").text("4")
 			}
 		},
 		//判断游戏是否结束
@@ -95,7 +95,7 @@ var game = (function(){
 				return
 			}
 			if (number[num] === undefined){
-				number[num] = $($("#cell_" + num).append("<div>").children()[0]).addClass("num n" + value).text(value);
+				number[num] = $($("#cell_" + num).prepend("<div>").children()[0]).addClass("num n" + value).text(value);
 				return
 			}
 			else{
@@ -120,7 +120,7 @@ var game = (function(){
 						},50);
 						setTimeout(function(){
 							number[0].remove();
-							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},200)
 					}
 					else if (number[2] !== undefined && (number[1] === undefined && number[0].text() === number[2].text())){
@@ -135,7 +135,7 @@ var game = (function(){
 						},150);
 						setTimeout(function(){
 							number[0].remove();
-							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},200)
 					}
 					else if (((number[1] === undefined && number[2] === undefined) && number[3] !== undefined) && number[0].text() === number[3].text()){
@@ -150,7 +150,7 @@ var game = (function(){
 						},250);
 						setTimeout(function(){
 							number[0].remove();
-							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},300)
 					}
 					else{
@@ -169,7 +169,7 @@ var game = (function(){
 						},50);
 						setTimeout(function(){
 							number[0].remove();
-							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},200)
 					}
 					else if (number[8] !== undefined && (number[1] === undefined && number[0].text() === number[8].text())){
@@ -184,7 +184,7 @@ var game = (function(){
 						},150);
 						setTimeout(function(){
 							number[0].remove();
-							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},200)
 					}
 					else if (((number[4] === undefined && number[8] === undefined) && number[12] !== undefined) && number[0].text() === number[12].text()){
@@ -199,7 +199,7 @@ var game = (function(){
 						},250);
 						setTimeout(function(){
 							number[0].remove();
-							number[0] = $($("#cell_0").append("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 						},300)
 					}
 					else{
@@ -208,22 +208,37 @@ var game = (function(){
 					break;
 				}
 				case 39:{//right
-					if (((number[3] !== undefined && number[2] !== undefined) && number[1] !== undefined) && (number[3].text() !== number[2].text() && number[2].text() !== number[1].text())){
-						return
+					var s0 = number[0];
+					var s1 = number[1];
+					var s2 = number[2];
+					var s3 = number[3];
+					var und = undefined;
+					if ((((s3 && s2) && s1) && ((s3.text() !== s2.text() && s2.text() !== s1.text()) && s1.text() === s2.text())) || ((s3 && s1) && (s2 === und && s3.text() !== s1.text()) && s0.text() !== s1.text()) || ((s2 && s1) && (s3 === und && s2.text() !== s1.text()) && s0.text() !== s1.text()) || ((s3 && s2) && (s1 && s3.text() === s2.text()) && s0.text() !== s1.text()) || ((s3 && s2) && s1 && (s3.text() !== s2.text() && s2.text() === s1.text()))){//移一格，非空
+						number[0].animate({'left':'126px'},100);
+						setTimeout(function(){
+							number[0].remove;
+							number[0] = undefined;
+						},200)
 					}
-					else if ((number[3] === undefined && number[2] === undefined) && number[1] === undefined){
+					else if (((s3 && s2) && (s1 === und && s3.text() !== s2.text()) && s0.text() !== s2.text())){//移一格，空
+						var n1 = number[0].text();
+						number[0].animate({'left':'126px'},100);
+						setTimeout(function(){
+							number[0].remove();
+							number[0] = undefined;
+							number[1] = $($("#cell_1").prepend("<div>").children()[0]).addClass("num n" + n1).text(n1);
+						},200)
+					}
+					else if ((s3 === und && s2 === und) && s1 === und){//移三格
 						var n3 = number[0].text();
 						number[0].animate({'left':'336px'},300,function(){
-							remove(number[0]);
+							number[0].remove();
 							number[0] = undefined;
-							number[3] = $($("#cell_3").append("<div>").children()[0]).addClass("num n" + n3).text(n3);
+							number[3] = $($("#cell_3").prepend("<div>").children()[0]).addClass("num n" + n3).text(n3);
 						})
 					}
-					else if (){
-
-					}
 					else{
-
+						return
 					}
 					break;
 				}
