@@ -103,8 +103,7 @@ var game = (function(){
 				return
 			}
 		},
-		//各位置函数
-		number0 : function(event){
+/*		number0 : function(event){
 			if (number[0] === undefined){
 				return
 			}
@@ -243,6 +242,148 @@ var game = (function(){
 					break;
 				}
 				case 40://down
+			}
+		}*/
+		//各位置函数
+		number0 : function(event){
+			if (number[0] === undefined){
+				return undefined
+			}
+			switch (event.which){
+				case 37 : {//left
+					return +number[0].text();
+					break
+				}
+				case 38 : {//up
+					return +number[0].text();
+					break
+				}
+				case 39 : {//right
+
+				}
+				case 40 : {//down
+
+				}
+			}
+		},
+		number1 : function(event){
+			if (number[1] === undefined){
+				return undefined
+			}
+			switch (event.which){
+				case 37 : {
+					if (n0s === undefined){
+						var n1 = +number[1].text();
+						number[1].animate({'left':'21px'},100,function(){
+							$($("#cell_1").children()[0]).remove();
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n1).text(n1);
+						});
+						number[1] = undefined;
+						n0s = n1;
+						return undefined
+					}
+					else {
+						var n1 = +number[1].text();
+						if (n0s === n1){
+							var n0 = n1 * 2;
+							number[0].addClass("big");
+							number[1].animate({'left':'21px'},100,function(){
+								$($("#cell_1").children()[0]).remove();
+								number[0].remove();
+								number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
+							});
+							number[1] = undefined;
+							n0s = 1;//状态码1代表非空但是已经合并后的状态
+							return undefined
+						}
+						else {
+							return +number[1].text()
+						}
+					}
+					break
+				}
+				case 38 : {
+
+				}
+				case 39 : {
+
+				}
+				case 40 : {
+
+				}
+			}
+		},
+		number2 : function(event){
+			if (number[2] === undefined){
+				return undefined
+			}
+			switch (event.which){
+				case 37 : {
+					if (n1s === undefined){
+						if (n0s === undefined){
+							var n2 = +number[2].text();
+							number[2].animate({'left':'21px'},200,function(){
+							$($("#cell_2").children()[0]).remove();
+							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n2).text(n2);
+							});
+							number[2] = undefined;
+							n0s = n2;
+							return undefined
+						}
+						else {
+							var n2 = +number[2].text();
+							if (n0s === n2){
+								n0 = n2 * 2;
+								number[2].animate({'left':'21px'},200,function(){
+									$($("#cell_2").children()[0]).remove();
+									number[0].remove;
+									number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n2).text(n2);
+								})
+								setTimeout(function(){
+									number[0].addClass("big")
+								},100);
+								number[2] = undefined;
+								n0s = 1;
+								return undefined
+							}
+							else {
+								number[2].animate({'left':'126px'},100,function(){
+									$($("#cell_2").children()[0]).remove();
+									number[1] = $($("#cell_1").prepend("<div>").children()[0]).addClass("num n" + n2).text(n2);
+								});
+								number[2] = undefined;
+								n1s = n2;
+								return undefined
+							}
+						}
+					}
+					else {
+						var n2 = +number[2].text();
+						if (n1s === n2){
+							var n1 = n2 * 2;
+							number[1].addClass("big");
+							number[2].animate({'left':'126px'},100,function(){
+								$($("#cell_2").children()[0]).remove();
+								number[1] = $($("#cell_1").prepend("<div>").children()[0]).addClass("num n" + n1).text(n1);
+							});
+							number[2] = undefined;
+							n1s = 1;
+							return undefined
+						}
+						else {
+							return +number2.text()
+						}
+					}
+				}
+				case 38 : {
+
+				}
+				case 39 : {
+
+				}
+				case 40 : {
+
+				}
 			}
 		}
 	}
