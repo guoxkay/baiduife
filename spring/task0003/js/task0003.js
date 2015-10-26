@@ -100,6 +100,8 @@ var misson = (function(){
 		//创建新分类
 		createClass : function(newClass){
 			if (newClass === ""){
+				document.getElementById("addCla2").hidden = true;
+				event.preventDefault();
 				return false
 			}
 			if (newClass.length > 10){
@@ -240,6 +242,10 @@ var misson = (function(){
 			}
 			event.preventDefault()
 		},
+		//显示任务数
+		printTaskCount : function(){
+			document.getElementById("taskCount").textContent = missons.length
+		},
 		//显示分类列表函数
 		printClasses : function(){
 			var classList = document.getElementById("cc");
@@ -300,6 +306,7 @@ document.getElementById("taskGo").addEventListener("click",misson.createTask,fal
 document.getElementById("fin").addEventListener("click",misson.finished,false);
 document.getElementById("edit").addEventListener("click",misson.editTask,false);
 document.getElementById("done").addEventListener("click",misson.editTaskDone,false);
+misson.printTaskCount();
 misson.printClasses();
 misson.printTaskList(misson.getClasses()[0]);
 misson.colorTask();
