@@ -344,7 +344,7 @@ var game = (function(){
 								var n3 = n1 * 2;
 								number[1].animate({'left':'336px'},200,function(){
 									$($("#cell_1").children()[0]).remove();
-									number[3].remove;
+									number[3].remove();
 									number[3] = $($("#cell_3").prepend("<div>").children()[0]).addClass("num n" + n3).text(n3);
 								})
 								setTimeout(function(){
@@ -372,6 +372,7 @@ var game = (function(){
 							number[2].addClass("big");
 							number[1].animate({'left':'231px'},100,function(){
 								$($("#cell_1").children()[0]).remove();
+								number[2].remove();
 								number[2] = $($("#cell_2").prepend("<div>").children()[0]).addClass("num n" + n2).text(n2);
 							});
 							number[1] = undefined;
@@ -495,7 +496,7 @@ var game = (function(){
 								var n0 = n2 * 2;
 								number[2].animate({'left':'21px'},200,function(){
 									$($("#cell_2").children()[0]).remove();
-									number[0].remove;
+									number[0].remove();
 									number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 								})
 								setTimeout(function(){
@@ -523,6 +524,7 @@ var game = (function(){
 							number[1].addClass("big");
 							number[2].animate({'left':'126px'},100,function(){
 								$($("#cell_2").children()[0]).remove();
+								number[1].remove();
 								number[1] = $($("#cell_1").prepend("<div>").children()[0]).addClass("num n" + n1).text(n1);
 							});
 							number[2] = undefined;
@@ -988,7 +990,7 @@ var game = (function(){
 								var n12 = n4 * 2;
 								number[4].animate({'top':'336px'},200,function(){
 									$($("#cell_4").children()[0]).remove();
-									number[12].remove;
+									number[12].remove();
 									number[12] = $($("#cell_12").prepend("<div>").children()[0]).addClass("num n" + n12).text(n12);
 								})
 								setTimeout(function(){
@@ -1016,6 +1018,7 @@ var game = (function(){
 							number[8].addClass("big");
 							number[4].animate({'top':'231px'},100,function(){
 								$($("#cell_4").children()[0]).remove();
+								number[8].remove();
 								number[8] = $($("#cell_8").prepend("<div>").children()[0]).addClass("num n" + n8).text(n8);
 							});
 							number[4] = undefined;
@@ -1113,7 +1116,7 @@ var game = (function(){
 								var n7 = n5 * 2;
 								number[5].animate({'left':'336px'},200,function(){
 									$($("#cell_5").children()[0]).remove();
-									number[7].remove;
+									number[7].remove();
 									number[7] = $($("#cell_7").prepend("<div>").children()[0]).addClass("num n" + n7).text(n7);
 								})
 								setTimeout(function(){
@@ -1141,6 +1144,7 @@ var game = (function(){
 							number[6].addClass("big");
 							number[5].animate({'left':'231px'},100,function(){
 								$($("#cell_5").children()[0]).remove();
+								number[6].remove();
 								number[6] = $($("#cell_6").prepend("<div>").children()[0]).addClass("num n" + n6).text(n6);
 							});
 							number[5] = undefined;
@@ -1170,7 +1174,7 @@ var game = (function(){
 								var n13 = n5 * 2;
 								number[5].animate({'top':'336px'},200,function(){
 									$($("#cell_5").children()[0]).remove();
-									number[13].remove;
+									number[13].remove();
 									number[13] = $($("#cell_13").prepend("<div>").children()[0]).addClass("num n" + n13).text(n13);
 								})
 								setTimeout(function(){
@@ -1198,6 +1202,7 @@ var game = (function(){
 							number[9].addClass("big");
 							number[5].animate({'top':'231px'},100,function(){
 								$($("#cell_5").children()[0]).remove();
+								number[9].remove();
 								number[9] = $($("#cell_9").prepend("<div>").children()[0]).addClass("num n" + n9).text(n9);
 							});
 							number[5] = undefined;
@@ -1235,7 +1240,7 @@ var game = (function(){
 								var n4 = n6 * 2;
 								number[6].animate({'left':'21px'},200,function(){
 									$($("#cell_6").children()[0]).remove();
-									number[4].remove;
+									number[4].remove();
 									number[4] = $($("#cell_4").prepend("<div>").children()[0]).addClass("num n" + n4).text(n4);
 								})
 								setTimeout(function(){
@@ -1263,6 +1268,7 @@ var game = (function(){
 							number[5].addClass("big");
 							number[6].animate({'left':'126px'},100,function(){
 								$($("#cell_6").children()[0]).remove();
+								number[5].remove();
 								number[5] = $($("#cell_5").prepend("<div>").children()[0]).addClass("num n" + n5).text(n5);
 							});
 							number[6] = undefined;
@@ -1352,7 +1358,7 @@ var game = (function(){
 								var n14 = n6 * 2;
 								number[6].animate({'top':'336px'},200,function(){
 									$($("#cell_6").children()[0]).remove();
-									number[14].remove;
+									number[14].remove();
 									number[14] = $($("#cell_14").prepend("<div>").children()[0]).addClass("num n" + n14).text(n14);
 								})
 								setTimeout(function(){
@@ -1380,6 +1386,7 @@ var game = (function(){
 							number[10].addClass("big");
 							number[6].animate({'top':'231px'},100,function(){
 								$($("#cell_6").children()[0]).remove();
+								number[10].remove();
 								number[10] = $($("#cell_10").prepend("<div>").children()[0]).addClass("num n" + n10).text(n10);
 							});
 							number[6] = undefined;
@@ -1537,7 +1544,7 @@ var game = (function(){
 								var n15 = n7 * 2;
 								number[7].animate({'top':'336px'},200,function(){
 									$($("#cell_7").children()[0]).remove();
-									number[15].remove;
+									number[15].remove();
 									number[15] = $($("#cell_15").prepend("<div>").children()[0]).addClass("num n" + n15).text(n15);
 								})
 								setTimeout(function(){
@@ -1565,6 +1572,7 @@ var game = (function(){
 							number[11].addClass("big");
 							number[7].animate({'top':'231px'},100,function(){
 								$($("#cell_7").children()[0]).remove();
+								number[11].remove();
 								number[11] = $($("#cell_11").prepend("<div>").children()[0]).addClass("num n" + n11).text(n11);
 							});
 							number[7] = undefined;
@@ -1606,7 +1614,7 @@ var game = (function(){
 								var n0 = n8 * 2;
 								number[8].animate({'top':'21px'},200,function(){
 									$($("#cell_8").children()[0]).remove();
-									number[0].remove;
+									number[0].remove();
 									number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n0).text(n0);
 								})
 								setTimeout(function(){
@@ -1634,6 +1642,7 @@ var game = (function(){
 							number[4].addClass("big");
 							number[8].animate({'top':'126px'},100,function(){
 								$($("#cell_8").children()[0]).remove();
+								number[4].remove();
 								number[4] = $($("#cell_4").prepend("<div>").children()[0]).addClass("num n" + n4).text(n4);
 							});
 							number[8] = undefined;
@@ -1817,7 +1826,7 @@ var game = (function(){
 								var n1 = n9 * 2;
 								number[9].animate({'top':'21px'},200,function(){
 									$($("#cell_9").children()[0]).remove();
-									number[1].remove;
+									number[1].remove();
 									number[1] = $($("#cell_1").prepend("<div>").children()[0]).addClass("num n" + n1).text(n1);
 								})
 								setTimeout(function(){
@@ -1845,6 +1854,7 @@ var game = (function(){
 							number[5].addClass("big");
 							number[9].animate({'top':'126px'},100,function(){
 								$($("#cell_9").children()[0]).remove();
+								number[5].remove()
 								number[5] = $($("#cell_5").prepend("<div>").children()[0]).addClass("num n" + n5).text(n5);
 							});
 							number[9] = undefined;
@@ -1874,7 +1884,7 @@ var game = (function(){
 								var n11 = n9 * 2;
 								number[9].animate({'left':'336px'},200,function(){
 									$($("#cell_9").children()[0]).remove();
-									number[11].remove;
+									number[11].remove();
 									number[11] = $($("#cell_11").prepend("<div>").children()[0]).addClass("num n" + n11).text(n11);
 								})
 								setTimeout(function(){
@@ -1902,6 +1912,7 @@ var game = (function(){
 							number[10].addClass("big");
 							number[9].animate({'left':'231px'},100,function(){
 								$($("#cell_9").children()[0]).remove();
+								number[10].remove();
 								number[10] = $($("#cell_10").prepend("<div>").children()[0]).addClass("num n" + n10).text(n10);
 							});
 							number[9] = undefined;
@@ -1969,7 +1980,7 @@ var game = (function(){
 								var n8 = n10 * 2;
 								number[10].animate({'left':'21px'},200,function(){
 									$($("#cell_10").children()[0]).remove();
-									number[8].remove;
+									number[8].remove();
 									number[8] = $($("#cell_8").prepend("<div>").children()[0]).addClass("num n" + n8).text(n8);
 								})
 								setTimeout(function(){
@@ -1997,6 +2008,7 @@ var game = (function(){
 							number[9].addClass("big");
 							number[10].animate({'left':'126px'},100,function(){
 								$($("#cell_10").children()[0]).remove();
+								number[9].remove();
 								number[9] = $($("#cell_9").prepend("<div>").children()[0]).addClass("num n" + n9).text(n9);
 							});
 							number[10] = undefined;
@@ -2026,7 +2038,7 @@ var game = (function(){
 								var n2 = n10 * 2;
 								number[10].animate({'top':'21px'},200,function(){
 									$($("#cell_10").children()[0]).remove();
-									number[2].remove;
+									number[2].remove();
 									number[2] = $($("#cell_2").prepend("<div>").children()[0]).addClass("num n" + n2).text(n2);
 								})
 								setTimeout(function(){
@@ -2054,6 +2066,7 @@ var game = (function(){
 							number[6].addClass("big");
 							number[10].animate({'top':'126px'},100,function(){
 								$($("#cell_10").children()[0]).remove();
+								number[6].remove();
 								number[6] = $($("#cell_6").prepend("<div>").children()[0]).addClass("num n" + n6).text(n6);
 							});
 							number[10] = undefined;
@@ -2237,7 +2250,7 @@ var game = (function(){
 								var n3 = n11 * 2;
 								number[11].animate({'top':'21px'},200,function(){
 									$($("#cell_11").children()[0]).remove();
-									number[3].remove;
+									number[3].remove();
 									number[3] = $($("#cell_3").prepend("<div>").children()[0]).addClass("num n" + n3).text(n3);
 								})
 								setTimeout(function(){
@@ -2265,6 +2278,7 @@ var game = (function(){
 							number[7].addClass("big");
 							number[11].animate({'top':'126px'},100,function(){
 								$($("#cell_11").children()[0]).remove();
+								number[7].remove();
 								number[7] = $($("#cell_7").prepend("<div>").children()[0]).addClass("num n" + n7).text(n7);
 							});
 							number[11] = undefined;
@@ -2640,7 +2654,7 @@ var game = (function(){
 								var n15 = n13 * 2;
 								number[13].animate({'left':'336px'},200,function(){
 									$($("#cell_13").children()[0]).remove();
-									number[15].remove;
+									number[15].remove();
 									number[15] = $($("#cell_15").prepend("<div>").children()[0]).addClass("num n" + n15).text(n15);
 								})
 								setTimeout(function(){
@@ -2668,6 +2682,7 @@ var game = (function(){
 							number[14].addClass("big");
 							number[13].animate({'left':'231px'},100,function(){
 								$($("#cell_13").children()[0]).remove();
+								number[14].remove();
 								number[14] = $($("#cell_14").prepend("<div>").children()[0]).addClass("num n" + n14).text(n14);
 							});
 							number[13] = undefined;
@@ -2709,7 +2724,7 @@ var game = (function(){
 								var n12 = n14 * 2;
 								number[14].animate({'left':'21px'},200,function(){
 									$($("#cell_14").children()[0]).remove();
-									number[12].remove;
+									number[12].remove();
 									number[12] = $($("#cell_12").prepend("<div>").children()[0]).addClass("num n" + n12).text(n12);
 								})
 								setTimeout(function(){
@@ -2737,6 +2752,7 @@ var game = (function(){
 							number[13].addClass("big");
 							number[14].animate({'left':'126px'},100,function(){
 								$($("#cell_14").children()[0]).remove();
+								number[13].remove();
 								number[13] = $($("#cell_13").prepend("<div>").children()[0]).addClass("num n" + n13).text(n13);
 							});
 							number[14] = undefined;
@@ -3071,6 +3087,22 @@ var game = (function(){
 		},
 		//方向函数
 		left : function(event){
+			n0s = undefined;
+			n1s = undefined;
+			n2s = undefined;
+			n3s = undefined;
+			n4s = undefined;
+			n5s = undefined;
+			n6s = undefined;
+			n7s = undefined;
+			n8s = undefined;
+			n9s = undefined;
+			n10s = undefined;
+			n11s = undefined;
+			n12s = undefined;
+			n13s = undefined;
+			n14s = undefined;
+			n15s = undefined;
 			n0s = game.number0(event);
 			n1s = game.number1(event);
 			n2s = game.number2(event);
@@ -3119,6 +3151,22 @@ var game = (function(){
 			}
 		},
 		right : function(event){
+			n0s = undefined;
+			n1s = undefined;
+			n2s = undefined;
+			n3s = undefined;
+			n4s = undefined;
+			n5s = undefined;
+			n6s = undefined;
+			n7s = undefined;
+			n8s = undefined;
+			n9s = undefined;
+			n10s = undefined;
+			n11s = undefined;
+			n12s = undefined;
+			n13s = undefined;
+			n14s = undefined;
+			n15s = undefined;
 			n3s = game.number3(event);
 			n2s = game.number2(event);
 			n1s = game.number1(event);
@@ -3167,6 +3215,22 @@ var game = (function(){
 			}
 		},
 		up : function(event){
+			n0s = undefined;
+			n1s = undefined;
+			n2s = undefined;
+			n3s = undefined;
+			n4s = undefined;
+			n5s = undefined;
+			n6s = undefined;
+			n7s = undefined;
+			n8s = undefined;
+			n9s = undefined;
+			n10s = undefined;
+			n11s = undefined;
+			n12s = undefined;
+			n13s = undefined;
+			n14s = undefined;
+			n15s = undefined;
 			n0s = game.number0(event);
 			n4s = game.number4(event);
 			n8s = game.number8(event);
@@ -3215,6 +3279,22 @@ var game = (function(){
 			}
 		},
 		down : function(event){
+			n0s = undefined;
+			n1s = undefined;
+			n2s = undefined;
+			n3s = undefined;
+			n4s = undefined;
+			n5s = undefined;
+			n6s = undefined;
+			n7s = undefined;
+			n8s = undefined;
+			n9s = undefined;
+			n10s = undefined;
+			n11s = undefined;
+			n12s = undefined;
+			n13s = undefined;
+			n14s = undefined;
+			n15s = undefined;
 			n12s = game.number12(event);
 			n8s = game.number8(event);
 			n4s = game.number4(event);
