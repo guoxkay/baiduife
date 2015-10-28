@@ -7,6 +7,7 @@ var game = (function(){
 	return {
 		//开始游戏
 		beginGame : function(){
+			game.printScore();
 			var x = Math.floor(Math.random() * 16);
 			var y = Math.floor(Math.random() * 16);
 			while (x === y){
@@ -36,9 +37,6 @@ var game = (function(){
 			for (var i = 0;i < 16;i++){
 				if (number[i] !== undefined && number[i].text() === "2048"){
 					$(document).unbind("keydown");
-					if (score > maxScoer){
-						l.setItem("maxScoer",score)
-					}
 					$(".win").text("您胜利了").slideDown("300");
 					return true
 				}
@@ -63,9 +61,6 @@ var game = (function(){
 				}
 			}
 			$(document).unbind("keydown");
-			if (score > maxScoer){
-				l.setItem("maxScoer",score)
-			}
 			$(".win").text("失败了呢").slideDown("300");
 			return true
 		},
@@ -2326,7 +2321,7 @@ var game = (function(){
 			var n12 = +number[12].text();
 			switch (event.which){
 				case 37 : {
-					+return number[12].text();
+					return +number[12].text();
 					break
 				}
 				case 38 : {
@@ -2502,7 +2497,7 @@ var game = (function(){
 					break
 				}
 				case 40 : {
-					+return +number[12].text();
+					return +number[12].text();
 					break
 				}
 			}
@@ -3065,8 +3060,228 @@ var game = (function(){
 				}
 			}
 		},
+		//显示分数
+		printScore : function(){
+			if (sco > maxScoer){
+				maxScoer = sco;
+				l.setItem("maxScoer",score)
+			}
+			$("#sco").text(score);
+			$("#hsco").text(maxScoer);
+		},
+		//方向函数
+		left : function(event){
+			n0s = game.number0(event);
+			n1s = game.number1(event);
+			n2s = game.number2(event);
+			game.number3(event);
+			n4s = game.number4(event);
+			n5s = game.number5(event);
+			n6s = game.number6(event);
+			game.number7(event);
+			n8s = game.number8(event);
+			n9s = game.number9(event);
+			n10s = game.number10(event);
+			game.number11(event);
+			n12s = game.number12(event);
+			n13s = game.number13(event);
+			n14s = game.number14(event);
+			game.number15(event);
+			game.printScore();
+			$("body").unbind("keydown");
+			if (game.isFinish()){
+				return
+			}
+			else {
+				setTimeout(function(){
+					$("body").keydown(function(event){
+						switch (event.which){
+							case 37 : {
+								game.left(event);
+								break
+							}
+							case 38 : {
+								game.up(event);
+								break
+							}
+							case 39 : {
+								game.right(event);
+								break
+							}
+							case 40 : {
+								game.down(event);
+								break
+							}
+						}
+					})
+				},300);
+				game.randomNum()
+			}
+		},
+		right : function(event){
+			n3s = game.number3(event);
+			n2s = game.number2(event);
+			n1s = game.number1(event);
+			game.number0(event);
+			n7s = game.number7(event);
+			n6s = game.number6(event);
+			n5s = game.number5(event);
+			game.number4(event);
+			n11s = game.number11(event);
+			n10s = game.number10(event);
+			n9s = game.number9(event);
+			game.number8(event);
+			n15s = game.number15(event);
+			n14s = game.number14(event);
+			n13s = game.number13(event);
+			game.number12(event);
+			game.printScore();
+			$("body").unbind("keydown");
+			if (game.isFinish()){
+				return
+			}
+			else {
+				setTimeout(function(){
+					$("body").keydown(function(event){
+						switch (event.which){
+							case 37 : {
+								game.left(event);
+								break
+							}
+							case 38 : {
+								game.up(event);
+								break
+							}
+							case 39 : {
+								game.right(event);
+								break
+							}
+							case 40 : {
+								game.down(event);
+								break
+							}
+						}
+					})
+				},300);
+				game.randomNum()
+			}
+		},
+		up : function(event){
+			n0s = game.number0(event);
+			n4s = game.number4(event);
+			n8s = game.number8(event);
+			game.number12(event);
+			n1s = game.number1(event);
+			n5s = game.number5(event);
+			n9s = game.number9(event);
+			game.number13(event);
+			n2s = game.number2(event);
+			n6s = game.number6(event);
+			n10s = game.number10(event);
+			game.number14(event);
+			n3s = game.number3(event);
+			n7s = game.number7(event);
+			n11s = game.number11(event);
+			game.number15(event);
+			game.printScore();
+			$("body").unbind("keydown");
+			if (game.isFinish()){
+				return
+			}
+			else {
+				setTimeout(function(){
+					$("body").keydown(function(event){
+						switch (event.which){
+							case 37 : {
+								game.left(event);
+								break
+							}
+							case 38 : {
+								game.up(event);
+								break
+							}
+							case 39 : {
+								game.right(event);
+								break
+							}
+							case 40 : {
+								game.down(event);
+								break
+							}
+						}
+					})
+				},300);
+				game.randomNum()
+			}
+		},
+		down : function(event){
+			n12s = game.number12(event);
+			n8s = game.number8(event);
+			n4s = game.number4(event);
+			game.number0(event);
+			n13s = game.number13(event);
+			n9s = game.number9(event);
+			n5s = game.number5(event);
+			game.number1(event);
+			n14s = game.number14(event);
+			n10s = game.number10(event);
+			n6s = game.number6(event);
+			game.number2(event);
+			n15s = game.number15(event);
+			n11s = game.number11(event);
+			n7s = game.number7(event);
+			game.number3(event);
+			game.printScore();
+			$("body").unbind("keydown");
+			if (game.isFinish()){
+				return
+			}
+			else {
+				setTimeout(function(){
+					$("body").keydown(function(event){
+						switch (event.which){
+							case 37 : {
+								game.left(event);
+								break
+							}
+							case 38 : {
+								game.up(event);
+								break
+							}
+							case 39 : {
+								game.right(event);
+								break
+							}
+							case 40 : {
+								game.down(event);
+								break
+							}
+						}
+					})
+				},300);
+				game.randomNum()
+			}
+		}
 	}
-
-
-
 }())
+$("body").keydown(function(event){
+	switch (event.which){
+		case 37 : {
+			game.left(event);
+			break
+		}
+		case 38 : {
+			game.up(event);
+			break
+		}
+		case 39 : {
+			game.right(event);
+			break
+		}
+		case 40 : {
+			game.down(event);
+			break
+		}
+	}
+});
+game.beginGame()
