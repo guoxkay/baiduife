@@ -100,12 +100,12 @@ var game = (function(){
 			}
 		},
 		//主函数
-		threeCell : function(n,a,b,c,dire,pos){
+		threeCell : function(n,a,b,c,pos0,pos1,pos2){
 			var val = +number[n].text();
 			if (ns[a] === undefined){
 				if (ns[b] === undefined){
 					if (ns[c] === undefined){
-						number[n].animate({dire:pos[2]},300,function(){
+						number[n].animate(pos2,300,function(){
 							$($("#cell_" + n).children()[0]).remove();
 							number[c] = $($("#cell_" + c).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
 						});
@@ -116,7 +116,7 @@ var game = (function(){
 					else {
 						if (ns[c] === val){
 							var valc = val * 2;
-							number[n].animate({dire:pos[2]},300,function(){
+							number[n].animate(pos2,300,function(){
 								$($("#cell_" + n).children()[0]).remove();
 								number[c].remove();
 								number[c] = $($("#cell_" + c).prepend("<div>").children()[0]).addClass("num n" + valc).text(valc);
@@ -130,7 +130,7 @@ var game = (function(){
 							return undefined
 						}
 						else {
-							number[n].animate({dire:pos[1]},200,function(){
+							number[n].animate(pos1,200,function(){
 								$($("#cell_" + n).children()[0]).remove();
 								number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
 							});
@@ -141,9 +141,9 @@ var game = (function(){
 					}
 				}
 				else {
-					if (ns[b] === n3){
+					if (ns[b] === val){
 						var valb = val * 2;
-						number[n].animate({dire:pos[1]},200,function(){
+						number[n].animate(pos1,200,function(){
 							$($("#cell_" + n).children()[0]).remove();
 							number[b].remove();
 							number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + valb).text(valb);
@@ -157,7 +157,7 @@ var game = (function(){
 						return undefined
 					}
 					else {
-						number[n].animate({dire:pos[0]},100,function(){
+						number[n].animate(pos0,100,function(){
 							$($("#cell_" + n).children()[0]).remove();
 							number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
 						});
@@ -170,7 +170,7 @@ var game = (function(){
 			else {
 				if (ns[a] === val){
 					var vala = val * 2;
-					number[n].animate({dire:pos[0]},100,function(){
+					number[n].animate(pos0,100,function(){
 						$($("#cell_" + n).children()[0]).remove();
 						number[a].remove();
 						number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + vala).text(vala);
@@ -186,11 +186,11 @@ var game = (function(){
 				}
 			}
 		},
-		twoCell : function(n,a,b,dire,pos){
+		twoCell : function(n,a,b,pos0,pos1){
 			var val = +number[n].text();
 			if (ns[a] === undefined){
 				if (ns[b] === undefined){
-					number[n].animate({dire:pos[1]},200,function(){
+					number[n].animate(pos1,200,function(){
 						$($("#cell_" + n).children()[0]).remove();
 						number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
 					});
@@ -201,7 +201,7 @@ var game = (function(){
 				else {
 					if (ns[b] === val){
 						var valb = val * 2;
-						number[n].animate({dire:pos[1]},200,function(){
+						number[n].animate(pos1,200,function(){
 							$($("#cell_" + n).children()[0]).remove();
 							number[b].remove();
 							number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + valb).text(valb);
@@ -215,7 +215,7 @@ var game = (function(){
 						return undefined
 					}
 					else {
-						number[n].animate({dire:pos[0]},100,function(){
+						number[n].animate(pos0,100,function(){
 							$($("#cell_" + n).children()[0]).remove();
 							number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
 						});
@@ -229,7 +229,7 @@ var game = (function(){
 				if (ns[a] === val){
 					var vala = val * 2;
 					number[a].addClass("big");
-					number[n].animate({dire:pos[0]},100,function(){
+					number[n].animate(pos0,100,function(){
 						$($("#cell_" + n).children()[0]).remove();
 						number[a].remove();
 						number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + vala).text(vala);
@@ -244,22 +244,22 @@ var game = (function(){
 				}
 			}
 		},
-		oneCell : function(n,a,dire,pos){
-			var val = number[n].text();
+		oneCell : function(n,a,pos0){
+			var val = +number[n].text();
 			if (ns[a] === undefined){
-				number[n].animate({dire:pos[0]},100,function(){
+				number[n].animate(pos0,100,function(){
 					$($("#cell_" + n).children()[0]).remove();
 					number[a] = $($("#cell_0" + a).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
 				});
 				number[n] = undefined;
-				ns[a] = n1;
+				ns[a] = val;
 				return undefined
 			}
 			else {
 				if (ns[a] === val){
 					var vala = val * 2;
 					number[a].addClass("big");
-					number[n].animate({dire:pos[0]},100,function(){
+					number[n].animate(pos0,100,function(){
 						$($("#cell_" + n).children()[0]).remove();
 						number[a].remove();
 						number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + vala).text(vala);
@@ -275,7 +275,7 @@ var game = (function(){
 			}
 		},
 		zeroCell : function(n){
-			return +number[n].text
+			return +number[n].text()
 		},
 		//各位置函数
 		number0 : function(event){
@@ -285,7 +285,7 @@ var game = (function(){
 			n0 = +number[0].text();
 			switch (event.which){
 				case 37 : {//left
-					return +number[0].text();
+					return game.zeroCell(0);
 					break
 				}
 				case 38 : {//up
@@ -473,7 +473,7 @@ var game = (function(){
 			var n1 = +number[1].text();
 			switch (event.which){
 				case 37 : {
-					if (n0s === undefined){
+					/*if (n0s === undefined){
 						number[1].animate({'left':'21px'},100,function(){
 							$($("#cell_1").children()[0]).remove();
 							number[0] = $($("#cell_0").prepend("<div>").children()[0]).addClass("num n" + n1).text(n1);
@@ -499,7 +499,8 @@ var game = (function(){
 						else {
 							return +number[1].text()
 						}
-					}
+					}*/
+					return game.oneCell(1,0,{'left':'21px'});
 					break
 				}
 				case 38 : {
@@ -659,7 +660,7 @@ var game = (function(){
 			var n2 = +number[2].text();
 			switch (event.which){
 				case 37 : {
-					if (n1s === undefined){
+					/*if (n1s === undefined){
 						if (n0s === undefined){
 							number[2].animate({'left':'21px'},200,function(){
 								$($("#cell_2").children()[0]).remove();
@@ -713,7 +714,8 @@ var game = (function(){
 						else {
 							return +number[2].text()
 						}
-					}
+					}*/
+					return game.twoCell(2,1,0,{'left':'126px'},{'left':'21px'});
 					break
 				}
 				case 38 : {
@@ -845,7 +847,7 @@ var game = (function(){
 			var n3 = +number[3].text();
 			switch (event.which){
 				case 37 : {
-					if (n2s === undefined){
+					/*if (n2s === undefined){
 						if (n1s === undefined){
 							if (n0s === undefined){
 								number[3].animate({'left':'21px'},300,function(){
@@ -927,7 +929,8 @@ var game = (function(){
 						else {
 							return number[3].text()
 						}
-					}
+					}*/
+					return game.threeCell(3,2,1,0,{'left':'231px'},{'left':'126px'},{'left':'21px'});
 					break
 				}
 				case 38 : {
@@ -3269,7 +3272,7 @@ var game = (function(){
 			ns[1] = game.number1(event);
 			ns[2] = game.number2(event);
 			game.number3(event);
-			ns[4] = game.number4(event);
+/*			ns[4] = game.number4(event);
 			ns[5] = game.number5(event);
 			ns[6] = game.number6(event);
 			game.number7(event);
@@ -3280,7 +3283,7 @@ var game = (function(){
 			ns[12] = game.number12(event);
 			ns[13] = game.number13(event);
 			ns[14] = game.number14(event);
-			game.number15(event);
+			game.number15(event);*/
 			game.printScore();
 			$("body").unbind("keydown");
 			if (game.isFinish()){
