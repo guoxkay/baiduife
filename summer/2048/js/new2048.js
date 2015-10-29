@@ -1,9 +1,9 @@
 var game = (function(){
 	var number = Array(16);
 	var l = localStorage;
-	var maxScoer = l.getItem("maxScoer") || 0;
+	var maxScore = l.getItem("maxScore") || 0;
 	var score = 0;
-	var n0s,n1s,n2s,n3s,n4s,n5s,n6s,n7s,n8s,n9s,n10s,n11s,n12s,n13s,n14s,n15s;
+	var ns = Array(16);
 	return {
 		//开始游戏
 		beginGame : function(){
@@ -98,6 +98,184 @@ var game = (function(){
 				throw "number[" + num + "] is not empty";
 				return
 			}
+		},
+		//主函数
+		threeCell : function(n,a,b,c,dire,pos){
+			var val = +number[n].text();
+			if (ns[a] === undefined){
+				if (ns[b] === undefined){
+					if (ns[c] === undefined){
+						number[n].animate({dire:pos[2]},300,function(){
+							$($("#cell_" + n).children()[0]).remove();
+							number[c] = $($("#cell_" + c).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
+						});
+						number[n] = undefined;
+						ns[c] = val;
+						return undefined
+					}
+					else {
+						if (ns[c] === val){
+							var valc = val * 2;
+							number[n].animate({dire:pos[2]},300,function(){
+								$($("#cell_" + n).children()[0]).remove();
+								number[c].remove();
+								number[c] = $($("#cell_" + c).prepend("<div>").children()[0]).addClass("num n" + valc).text(valc);
+							});
+							setTimeout(function(){
+								number[c].addClass("big")
+							},200);
+							number[n] = undefined;
+							ns[c] = 1;
+							score += valc;
+							return undefined
+						}
+						else {
+							number[n].animate({dire:pos[1]},200,function(){
+								$($("#cell_" + n).children()[0]).remove();
+								number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
+							});
+							number[n] = undefined;
+							ns[b] = val;
+							return undefined
+						}
+					}
+				}
+				else {
+					if (ns[b] === n3){
+						var valb = val * 2;
+						number[n].animate({dire:pos[1]},200,function(){
+							$($("#cell_" + n).children()[0]).remove();
+							number[b].remove();
+							number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + valb).text(valb);
+						});
+						setTimeout(function(){
+							number[b].addClass("big")
+						},100);
+						number[n] = undefined;
+						ns[b] = 1;
+						score += valb;
+						return undefined
+					}
+					else {
+						number[n].animate({dire:pos[0]},100,function(){
+							$($("#cell_" + n).children()[0]).remove();
+							number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
+						});
+						number[n] = undefined;
+						ns[a] = val;
+						return undefined
+					}
+				}
+			}
+			else {
+				if (ns[a] === val){
+					var vala = val * 2;
+					number[n].animate({dire:pos[0]},100,function(){
+						$($("#cell_" + n).children()[0]).remove();
+						number[a].remove();
+						number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + vala).text(vala);
+					});
+					number[a].addClass("big");
+					number[n] = undefined;
+					ns[a] = 1;
+					score += vala;
+					return undefined
+				}
+				else {
+					return number[n].text()
+				}
+			}
+		},
+		twoCell : function(n,a,b,dire,pos){
+			var val = +number[n].text();
+			if (ns[a] === undefined){
+				if (ns[b] === undefined){
+					number[n].animate({dire:pos[1]},200,function(){
+						$($("#cell_" + n).children()[0]).remove();
+						number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
+					});
+					number[n] = undefined;
+					ns[b] = val;
+					return undefined
+				}
+				else {
+					if (ns[b] === val){
+						var valb = val * 2;
+						number[n].animate({dire:pos[1]},200,function(){
+							$($("#cell_" + n).children()[0]).remove();
+							number[b].remove();
+							number[b] = $($("#cell_" + b).prepend("<div>").children()[0]).addClass("num n" + valb).text(valb);
+						})
+						setTimeout(function(){
+							number[b].addClass("big")
+						},100);
+						number[n] = undefined;
+						ns[b] = 1;
+						score += valb;
+						return undefined
+					}
+					else {
+						number[n].animate({dire:pos[0]},100,function(){
+							$($("#cell_" + n).children()[0]).remove();
+							number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
+						});
+						number[n] = undefined;
+						ns[a] = val;
+						return undefined
+					}
+				}
+			}
+			else {
+				if (ns[a] === val){
+					var vala = val * 2;
+					number[a].addClass("big");
+					number[n].animate({dire:pos[0]},100,function(){
+						$($("#cell_" + n).children()[0]).remove();
+						number[a].remove();
+						number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + vala).text(vala);
+					});
+					number[n] = undefined;
+					ns[a] = 1;
+					score += vala;
+					return undefined
+				}
+				else {
+					return +number[n].text()
+				}
+			}
+		},
+		oneCell : function(n,a,dire,pos){
+			var val = number[n].text();
+			if (ns[a] === undefined){
+				number[n].animate({dire:pos[0]},100,function(){
+					$($("#cell_" + n).children()[0]).remove();
+					number[a] = $($("#cell_0" + a).prepend("<div>").children()[0]).addClass("num n" + val).text(val);
+				});
+				number[n] = undefined;
+				ns[a] = n1;
+				return undefined
+			}
+			else {
+				if (ns[a] === val){
+					var vala = val * 2;
+					number[a].addClass("big");
+					number[n].animate({dire:pos[0]},100,function(){
+						$($("#cell_" + n).children()[0]).remove();
+						number[a].remove();
+						number[a] = $($("#cell_" + a).prepend("<div>").children()[0]).addClass("num n" + vala).text(vala);
+					});
+					number[n] = undefined;
+					ns[a] = 1;//状态码1代表非空但是已经合并后的状态
+					score += vala;
+					return undefined
+				}
+				else {
+					return +number[n].text()
+				}
+			}
+		},
+		zeroCell : function(n){
+			return +number[n].text
 		},
 		//各位置函数
 		number0 : function(event){
@@ -3078,46 +3256,30 @@ var game = (function(){
 		},
 		//显示分数
 		printScore : function(){
-			if (sco > maxScoer){
-				maxScoer = sco;
-				l.setItem("maxScoer",score)
+			if (score > maxScore){
+				maxScore = score;
+				l.setItem("maxScore",score)
 			}
 			$("#sco").text(score);
-			$("#hsco").text(maxScoer);
+			$("#hsco").text(maxScore);
 		},
 		//方向函数
 		left : function(event){
-			n0s = undefined;
-			n1s = undefined;
-			n2s = undefined;
-			n3s = undefined;
-			n4s = undefined;
-			n5s = undefined;
-			n6s = undefined;
-			n7s = undefined;
-			n8s = undefined;
-			n9s = undefined;
-			n10s = undefined;
-			n11s = undefined;
-			n12s = undefined;
-			n13s = undefined;
-			n14s = undefined;
-			n15s = undefined;
-			n0s = game.number0(event);
-			n1s = game.number1(event);
-			n2s = game.number2(event);
+			ns[0] = game.number0(event);
+			ns[1] = game.number1(event);
+			ns[2] = game.number2(event);
 			game.number3(event);
-			n4s = game.number4(event);
-			n5s = game.number5(event);
-			n6s = game.number6(event);
+			ns[4] = game.number4(event);
+			ns[5] = game.number5(event);
+			ns[6] = game.number6(event);
 			game.number7(event);
-			n8s = game.number8(event);
-			n9s = game.number9(event);
-			n10s = game.number10(event);
+			ns[8] = game.number8(event);
+			ns[9] = game.number9(event);
+			ns[10] = game.number10(event);
 			game.number11(event);
-			n12s = game.number12(event);
-			n13s = game.number13(event);
-			n14s = game.number14(event);
+			ns[12] = game.number12(event);
+			ns[13] = game.number13(event);
+			ns[14] = game.number14(event);
 			game.number15(event);
 			game.printScore();
 			$("body").unbind("keydown");
@@ -3145,43 +3307,27 @@ var game = (function(){
 								break
 							}
 						}
-					})
+					});
+					game.randomNum()
 				},300);
-				game.randomNum()
 			}
 		},
 		right : function(event){
-			n0s = undefined;
-			n1s = undefined;
-			n2s = undefined;
-			n3s = undefined;
-			n4s = undefined;
-			n5s = undefined;
-			n6s = undefined;
-			n7s = undefined;
-			n8s = undefined;
-			n9s = undefined;
-			n10s = undefined;
-			n11s = undefined;
-			n12s = undefined;
-			n13s = undefined;
-			n14s = undefined;
-			n15s = undefined;
-			n3s = game.number3(event);
-			n2s = game.number2(event);
-			n1s = game.number1(event);
+			ns[3] = game.number3(event);
+			ns[2] = game.number2(event);
+			ns[1] = game.number1(event);
 			game.number0(event);
-			n7s = game.number7(event);
-			n6s = game.number6(event);
-			n5s = game.number5(event);
+			ns[7] = game.number7(event);
+			ns[6] = game.number6(event);
+			ns[5] = game.number5(event);
 			game.number4(event);
-			n11s = game.number11(event);
-			n10s = game.number10(event);
-			n9s = game.number9(event);
+			ns[11] = game.number11(event);
+			ns[10] = game.number10(event);
+			ns[9] = game.number9(event);
 			game.number8(event);
-			n15s = game.number15(event);
-			n14s = game.number14(event);
-			n13s = game.number13(event);
+			ns[15] = game.number15(event);
+			ns[14] = game.number14(event);
+			ns[13] = game.number13(event);
 			game.number12(event);
 			game.printScore();
 			$("body").unbind("keydown");
@@ -3209,43 +3355,27 @@ var game = (function(){
 								break
 							}
 						}
-					})
+					});
+					game.randomNum()
 				},300);
-				game.randomNum()
 			}
 		},
 		up : function(event){
-			n0s = undefined;
-			n1s = undefined;
-			n2s = undefined;
-			n3s = undefined;
-			n4s = undefined;
-			n5s = undefined;
-			n6s = undefined;
-			n7s = undefined;
-			n8s = undefined;
-			n9s = undefined;
-			n10s = undefined;
-			n11s = undefined;
-			n12s = undefined;
-			n13s = undefined;
-			n14s = undefined;
-			n15s = undefined;
-			n0s = game.number0(event);
-			n4s = game.number4(event);
-			n8s = game.number8(event);
+			ns[0] = game.number0(event);
+			ns[4] = game.number4(event);
+			ns[8] = game.number8(event);
 			game.number12(event);
-			n1s = game.number1(event);
-			n5s = game.number5(event);
-			n9s = game.number9(event);
+			ns[1] = game.number1(event);
+			ns[5] = game.number5(event);
+			ns[9] = game.number9(event);
 			game.number13(event);
-			n2s = game.number2(event);
-			n6s = game.number6(event);
-			n10s = game.number10(event);
+			ns[2] = game.number2(event);
+			ns[6] = game.number6(event);
+			ns[10] = game.number10(event);
 			game.number14(event);
-			n3s = game.number3(event);
-			n7s = game.number7(event);
-			n11s = game.number11(event);
+			ns[3] = game.number3(event);
+			ns[7] = game.number7(event);
+			ns[11] = game.number11(event);
 			game.number15(event);
 			game.printScore();
 			$("body").unbind("keydown");
@@ -3273,43 +3403,27 @@ var game = (function(){
 								break
 							}
 						}
-					})
+					});
+					game.randomNum()
 				},300);
-				game.randomNum()
 			}
 		},
 		down : function(event){
-			n0s = undefined;
-			n1s = undefined;
-			n2s = undefined;
-			n3s = undefined;
-			n4s = undefined;
-			n5s = undefined;
-			n6s = undefined;
-			n7s = undefined;
-			n8s = undefined;
-			n9s = undefined;
-			n10s = undefined;
-			n11s = undefined;
-			n12s = undefined;
-			n13s = undefined;
-			n14s = undefined;
-			n15s = undefined;
-			n12s = game.number12(event);
-			n8s = game.number8(event);
-			n4s = game.number4(event);
+			ns[12] = game.number12(event);
+			ns[8] = game.number8(event);
+			ns[4] = game.number4(event);
 			game.number0(event);
-			n13s = game.number13(event);
-			n9s = game.number9(event);
-			n5s = game.number5(event);
+			ns[13] = game.number13(event);
+			ns[9] = game.number9(event);
+			ns[5] = game.number5(event);
 			game.number1(event);
-			n14s = game.number14(event);
-			n10s = game.number10(event);
-			n6s = game.number6(event);
+			ns[14] = game.number14(event);
+			ns[10] = game.number10(event);
+			ns[6] = game.number6(event);
 			game.number2(event);
-			n15s = game.number15(event);
-			n11s = game.number11(event);
-			n7s = game.number7(event);
+			ns[15] = game.number15(event);
+			ns[11] = game.number11(event);
+			ns[7] = game.number7(event);
 			game.number3(event);
 			game.printScore();
 			$("body").unbind("keydown");
@@ -3337,9 +3451,9 @@ var game = (function(){
 								break
 							}
 						}
-					})
+					});
+					game.randomNum()
 				},300);
-				game.randomNum()
 			}
 		}
 	}
