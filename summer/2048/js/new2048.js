@@ -681,6 +681,7 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
+				game.randomNum();
 				if (game.isFinish()){
 					return
 				}
@@ -705,9 +706,8 @@ var game = (function(){
 							}
 						}
 					});
-					game.randomNum()
 				}
-			},300)
+			},320)
 		},
 		right : function(event){
 			for (var i = 0;i < 16;i++){
@@ -732,6 +732,7 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
+				game.randomNum();
 				if (game.isFinish()){
 					return
 				}
@@ -756,9 +757,8 @@ var game = (function(){
 							}
 						}
 					});
-					game.randomNum()
 				}
-			},300)
+			},320)
 		},
 		up : function(event){
 			for (var i = 0;i < 16;i++){
@@ -783,6 +783,7 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
+				game.randomNum();
 				if (game.isFinish()){
 					return
 				}
@@ -807,9 +808,8 @@ var game = (function(){
 							}
 						}
 					});
-					game.randomNum()
 				}
-			},300)
+			},320)
 		},
 		down : function(event){
 			for (var i = 0;i < 16;i++){
@@ -834,6 +834,7 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
+				game.randomNum();
 				if (game.isFinish()){
 					return
 				}
@@ -858,9 +859,8 @@ var game = (function(){
 							}
 						}
 					});
-					game.randomNum()
 				}
-			},300);
+			},320);
 		}
 	}
 }())
