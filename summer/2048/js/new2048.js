@@ -4,6 +4,7 @@ var game = (function(){
 	var maxScore = l.getItem("maxScore") || 0;
 	var score = 0;
 	var ns = Array(16);
+	var change = false;
 	return {
 		//开始游戏
 		beginGame : function(){
@@ -47,16 +48,16 @@ var game = (function(){
 				}
 			}
 			for (var i = 0;i < 16;i++){
-				if (number[i+1] !== undefined && number[i+1].text() === number[i].text()){
+				if (number[i+1] !== undefined && +number[i+1].text() === +number[i].text()){
 					return false
 				}
-				if (number[i-1] !== undefined && number[i-1].text() === number[i].text()){
+				if (number[i-1] !== undefined && +number[i-1].text() === +number[i].text()){
 					return false
 				}
-				if (number[i+4] !== undefined && number[i+4].text() === number[i].text()){
+				if (number[i+4] !== undefined && +number[i+4].text() === +number[i].text()){
 					return false
 				}
-				if (number[i-4] !== undefined && number[i-4].text() === number[i].text()){
+				if (number[i-4] !== undefined && +number[i-4].text() === +number[i].text()){
 					return false
 				}
 			}
@@ -112,6 +113,7 @@ var game = (function(){
 						});
 						number[n] = undefined;
 						ns[c] = val;
+						change = true;
 						return undefined
 					}
 					else {
@@ -128,6 +130,7 @@ var game = (function(){
 							number[n] = undefined;
 							ns[c] = 1;
 							score += valc;
+							change = true;
 							return undefined
 						}
 						else {
@@ -137,6 +140,7 @@ var game = (function(){
 							});
 							number[n] = undefined;
 							ns[b] = val;
+							change = true;
 							return undefined
 						}
 					}
@@ -155,6 +159,7 @@ var game = (function(){
 						number[n] = undefined;
 						ns[b] = 1;
 						score += valb;
+						change = true;
 						return undefined
 					}
 					else {
@@ -164,6 +169,7 @@ var game = (function(){
 						});
 						number[n] = undefined;
 						ns[a] = val;
+						change = true;
 						return undefined
 					}
 				}
@@ -180,6 +186,7 @@ var game = (function(){
 					number[n] = undefined;
 					ns[a] = 1;
 					score += vala;
+					change = true;
 					return undefined
 				}
 				else {
@@ -197,6 +204,7 @@ var game = (function(){
 					});
 					number[n] = undefined;
 					ns[b] = val;
+					change = true;
 					return undefined
 				}
 				else {
@@ -213,6 +221,7 @@ var game = (function(){
 						number[n] = undefined;
 						ns[b] = 1;
 						score += valb;
+						change = true;
 						return undefined
 					}
 					else {
@@ -222,6 +231,7 @@ var game = (function(){
 						});
 						number[n] = undefined;
 						ns[a] = val;
+						change = true;
 						return undefined
 					}
 				}
@@ -238,6 +248,7 @@ var game = (function(){
 					number[n] = undefined;
 					ns[a] = 1;
 					score += vala;
+					change = true;
 					return undefined
 				}
 				else {
@@ -254,6 +265,7 @@ var game = (function(){
 				});
 				number[n] = undefined;
 				ns[a] = val;
+				change = true;
 				return undefined
 			}
 			else {
@@ -268,6 +280,7 @@ var game = (function(){
 					number[n] = undefined;
 					ns[a] = 1;//状态码1代表非空但是已经合并后的状态
 					score += vala;
+					change = true;
 					return undefined
 				}
 				else {
@@ -662,6 +675,7 @@ var game = (function(){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
+			change = false;
 			ns[0] = game.number0(event);
 			ns[1] = game.number1(event);
 			ns[2] = game.number2(event);
@@ -681,7 +695,9 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
-				game.randomNum();
+				if (change){
+					game.randomNum()
+				}
 				if (game.isFinish()){
 					return
 				}
@@ -713,6 +729,7 @@ var game = (function(){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
+			change = false;
 			ns[3] = game.number3(event);
 			ns[2] = game.number2(event);
 			ns[1] = game.number1(event);
@@ -732,7 +749,9 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
-				game.randomNum();
+				if (change){
+					game.randomNum()
+				}
 				if (game.isFinish()){
 					return
 				}
@@ -764,6 +783,7 @@ var game = (function(){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
+			change = false;
 			ns[0] = game.number0(event);
 			ns[4] = game.number4(event);
 			ns[8] = game.number8(event);
@@ -783,7 +803,9 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
-				game.randomNum();
+				if (change){
+					game.randomNum()
+				}
 				if (game.isFinish()){
 					return
 				}
@@ -815,6 +837,7 @@ var game = (function(){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
+			change = false;
 			ns[12] = game.number12(event);
 			ns[8] = game.number8(event);
 			ns[4] = game.number4(event);
@@ -834,7 +857,9 @@ var game = (function(){
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
-				game.randomNum();
+				if (change){
+					game.randomNum()
+				}
 				if (game.isFinish()){
 					return
 				}
