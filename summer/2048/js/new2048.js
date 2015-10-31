@@ -1020,6 +1020,6 @@ $(".container").swipe( {
 	},
 });
 game.beginGame();
-if (screen.width <= 768){
+if (document.body.clientWidth <= 768){
 	$(".win").css('line-height',screen.height * 0.2 + 'px')
 }
