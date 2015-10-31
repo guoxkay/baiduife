@@ -4,7 +4,6 @@ html,body{
 	font-family: "微软雅黑";
 	font-size: 20px;
 }
-@media screen and (max-width: 1920px){
 .container{
 	width: 440px;
 	height: 440px;
@@ -14,8 +13,8 @@ html,body{
 	position: relative;
 }
 .cell{
-	width: 85px;
-	height: 85px;
+	width: 20%;
+	height: 20%;
 	border-radius: 10px;
 	text-align: center;
 	line-height: 85px;
@@ -27,7 +26,7 @@ html,body{
 	border: 1px solid #883405;
 	box-sizing: border-box;
 	float: left;
-	margin: 10px;
+	margin: 2%;
 }
 .n2{
 	background-color:#8b8b8b;
@@ -76,20 +75,20 @@ html,body{
 	box-shadow: none;
 }
 #cell_0,#cell_1,#cell_2,#cell_3{
-	margin-top: 20px;
+	margin-top: 4%;
 }
 #cell_0,#cell_4,#cell_8,#cell_12{
-	margin-left: 20px;
+	margin-left: 4%;
 }
 #cell_3,#cell_7,#cell_11,#cell_15{
-	margin-right: 20px;
+	margin-right: 4%;
 }
 #cell_12,#cell_13,#cell_14,#cell_15{
-	margin-bottom: 20px;
+	margin-bottom: 4%;
 }
 .num{
-	width: 83px;
-	height: 83px;
+	width: 20%;
+	height: 20%;
 	position: absolute;
 	border-radius: 10px;
 }
@@ -117,69 +116,68 @@ html,body{
 	top: 50px;
 }
 #cell_0 .num{
-	left: 21px;
-	top: 21px;
+	left: 4%;
+	top: 4%;
 }
 #cell_1 .num{
-	left: 126px;
-	top: 21px;
+	left: 28%;
+	top: 4%;
 }
 #cell_2 .num{
-	left: 231px;
-	top: 21px;
+	left: 52%;
+	top: 4%;
 }
 #cell_3 .num{
-	left: 336px;
-	top: 21px;
+	left: 76%;
+	top: 4%;
 }
 #cell_4 .num{
-	left: 21px;
-	top: 126px;
+	left: 4%;
+	top: 28%;
 }
 #cell_5 .num{
-	left: 126px;
-	top: 126px;
+	left: 28%;
+	top: 28%;
 }
 #cell_6 .num{
-	left: 231px;
-	top: 126px;
+	left: 52%;
+	top: 28%;
 }
 #cell_7 .num{
-	left: 336px;
-	top: 126px;
+	left: 76%;
+	top: 28%;
 }
 #cell_8 .num{
-	left: 21px;
-	top: 231px;
+	left: 4%;
+	top: 52%;
 }
 #cell_9 .num{
-	left: 126px;
-	top: 231px;
+	left: 28%;
+	top: 52%;
 }
 #cell_10 .num{
-	left: 231px;
-	top: 231px;
+	left: 52%;
+	top: 52%;
 }
 #cell_11 .num{
-	left: 336px;
-	top: 231px;
+	left: 76%;
+	top: 52%;
 }
 #cell_12 .num{
-	left: 21px;
-	top: 336px;
+	left: 4%;
+	top: 76%;
 }
 #cell_13 .num{
-	left: 126px;
-	top: 336px;
+	left: 28%;
+	top: 76%;
 }
 #cell_14 .num{
-	left: 231px;
-	top: 336px;
+	left: 52%;
+	top: 76%;
 }
 #cell_15 .num{
-	left: 336px;
-	top: 336px;
-}
+	left: 76%;
+	top: 76%;
 }
 .big{
 -webkit-animation-name : big;

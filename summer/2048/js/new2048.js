@@ -48,10 +48,10 @@ var game = (function(){
 				}
 			}
 			for (var i = 0;i < 16;i++){
-				if (number[i+1] !== undefined && +number[i+1].text() === +number[i].text()){
+				if ((number[i+1] !== undefined && +number[i+1].text() === +number[i].text()) && (i !== 3 && i !== 7) && i !== 11){
 					return false
 				}
-				if (number[i-1] !== undefined && +number[i-1].text() === +number[i].text()){
+				if ((number[i-1] !== undefined && +number[i-1].text() === +number[i].text()) && (i !== 4 && i !== 8) && i !== 12){
 					return false
 				}
 				if (number[i+4] !== undefined && +number[i+4].text() === +number[i].text()){
@@ -306,11 +306,11 @@ var game = (function(){
 					break
 				}
 				case 39 : {//right
-					return game.threeCell(0,1,2,3,{'left':'126px'},{'left':'231px'},{'left':'336px'});
+					return game.threeCell(0,1,2,3,{'left':'28%'},{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {//down
-					return game.threeCell(0,4,8,12,{'top':'126px'},{'top':'231px'},{'top':'336px'});
+					return game.threeCell(0,4,8,12,{'top':'28%'},{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -321,7 +321,7 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.oneCell(1,0,{'left':'21px'});
+					return game.oneCell(1,0,{'left':'4%'});
 					break
 				}
 				case 38 : {
@@ -329,11 +329,11 @@ var game = (function(){
 					break
 				}
 				case 39 : {
-					return game.twoCell(1,2,3,{'left':'231px'},{'left':'336px'});
+					return game.twoCell(1,2,3,{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.threeCell(1,5,9,13,{'top':'126px'},{'top':'231px'},{'top':'336px'});
+					return game.threeCell(1,5,9,13,{'top':'28%'},{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -344,7 +344,7 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.twoCell(2,1,0,{'left':'126px'},{'left':'21px'});
+					return game.twoCell(2,1,0,{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
@@ -352,11 +352,11 @@ var game = (function(){
 					break
 				}
 				case 39 : {
-					return game.oneCell(2,3,{'left':'336px'})
+					return game.oneCell(2,3,{'left':'76%'})
 					break
 				}
 				case 40 : {
-					return game.threeCell(2,6,10,14,{'top':'126px'},{'top':'231px'},{'top':'336px'})
+					return game.threeCell(2,6,10,14,{'top':'28%'},{'top':'52%'},{'top':'76%'})
 					break
 				}
 			}
@@ -368,7 +368,7 @@ var game = (function(){
 			var n3 = +number[3].text();
 			switch (event.which){
 				case 37 : {
-					return game.threeCell(3,2,1,0,{'left':'231px'},{'left':'126px'},{'left':'21px'});
+					return game.threeCell(3,2,1,0,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
@@ -380,7 +380,7 @@ var game = (function(){
 					break
 				}
 				case 40 : {
-					return game.threeCell(3,7,11,15,{'top':'126px'},{'top':'231px'},{'top':'336px'});
+					return game.threeCell(3,7,11,15,{'top':'28%'},{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -395,15 +395,15 @@ var game = (function(){
 					break
 				}
 				case 38 : {
-					return game.oneCell(4,0,{'top':'21px'});
+					return game.oneCell(4,0,{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.threeCell(4,5,6,7,{'left':'126px'},{'left':'231px'},{'left':'336px'});
+					return game.threeCell(4,5,6,7,{'left':'28%'},{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.twoCell(4,8,12,{'top':'231px'},{'top':'336px'});
+					return game.twoCell(4,8,12,{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -414,19 +414,19 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.oneCell(5,4,{'left':'21px'});
+					return game.oneCell(5,4,{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.oneCell(5,1,{'top':'21px'});
+					return game.oneCell(5,1,{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.twoCell(5,6,7,{'left':'231px'},{'left':'336px'});
+					return game.twoCell(5,6,7,{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.twoCell(5,9,13,{'top':'231px'},{'top':'336px'});
+					return game.twoCell(5,9,13,{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -437,19 +437,19 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.twoCell(6,5,4,{'left':'126px'},{'left':'21px'});
+					return game.twoCell(6,5,4,{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.oneCell(6,2,{'top':'21px'});
+					return game.oneCell(6,2,{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.oneCell(6,7,{'left':'336px'});
+					return game.oneCell(6,7,{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.twoCell(6,10,14,{'top':'231px'},{'top':'336px'});
+					return game.twoCell(6,10,14,{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -460,11 +460,11 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.threeCell(7,6,5,4,{'left':'231px'},{'left':'126px'},{'left':'21px'});
+					return game.threeCell(7,6,5,4,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.oneCell(7,3,{'top':'21px'});
+					return game.oneCell(7,3,{'top':'4%'});
 					break
 				}
 				case 39 : {
@@ -472,7 +472,7 @@ var game = (function(){
 					break
 				}
 				case 40 : {
-					return game.twoCell(7,11,15,{'top':'231px'},{'top':'336px'});
+					return game.twoCell(7,11,15,{'top':'52%'},{'top':'76%'});
 					break
 				}
 			}
@@ -487,15 +487,15 @@ var game = (function(){
 					break
 				}
 				case 38 : {
-					return game.twoCell(8,4,0,{'top':'126px'},{'top':'21px'});
+					return game.twoCell(8,4,0,{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.threeCell(8,9,10,11,{'left':'126px'},{'left':'231px'},{'left':'336px'});
+					return game.threeCell(8,9,10,11,{'left':'28%'},{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.oneCell(8,12,{'top':'336px'});
+					return game.oneCell(8,12,{'top':'76%'});
 					break
 				}
 			}
@@ -506,19 +506,19 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.oneCell(9,8,{'left':'21px'});
+					return game.oneCell(9,8,{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.twoCell(9,5,1,{'top':'126px'},{'top':'21px'});
+					return game.twoCell(9,5,1,{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.twoCell(9,10,11,{'left':'231px'},{'left':'336px'});
+					return game.twoCell(9,10,11,{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.oneCell(9,13,{'top':'336px'});
+					return game.oneCell(9,13,{'top':'76%'});
 					break
 				}
 			}
@@ -529,19 +529,19 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.twoCell(10,9,8,{'left':'126px'},{'left':'21px'});
+					return game.twoCell(10,9,8,{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.twoCell(10,6,2,{'top':'126px'},{'top':'21px'});
+					return game.twoCell(10,6,2,{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.oneCell(10,11,{'left':'336px'});
+					return game.oneCell(10,11,{'left':'76%'});
 					break
 				}
 				case 40 : {
-					return game.oneCell(10,14,{'top':'336px'});
+					return game.oneCell(10,14,{'top':'76%'});
 					break
 				}
 			}
@@ -552,11 +552,11 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.threeCell(11,10,9,8,{'left':'231px'},{'left':'126px'},{'left':'21px'});
+					return game.threeCell(11,10,9,8,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.twoCell(11,7,3,{'top':'126px'},{'top':'21px'});
+					return game.twoCell(11,7,3,{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
@@ -564,7 +564,7 @@ var game = (function(){
 					break
 				}
 				case 40 : {
-					return game.oneCell(11,15,{'top':'336px'});
+					return game.oneCell(11,15,{'top':'76%'});
 					break
 				}
 			}
@@ -579,11 +579,11 @@ var game = (function(){
 					break
 				}
 				case 38 : {
-					return game.threeCell(12,8,4,0,{'top':'231px'},{'top':'126px'},{'top':'21px'});
+					return game.threeCell(12,8,4,0,{'top':'52%'},{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.threeCell(12,13,14,15,{'left':'126px'},{'left':'231px'},{'left':'336px'});
+					return game.threeCell(12,13,14,15,{'left':'28%'},{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
@@ -598,15 +598,15 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.oneCell(13,12,{'left':'21px'});
+					return game.oneCell(13,12,{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.threeCell(13,9,5,1,{'top':'231px'},{'top':'126px'},{'top':'21px'});
+					return game.threeCell(13,9,5,1,{'top':'52%'},{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.twoCell(13,14,15,{'left':'231px'},{'left':'336px'});
+					return game.twoCell(13,14,15,{'left':'52%'},{'left':'76%'});
 					break
 				}
 				case 40 : {
@@ -621,15 +621,15 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.twoCell(14,13,12,{'left':'126px'},{'left':'21px'});
+					return game.twoCell(14,13,12,{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.threeCell(14,10,6,2,{'top':'231px'},{'top':'126px'},{'top':'21px'});
+					return game.threeCell(14,10,6,2,{'top':'52%'},{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
-					return game.oneCell(14,15,{'left':'336px'});
+					return game.oneCell(14,15,{'left':'76%'});
 					break
 				}
 				case 40 : {
@@ -644,11 +644,11 @@ var game = (function(){
 			}
 			switch (event.which){
 				case 37 : {
-					return game.threeCell(15,14,13,12,{'left':'231px'},{'left':'126px'},{'left':'21px'});
+					return game.threeCell(15,14,13,12,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
 				}
 				case 38 : {
-					return game.threeCell(15,11,7,3,{'top':'231px'},{'top':'126px'},{'top':'21px'});
+					return game.threeCell(15,11,7,3,{'top':'52%'},{'top':'28%'},{'top':'4%'});
 					break
 				}
 				case 39 : {
