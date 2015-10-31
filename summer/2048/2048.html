@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>2048</title>
+	<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no">
 	<meta name="keywords" content="2048"/>
 	<meta name="author" content="guoxkay"/>
 	<meta name="time" content="2015-10-09"/>
@@ -33,7 +34,14 @@
 		<p>得分：<span id="sco"></span></p>
 		<p>最高分：<span id="hsco"></span></p>
 	</div>
+	<script type="text/javascript">
+		if (screen.width <= 768){
+			document.getElementsByClassName("container")[0].style.height = (screen.width * 0.9) + "px";
+			document.getElementById("score").style.top = (screen.width * 1.2) + "px" 
+		}
+	</script>
 	<script type="text/javascript" src="../../../jquery/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="../../../jquery/jquery.touchSwipe.min.js"></script>
 	<script type="text/javascript" src="js/new2048.js"></script>
 </body>
 </html>

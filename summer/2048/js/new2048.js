@@ -292,11 +292,11 @@ var game = (function(){
 			return +number[n].text()
 		},
 		//各位置函数
-		number0 : function(event){
+		number0 : function(dir){
 			if (number[0] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {//left
 					return game.zeroCell(0);
 					break
@@ -315,11 +315,11 @@ var game = (function(){
 				}
 			}
 		},
-		number1 : function(event){
+		number1 : function(dir){
 			if (number[1] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.oneCell(1,0,{'left':'4%'});
 					break
@@ -338,11 +338,11 @@ var game = (function(){
 				}
 			}
 		},
-		number2 : function(event){
+		number2 : function(dir){
 			if (number[2] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.twoCell(2,1,0,{'left':'28%'},{'left':'4%'});
 					break
@@ -361,12 +361,12 @@ var game = (function(){
 				}
 			}
 		},
-		number3 : function(event){
+		number3 : function(dir){
 			if (number[3] === undefined){
 				return undefined
 			}
 			var n3 = +number[3].text();
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.threeCell(3,2,1,0,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
@@ -385,11 +385,11 @@ var game = (function(){
 				}
 			}
 		},
-		number4 : function(event){
+		number4 : function(dir){
 			if (number[4] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.zeroCell(4);
 					break
@@ -408,11 +408,11 @@ var game = (function(){
 				}
 			}
 		},
-		number5 : function(event){
+		number5 : function(dir){
 			if (number[5] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.oneCell(5,4,{'left':'4%'});
 					break
@@ -431,11 +431,11 @@ var game = (function(){
 				}
 			}
 		},
-		number6 : function(event){
+		number6 : function(dir){
 			if (number[6] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.twoCell(6,5,4,{'left':'28%'},{'left':'4%'});
 					break
@@ -454,11 +454,11 @@ var game = (function(){
 				}
 			}
 		},
-		number7 : function(event){
+		number7 : function(dir){
 			if (number[7] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.threeCell(7,6,5,4,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
@@ -477,11 +477,11 @@ var game = (function(){
 				}
 			}
 		},
-		number8 : function(event){
+		number8 : function(dir){
 			if (number[8] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.zeroCell(8);
 					break
@@ -500,11 +500,11 @@ var game = (function(){
 				}
 			}
 		},
-		number9 : function(event){
+		number9 : function(dir){
 			if (number[9] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.oneCell(9,8,{'left':'4%'});
 					break
@@ -523,11 +523,11 @@ var game = (function(){
 				}
 			}
 		},
-		number10 : function(event){
+		number10 : function(dir){
 			if (number[10] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.twoCell(10,9,8,{'left':'28%'},{'left':'4%'});
 					break
@@ -546,11 +546,11 @@ var game = (function(){
 				}
 			}
 		},
-		number11 : function(event){
+		number11 : function(dir){
 			if (number[11] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.threeCell(11,10,9,8,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
@@ -569,11 +569,11 @@ var game = (function(){
 				}
 			}
 		},
-		number12 : function(event){
+		number12 : function(dir){
 			if (number[12] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.zeroCell(12);
 					break
@@ -592,11 +592,11 @@ var game = (function(){
 				}
 			}
 		},
-		number13 : function(event){
+		number13 : function(dir){
 			if (number[13] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.oneCell(13,12,{'left':'4%'});
 					break
@@ -615,11 +615,11 @@ var game = (function(){
 				}
 			}
 		},
-		number14 : function(event){
+		number14 : function(dir){
 			if (number[14] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.twoCell(14,13,12,{'left':'28%'},{'left':'4%'});
 					break
@@ -638,11 +638,11 @@ var game = (function(){
 				}
 			}
 		},
-		number15 : function(event){
+		number15 : function(dir){
 			if (number[15] === undefined){
 				return undefined
 			}
-			switch (event.which){
+			switch (dir){
 				case 37 : {
 					return game.threeCell(15,14,13,12,{'left':'52%'},{'left':'28%'},{'left':'4%'});
 					break
@@ -671,27 +671,27 @@ var game = (function(){
 			$("#hsco").text(maxScore);
 		},
 		//方向函数
-		left : function(event){
+		left : function(dir){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
 			change = false;
-			ns[0] = game.number0(event);
-			ns[1] = game.number1(event);
-			ns[2] = game.number2(event);
-			game.number3(event);
-			ns[4] = game.number4(event);
-			ns[5] = game.number5(event);
-			ns[6] = game.number6(event);
-			game.number7(event);
-			ns[8] = game.number8(event);
-			ns[9] = game.number9(event);
-			ns[10] = game.number10(event);
-			game.number11(event);
-			ns[12] = game.number12(event);
-			ns[13] = game.number13(event);
-			ns[14] = game.number14(event);
-			game.number15(event);
+			ns[0] = game.number0(dir);
+			ns[1] = game.number1(dir);
+			ns[2] = game.number2(dir);
+			game.number3(dir);
+			ns[4] = game.number4(dir);
+			ns[5] = game.number5(dir);
+			ns[6] = game.number6(dir);
+			game.number7(dir);
+			ns[8] = game.number8(dir);
+			ns[9] = game.number9(dir);
+			ns[10] = game.number10(dir);
+			game.number11(dir);
+			ns[12] = game.number12(dir);
+			ns[13] = game.number13(dir);
+			ns[14] = game.number14(dir);
+			game.number15(dir);
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
@@ -705,101 +705,69 @@ var game = (function(){
 					$("body").keydown(function(event){
 						switch (event.which){
 							case 37 : {
-								game.left(event);
+								game.left(37);
 								break
 							}
 							case 38 : {
-								game.up(event);
+								game.up(38);
 								break
 							}
 							case 39 : {
-								game.right(event);
+								game.right(39);
 								break
 							}
 							case 40 : {
-								game.down(event);
+								game.down(40);
 								break
 							}
 						}
 					});
-				}
-			},320)
-		},
-		right : function(event){
-			for (var i = 0;i < 16;i++){
-				ns[i] = undefined
-			}
-			change = false;
-			ns[3] = game.number3(event);
-			ns[2] = game.number2(event);
-			ns[1] = game.number1(event);
-			game.number0(event);
-			ns[7] = game.number7(event);
-			ns[6] = game.number6(event);
-			ns[5] = game.number5(event);
-			game.number4(event);
-			ns[11] = game.number11(event);
-			ns[10] = game.number10(event);
-			ns[9] = game.number9(event);
-			game.number8(event);
-			ns[15] = game.number15(event);
-			ns[14] = game.number14(event);
-			ns[13] = game.number13(event);
-			game.number12(event);
-			game.printScore();
-			$("body").unbind("keydown");
-			setTimeout(function(){
-				if (change){
-					game.randomNum()
-				}
-				if (game.isFinish()){
-					return
-				}
-				else {
-					$("body").keydown(function(event){
-						switch (event.which){
-							case 37 : {
-								game.left(event);
-								break
-							}
-							case 38 : {
-								game.up(event);
-								break
-							}
-							case 39 : {
-								game.right(event);
-								break
-							}
-							case 40 : {
-								game.down(event);
-								break
-							}
-						}
+					$(".container").swipe( {
+						swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+							switch (direction){
+								case "left" : {
+									game.left(37)
+									break
+								}
+								case "up" : {
+									game.up(38);
+									break
+								}
+								case "right" : {
+									game.right(39);
+									break
+								}
+								case "down" : {
+									game.down(40);
+									break
+								}
+							}	
+						},
 					});
 				}
 			},320)
 		},
-		up : function(event){
+		right : function(dir){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
 			change = false;
-			ns[0] = game.number0(event);
-			ns[4] = game.number4(event);
-			ns[8] = game.number8(event);
-			game.number12(event);
-			ns[1] = game.number1(event);
-			ns[5] = game.number5(event);
-			ns[9] = game.number9(event);
-			game.number13(event);
-			ns[2] = game.number2(event);
-			ns[6] = game.number6(event);
-			ns[10] = game.number10(event);
-			game.number14(event);
-			ns[3] = game.number3(event);
-			ns[7] = game.number7(event);
-			ns[11] = game.number11(event);
-			game.number15(event);
+			ns[3] = game.number3(dir);
+			ns[2] = game.number2(dir);
+			ns[1] = game.number1(dir);
+			game.number0(dir);
+			ns[7] = game.number7(dir);
+			ns[6] = game.number6(dir);
+			ns[5] = game.number5(dir);
+			game.number4(dir);
+			ns[11] = game.number11(dir);
+			ns[10] = game.number10(dir);
+			ns[9] = game.number9(dir);
+			game.number8(dir);
+			ns[15] = game.number15(dir);
+			ns[14] = game.number14(dir);
+			ns[13] = game.number13(dir);
+			game.number12(dir);
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
@@ -813,47 +781,69 @@ var game = (function(){
 					$("body").keydown(function(event){
 						switch (event.which){
 							case 37 : {
-								game.left(event);
+								game.left(37);
 								break
 							}
 							case 38 : {
-								game.up(event);
+								game.up(38);
 								break
 							}
 							case 39 : {
-								game.right(event);
+								game.right(39);
 								break
 							}
 							case 40 : {
-								game.down(event);
+								game.down(40);
 								break
 							}
 						}
 					});
+					$(".container").swipe( {
+						swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+							switch (direction){
+								case "left" : {
+									game.left(37)
+									break
+								}
+								case "up" : {
+									game.up(38);
+									break
+								}
+								case "right" : {
+									game.right(39);
+									break
+								}
+								case "down" : {
+									game.down(40);
+									break
+								}
+							}	
+						},
+					});
 				}
 			},320)
 		},
-		down : function(event){
+		up : function(dir){
 			for (var i = 0;i < 16;i++){
 				ns[i] = undefined
 			}
 			change = false;
-			ns[12] = game.number12(event);
-			ns[8] = game.number8(event);
-			ns[4] = game.number4(event);
-			game.number0(event);
-			ns[13] = game.number13(event);
-			ns[9] = game.number9(event);
-			ns[5] = game.number5(event);
-			game.number1(event);
-			ns[14] = game.number14(event);
-			ns[10] = game.number10(event);
-			ns[6] = game.number6(event);
-			game.number2(event);
-			ns[15] = game.number15(event);
-			ns[11] = game.number11(event);
-			ns[7] = game.number7(event);
-			game.number3(event);
+			ns[0] = game.number0(dir);
+			ns[4] = game.number4(dir);
+			ns[8] = game.number8(dir);
+			game.number12(dir);
+			ns[1] = game.number1(dir);
+			ns[5] = game.number5(dir);
+			ns[9] = game.number9(dir);
+			game.number13(dir);
+			ns[2] = game.number2(dir);
+			ns[6] = game.number6(dir);
+			ns[10] = game.number10(dir);
+			game.number14(dir);
+			ns[3] = game.number3(dir);
+			ns[7] = game.number7(dir);
+			ns[11] = game.number11(dir);
+			game.number15(dir);
 			game.printScore();
 			$("body").unbind("keydown");
 			setTimeout(function(){
@@ -867,22 +857,120 @@ var game = (function(){
 					$("body").keydown(function(event){
 						switch (event.which){
 							case 37 : {
-								game.left(event);
+								game.left(37);
 								break
 							}
 							case 38 : {
-								game.up(event);
+								game.up(38);
 								break
 							}
 							case 39 : {
-								game.right(event);
+								game.right(39);
 								break
 							}
 							case 40 : {
-								game.down(event);
+								game.down(40);
 								break
 							}
 						}
+					});
+					$(".container").swipe( {
+						swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+							switch (direction){
+								case "left" : {
+									game.left(37)
+									break
+								}
+								case "up" : {
+									game.up(38);
+									break
+								}
+								case "right" : {
+									game.right(39);
+									break
+								}
+								case "down" : {
+									game.down(40);
+									break
+								}
+							}	
+						},
+					});
+				}
+			},320)
+		},
+		down : function(dir){
+			for (var i = 0;i < 16;i++){
+				ns[i] = undefined
+			}
+			change = false;
+			ns[12] = game.number12(dir);
+			ns[8] = game.number8(dir);
+			ns[4] = game.number4(dir);
+			game.number0(dir);
+			ns[13] = game.number13(dir);
+			ns[9] = game.number9(dir);
+			ns[5] = game.number5(dir);
+			game.number1(dir);
+			ns[14] = game.number14(dir);
+			ns[10] = game.number10(dir);
+			ns[6] = game.number6(dir);
+			game.number2(dir);
+			ns[15] = game.number15(dir);
+			ns[11] = game.number11(dir);
+			ns[7] = game.number7(dir);
+			game.number3(dir);
+			game.printScore();
+			$("body").unbind("keydown");
+			setTimeout(function(){
+				if (change){
+					game.randomNum()
+				}
+				if (game.isFinish()){
+					return
+				}
+				else {
+					$("body").keydown(function(event){
+						switch (event.which){
+							case 37 : {
+								game.left(37);
+								break
+							}
+							case 38 : {
+								game.up(38);
+								break
+							}
+							case 39 : {
+								game.right(39);
+								break
+							}
+							case 40 : {
+								game.down(40);
+								break
+							}
+						}
+					});
+					$(".container").swipe( {
+						swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+							switch (direction){
+								case "left" : {
+									game.left(37)
+									break
+								}
+								case "up" : {
+									game.up(38);
+									break
+								}
+								case "right" : {
+									game.right(39);
+									break
+								}
+								case "down" : {
+									game.down(40);
+									break
+								}
+							}	
+						},
 					});
 				}
 			},320);
@@ -892,21 +980,46 @@ var game = (function(){
 $("body").keydown(function(event){
 	switch (event.which){
 		case 37 : {
-			game.left(event);
+			game.left(37);
 			break
 		}
 		case 38 : {
-			game.up(event);
+			game.up(38);
 			break
 		}
 		case 39 : {
-			game.right(event);
+			game.right(39);
 			break
 		}
 		case 40 : {
-			game.down(event);
+			game.down(40);
 			break
 		}
 	}
+});		
+$(".container").swipe( {
+	swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+		switch (direction){
+			case "left" : {
+				game.left(37)
+				break
+			}
+			case "up" : {
+				game.up(38);
+				break
+			}
+			case "right" : {
+				game.right(39);
+				break
+			}
+			case "down" : {
+				game.down(40);
+				break
+			}
+		}	
+	},
 });
-game.beginGame()
+game.beginGame();
+if (screen.width <= 768){
+	$(".win").css('line-height',screen.height * 0.2 + 'px')
+}

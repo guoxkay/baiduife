@@ -17,7 +17,7 @@ html,body{
 	height: 20%;
 	border-radius: 10px;
 	text-align: center;
-	line-height: 85px;
+	line-height: 88px;
 	overflow: hidden;
 	font-size: 50px;
 	font-family: "Arial";
@@ -194,4 +194,46 @@ to{-webkit-transform : scale(1);}
 from{transform : scale(1);}
 50%{transform : scale(1.2);}
 to{transform : scale(1);}
+}
+@media screen and (max-width: 768px){
+	.container{
+		width: 90%;
+		margin: 10% auto 0 auto;
+		border-radius: 20px;
+		background-image: url(../image/background.jpg);
+		position: relative;
+	}
+	.cell div{
+		display: -webkit-flex;
+		display: flex;
+		display: -wibkit-flex-box;
+		display: flex-box;
+		justify-content: center;
+		align-items: center;
+		box-pack: center;
+		box-align: center;
+	}
+	.n1024,.n2048{
+		font-size: 25px;
+	}
+	.n128,.n256,.n512{
+		font-size: 35px;
+	}
+	.n16,.n32,.n64{
+		font-size: 45px;
+	}
+	.n2,.n4,.n8{
+		font-size: 45px;
+	}
+	.win{
+		top: 20%;
+		width: 100%;
+		height: 20%;
+		text-align: center;
+		font-size: 60px;
+	}
+	#score{
+		position: absolute;
+		left: 10%;
+	}
 }
