@@ -1021,5 +1021,5 @@ $(".container").swipe( {
 });
 game.beginGame();
 if (document.body.clientWidth <= 768){
-	$(".win").css('line-height',screen.height * 0.2 + 'px')
+	$(".win").css('line-height',document.body.clientWidth * 0.2 + 'px')
 }
