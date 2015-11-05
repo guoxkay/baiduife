@@ -1,0 +1,143 @@
+﻿body{
+padding : 0;
+margin : 0;
+background-color : #00FFFF;
+font-family : 微软雅黑,serif;
+font-size : 35px;
+font-weight : bold;
+text-align : center;
+}
+#one img{
+height : 133px;
+width : 168px;
+margin : 50px;
+margin-top : 100px;
+cursor : pointer;
+}
+#one img:hover{
+-webkit-transform : scale(1.5);
+transform : scale(1.5);
+}
+#one p{
+text-align : center;
+margin-top : 80px;
+}
+#two{
+position : absolute;
+top : 0;
+left : 0;
+height : 100%;
+width : 100%;
+display : none;
+text-align : center;
+}
+#rrr{
+display : none;
+}
+#two p{
+text-align : center;
+margin-top : 80px;
+margin-bottom : 160px;
+}
+#counter{
+color : #fcff00;
+}
+#changePic{
+height : 133px;
+width : 168px;
+position : absolute;
+top : 250px;
+left : 65%;
+overflow : hidden;
+}
+#donghua{
+position : absolute;
+top : 0;
+left : 0;
+-webkit-animation-name : none;
+-webkit-animation-duration : 500ms;
+-webkit-animation-iteration-count : infinite;
+animation-name : none;
+animation-duration : 500ms;
+animation-iteration-count : infinite;
+display : none;
+}
+@-webkit-keyframes changePic{
+from{top:0;}
+32%{top:0;}
+33%{top:-133px;}
+65%{top:-133px;}
+66%{top:-280px;}
+to{top:-280px;}
+}
+@keyframes changePic{
+from{top:0;}
+32%{top:0;}
+33%{top:-133px;}
+65%{top:-133px;}
+66%{top:-280px;}
+to{top:-280px;}
+}
+#AIimage {
+position : absolute;
+top : 0;
+left : 0;
+display : none;
+}
+#selectImage {
+position : absolute;
+top : 39.5%;
+left : 22%;
+-webkit-animation-name : none;
+-webkit-animation-duration : 1s;
+-webkit-animation-iteration-count : 1;
+animation-name : none;
+animation-duration : 1s;
+animation-iteration-count : 1;
+}
+@-webkit-keyframes leftMove{
+0%{left:44%;}
+100%{left:22%;}
+}
+@keyframes leftMove{
+0%{left:44%;}
+100%{left:22%;}
+}
+#three{
+position : absolute;
+top : 0;
+left : 0;
+width : 100%;
+height : 100%;
+display : none;
+}
+#screen{
+width : 98%;
+height : 98%;
+z-index : 98;
+background-color : transparent;
+border : 0;
+outline : 0;
+}
+#three div{
+background-color : transparent;
+position : absolute;
+top : 70%;
+left : 0;
+z-index : 99;
+width : 100%;
+width : 100%;
+height : 20%;
+}
+#three img{
+width : 50px;
+height : 50px;
+margin : 30px;
+border : none;
+outline : none;
+cursor : pointer;
+}
+#three img:hover{
+-webkit-transform : scale(1.2);
+transform : scale(1.2);
+}

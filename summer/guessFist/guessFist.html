@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>猜拳</title>
+<link rel="stylesheet" type="text/css" href="css/gf.css"/>
+</head>
+<body>
+<div id="one">
+<p>请出拳吧,少女!</p>
+<div id="selectButton">
+<img id="shitou1" src="img/shitou.gif" onclick="guessFist.shitou();guessFist.getResult();return false"/>
+<img id="jiandao1" src="img/jiandao.gif" onclick="guessFist.jiandao();guessFist.getResult();return false"/>
+<img id="bu1" src="img/bu.gif" onclick="guessFist.bu();guessFist.getResult();return false"/>
+</div>
+</div>
+<div id="two">
+<p>您已经赢了<span id="counter">0</span>次</p>
+<img id="selectImage" src="">
+<div id="rrr">
+<p id="result">wait...</p>
+</div>
+<div id="changePic">
+<img id="AIimage" src="">
+<div id="donghua">
+<img id="shitou2" src="img/shitou.gif"/>
+<img id="jiandao2" src="img/jiandao.gif"/>
+<img id="bu2" src="img/bu.gif"/>
+</div>
+</div>
+</div>
+<div id="three">
+<button id="screen"></button>
+<div>
+<img src="img/reset.gif" id="reset" onclick="guessFist.reset();return false"/>
+<img src="img/exit.gif" id="exit" onclick="guessFist.reset();return false"/>
+</div>
+</div>
+<script type="text/javascript" src="js/gf.js"></script>
+</body>
+</html>
